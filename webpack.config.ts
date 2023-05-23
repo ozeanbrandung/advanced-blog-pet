@@ -5,9 +5,14 @@ import path from 'path';
 import webpack from 'webpack';
 //const HtmlWebpackPlugin = require('html-webpack-plugin');
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import {buildPlugins} from "./config/build/buildPlugins";
+import buildLoaders from "./config/build/buildLoaders";
+import buildResolvers from "./config/build/buildResolvers";
+import buildWebpackConfig from "./config/build/buildWebpackConfig";
+import {BuildOptions, BuildPaths} from "./config/build/types/config";
 
 //module.exports = {
-const config: webpack.Configuration = {
+/* const config: webpack.Configuration = {
   //при подключении ts не забыть поменять на js!
   //не забыть и расширение самого webpack.config поменыть на ts!
   entry: path.resolve(__dirname, 'src', 'index.ts'),
@@ -21,28 +26,29 @@ const config: webpack.Configuration = {
   },
   //dev с удобствами для разработки, а prod голый и минимизированный
   mode: "development",
-  plugins: [
-    new HtmlWebpackPlugin(
-      {template: path.resolve(__dirname, 'public', 'index.html')}
-    ),
-    //The ProgressPlugin provides a way to customize how progress is reported during a compilation.
-    //нафиг мы его добавили вообще?
-    new webpack.ProgressPlugin()
-  ],
+  plugins: buildPlugins(),
   module: {
     //чтобы вебпак мог парсить typescript ыайлы
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
+    rules: buildLoaders(),
   },
   //чтобы к файлам со скриптами не надо было каждый раз расширение указывать
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-};
+  resolve: buildResolvers(),
+}; */
+
+const paths: BuildPaths = {
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
+  build: path.resolve(__dirname, 'build'),
+  html: path.resolve(__dirname, 'public', 'index.html'),
+}
+
+const mode = 'development';
+const isDev = mode === 'development';
+
+const config: webpack.Configuration = buildWebpackConfig({
+  mode,
+  paths,
+  isDev,
+})
 
 export default config;
+
