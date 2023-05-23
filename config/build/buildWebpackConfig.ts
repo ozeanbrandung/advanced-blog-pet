@@ -32,7 +32,7 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
         plugins: buildPlugins(options),
         module: {
             //чтобы вебпак мог парсить typescript ыайлы
-            rules: buildLoaders(),
+            rules: buildLoaders(options),
         },
         //чтобы к файлам со скриптами не надо было каждый раз расширение указывать
         resolve: buildResolvers(),

@@ -1,9 +1,9 @@
 import fn from './text';
 import {render} from "react-dom";
-import Counter from "./componets/Counter";
+import App from "./App";
 
 //fn(5);
 
 document.body.style.backgroundColor = 'salmon';
 
-render(<div><Counter/></div>, document.getElementById('root'))
+render(<App/>, document.getElementById('root'))

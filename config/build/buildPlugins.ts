@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import webpack from "webpack";
 import {BuildOptions, BuildPaths} from "./types/config";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export function buildPlugins({paths}: BuildOptions): webpack.WebpackPluginInstance[] {
 
@@ -13,6 +14,11 @@ export function buildPlugins({paths}: BuildOptions): webpack.WebpackPluginInstan
         }),
         //The ProgressPlugin provides a way to customize how progress is reported during a compilation.
         //нафиг мы его добавили вообще?
-        new webpack.ProgressPlugin()
+        new webpack.ProgressPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "css/[name].[contenthash:8].css",
+            //когда разобьем файлы на чанки которые асинхронно будут подгружаться
+            chunkFilename: "css/[name].[contenthash:8].css",
+        }),
     ]
 }
