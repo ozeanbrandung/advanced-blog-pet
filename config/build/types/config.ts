@@ -1,6 +1,11 @@
 
 export type BuildMode = 'production' | 'development';
 
+export interface BuildEnv {
+    mode: BuildMode;
+    port: number;
+}
+
 export interface BuildPaths {
     //entry нашего приложение
     entry: string;
@@ -14,4 +19,5 @@ export interface BuildOptions {
     paths: BuildPaths;
     mode: BuildMode;
     isDev: boolean;
+    port: number;
 }

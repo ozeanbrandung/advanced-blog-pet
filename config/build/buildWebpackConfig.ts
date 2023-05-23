@@ -4,9 +4,10 @@ import path from "path";
 import {buildPlugins} from "./buildPlugins";
 import buildLoaders from "./buildLoaders";
 import buildResolvers from "./buildResolvers";
+import buildDevServer from "./buildDevServer";
 
 export default function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
-    const {paths, mode} = options;
+    const {paths, mode, isDev} = options;
 
     return {
         //при подключении ts не забыть поменять на js!
@@ -22,6 +23,9 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
             // очищаем папку при пересборке
             clean: true,
         },
+        //для дебага - чтобы видеть в каком месте кода ошибка, отклбчаем если не дев
+        //через && почему-то не работает
+        devtool: isDev ? 'inline-source-map' : undefined,
         //dev с удобствами для разработки, а prod голый и минимизированный
         //mode: "development",
         mode: mode,
@@ -32,5 +36,8 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
         },
         //чтобы к файлам со скриптами не надо было каждый раз расширение указывать
         resolve: buildResolvers(),
+        //отключаем если не дев
+        //через && почему-то не работает
+        devServer: isDev ? buildDevServer(options) : undefined,
     };
 }
