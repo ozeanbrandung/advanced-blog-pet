@@ -9,5 +9,14 @@
     color: var(--primary-color);
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 40px;
+    /* padding: 40px; */
+}
+
+.main {
+    display: flex;
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    padding: calc(var(--navbar-height) + 40px) 40px 40px;
 }

@@ -4,17 +4,24 @@ import {useTheme} from "app/providers/ThemeProvider";
 import 'app/styles/index.scss';
 import {AppRouter} from "app/providers/Router";
 import {Navbar} from "widgets/Navbar";
+import {ThemeSwitcher} from "features/ThemeSwitcher";
+import {Sidebar} from "widgets/Sidebar";
 
 const App = () => {
-    const {theme, toggleTheme} = useTheme();
+    const {theme} = useTheme();
 
     return (
         <div className={classNames('app', {}, [theme])}>
             <Navbar />
-            <Suspense fallback={'Loading...'}>
-                <AppRouter />
-            </Suspense>
-            <button onClick={toggleTheme}>toggle</button>
+
+            <main className='main'>
+                <Sidebar/>
+
+                <div className="page-wrapper">
+                    <AppRouter />
+                </div>
+            </main>
+            {/*<button onClick={toggleTheme}>toggle</button>*/}
         </div>
     );
 }
