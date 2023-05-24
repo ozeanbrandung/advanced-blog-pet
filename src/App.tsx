@@ -1,15 +1,21 @@
 import Counter from "./componets/Counter";
-import './index.scss';
 import {Routes, Route, Link} from "react-router-dom";
 import AboutPage from "./pages/AboutPage";
 import MainPage from "./pages/MainPage";
 import LazyAboutPageComponent from "./pages/AboutPage.async";
 import LazyMainPageComponent from "./pages/MainPage.async";
-import {ReactNode, Suspense} from "react";
+import {ReactNode, Suspense, useContext, useState} from "react";
+import './styles/index.scss';
+import {Theme, ThemeContext} from "./theme/ThemeContext";
+import useTheme from "./theme/useTheme";
+import {classNames} from "./helpers/classNames/classNames";
 
 const App = () => {
+    const {theme, toggleTheme} = useTheme();
+
     return (
-        <div className='app'>
+        <div className={classNames('app', {}, [theme])}>
+            <button onClick={toggleTheme}>toggle</button>
             <Link to='/about' >About</Link>
             <Link to='/'>Main</Link>
             <Suspense fallback={'Loading...'}>
