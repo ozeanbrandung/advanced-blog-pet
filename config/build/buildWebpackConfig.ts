@@ -35,7 +35,7 @@ export default function buildWebpackConfig(options: BuildOptions): webpack.Confi
             rules: buildLoaders(options),
         },
         //чтобы к файлам со скриптами не надо было каждый раз расширение указывать
-        resolve: buildResolvers(),
+        resolve: buildResolvers(options),
         //отключаем если не дев
         //через && почему-то не работает
         devServer: isDev ? buildDevServer(options) : undefined,

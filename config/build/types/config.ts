@@ -13,6 +13,8 @@ export interface BuildPaths {
     build: string;
     //путь до html шаблончика
     html: string;
+    //путь до корневой папки
+    src: string;
 }
 
 export interface BuildOptions {
