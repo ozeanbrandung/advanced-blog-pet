@@ -4,24 +4,27 @@ import {useTheme} from "app/providers/ThemeProvider";
 import 'app/styles/index.scss';
 import {AppRouter} from "app/providers/Router";
 import {Navbar} from "widgets/Navbar";
-import {ThemeSwitcher} from "features/ThemeSwitcher";
 import {Sidebar} from "widgets/Sidebar";
+
 
 const App = () => {
     const {theme} = useTheme();
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Navbar />
+            {/* библиотека i18n требует обернуть компоненты в саспенс*/}
+            <Suspense fallback=''>
+                <Navbar />
 
-            <main className='main'>
-                <Sidebar/>
+                <main className='main'>
+                    <Sidebar/>
 
-                <div className="page-wrapper">
-                    <AppRouter />
-                </div>
-            </main>
-            {/*<button onClick={toggleTheme}>toggle</button>*/}
+                    <div className="page-wrapper">
+                        <AppRouter />
+                    </div>
+                </main>
+                {/*<button onClick={toggleTheme}>toggle</button>*/}
+            </Suspense>
         </div>
     );
 }

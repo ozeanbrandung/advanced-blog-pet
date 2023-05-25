@@ -4,6 +4,7 @@ import styles from './Navbar.module.scss';
 import {RoutesPaths} from "shared/config/routesConfig/routesConfig";
 import {AppLink, AppLinkThemes} from "shared/ui/AppLink/AppLink";
 import {ThemeSwitcher} from "features/ThemeSwitcher";
+import {useTranslation} from "react-i18next";
 
 interface NavbarProps {
     className?: string;
@@ -11,6 +12,7 @@ interface NavbarProps {
 
 export const Navbar:FC<NavbarProps> = (props) => {
     const {className} = props;
+    const {t} = useTranslation('default')
 
     return (
         <div className={classNames(styles.Navbar, {}, [])}>
@@ -27,7 +29,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
                     className={styles.link}
                     to={RoutesPaths.about}
                 >
-                    About
+                    {t('About')}
                 </AppLink>
                 {/*<Link */}
                 {/*    className={styles.link} */}
@@ -40,7 +42,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
                     className={styles.link}
                     to={RoutesPaths.main}
                 >
-                    Main
+                    {t('Main')}
                 </AppLink>
             </div>
         </div>
