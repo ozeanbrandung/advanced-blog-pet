@@ -1,10 +1,9 @@
 import React, {FC} from 'react';
-import {classNames} from "shared/lib/classNames/classNames";
+import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Navbar.module.scss';
-import {RoutesPaths} from "shared/config/routesConfig/routesConfig";
-import {AppLink, AppLinkThemes} from "shared/ui/AppLink/AppLink";
-import {ThemeSwitcher} from "features/ThemeSwitcher";
-import {useTranslation} from "react-i18next";
+import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
+import {AppLink, AppLinkThemes} from 'shared/ui/AppLink/AppLink';
+import {useTranslation} from 'react-i18next';
 
 interface NavbarProps {
     className?: string;
@@ -12,10 +11,10 @@ interface NavbarProps {
 
 export const Navbar:FC<NavbarProps> = (props) => {
     const {className} = props;
-    const {t} = useTranslation('default')
+    const {t} = useTranslation('default');
 
     return (
-        <div className={classNames(styles.Navbar, {}, [])}>
+        <div className={classNames(styles.Navbar, {}, [className])}>
             {/*<Link */}
             {/*    className={styles.link} */}
             {/*    to={RoutesPaths.about}*/}

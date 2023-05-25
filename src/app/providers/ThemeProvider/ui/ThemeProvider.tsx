@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useState} from 'react';
-import {LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext} from "app/providers/ThemeProvider/lib/ThemeContext";
+import {LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext} from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 //пытаемся получить из LocalStorage (причем с приведением типов потому что там любая может быть страка),
 // если в localStorage ничего нет то мы тупа ставим светлую тему по дефолту

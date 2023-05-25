@@ -1,7 +1,5 @@
-import webpack from "webpack";
-import {BuildOptions} from "./types/config";
-import {Configuration as DevServerConfig} from "webpack-dev-server";
-import path from "path";
+import {BuildOptions} from './types/config';
+import {Configuration as DevServerConfig} from 'webpack-dev-server';
 
 export default function buildDevServer(options: BuildOptions):DevServerConfig {
     return {
@@ -14,5 +12,5 @@ export default function buildDevServer(options: BuildOptions):DevServerConfig {
         //а эта опция вот от этого
         historyApiFallback: true,
         hot: true,
-    }
+    };
 }

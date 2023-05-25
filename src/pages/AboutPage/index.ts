@@ -4,4 +4,4 @@
 //     AboutPageAsync as AboutPage
 // };
 
-export {LazyAboutPageComponent as AboutPage} from './ui/AboutPage.async'
+export {LazyAboutPageComponent as AboutPage} from './ui/AboutPage.async';

@@ -1,9 +1,8 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import path from "path";
-import webpack, {DefinePlugin} from "webpack";
-import {BuildOptions, BuildPaths} from "./types/config";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack, {DefinePlugin} from 'webpack';
+import {BuildOptions} from './types/config';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 export function buildPlugins({paths, isDev}: BuildOptions): webpack.WebpackPluginInstance[] {
 
@@ -17,14 +16,14 @@ export function buildPlugins({paths, isDev}: BuildOptions): webpack.WebpackPlugi
         //нафиг мы его добавили вообще?
         new webpack.ProgressPlugin(),
         new MiniCssExtractPlugin({
-            filename: "css/[name].[contenthash:8].css",
+            filename: 'css/[name].[contenthash:8].css',
             //когда разобьем файлы на чанки которые асинхронно будут подгружаться
-            chunkFilename: "css/[name].[contenthash:8].css",
+            chunkFilename: 'css/[name].[contenthash:8].css',
         }),
         new DefinePlugin({
             //чтобы в коде приложения эта переменная конфигурации была доступна
             __IS_DEV__: isDev //JSON.stringify?
         }),
         new ReactRefreshPlugin()
-    ]
+    ];
 }

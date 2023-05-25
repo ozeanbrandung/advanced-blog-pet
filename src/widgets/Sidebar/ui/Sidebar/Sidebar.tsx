@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
-import {classNames} from "shared/lib/classNames/classNames";
-import styles from "./Sidebar.module.scss";
-import {ThemeSwitcher} from "features/ThemeSwitcher";
-import {LangSwitcher} from "features/LangSwitcher/ui/LangSwitcher";
+import {classNames} from 'shared/lib/classNames/classNames';
+import styles from './Sidebar.module.scss';
+import {ThemeSwitcher} from 'features/ThemeSwitcher';
+import {LangSwitcher} from 'features/LangSwitcher/ui/LangSwitcher';
 
 interface SidebarProps {
     className?: string;
@@ -14,7 +14,7 @@ export const Sidebar:FC<SidebarProps> = (props) => {
 
     const toggleCollapsed = () => {
         setCollapsed(prev => !prev);
-    }
+    };
 
     return (
         <div className={classNames(styles.Sidebar, {[styles.collapsed]: collapsed}, [className])}>
