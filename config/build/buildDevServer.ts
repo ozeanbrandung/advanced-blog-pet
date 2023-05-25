@@ -13,5 +13,6 @@ export default function buildDevServer(options: BuildOptions):DevServerConfig {
         //если послать запрос на другой урл кроме / то будет cannot get
         //а эта опция вот от этого
         historyApiFallback: true,
+        hot: true,
     }
 }
