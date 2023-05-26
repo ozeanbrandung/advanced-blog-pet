@@ -1,19 +1,20 @@
 .Navbar {
-  z-index: 2;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--navbar-height);
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  background: var(--inverted-bg-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: var(--navbar-height);
+    padding: 20px;
+
+    background: var(--inverted-bg-color);
 }
 
 .link:first-child {
-  margin-right: 40px;
+    margin-right: 40px;
 }
-

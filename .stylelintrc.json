@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin"
+  ],
+  "rules": {
+    "indentation": [4],
+    "selector-class-pattern": null,
+    "unit-no-unknown": [true, { "ignoreUnits": ["dvh"] }],
+    "declaration-empty-line-before": null,
+    "plugin/rational-order": [true, {
+      "border-in-box-model": true,
+      "empty-line-between-groups": true
+    }]
+  }
+}
