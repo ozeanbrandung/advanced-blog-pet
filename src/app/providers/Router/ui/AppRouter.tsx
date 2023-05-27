@@ -1,11 +1,11 @@
 import {Suspense} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {routesConfig} from 'shared/config/routesConfig/routesConfig';
+import {PageLoader} from 'widgets/PageLoader';
 
 export const AppRouter = () => {
     return (
-        // eslint-disable-next-line i18next/no-literal-string
-        <Suspense fallback={'Loading...'}>
+        <Suspense fallback={<PageLoader />}>
             <Routes>
                 {/*<Route path='/about' element={<AboutPage/>} />*/}
                 {/*<Route path='/' element={<MainPage/>} />*/}
