@@ -1,7 +1,8 @@
 module.exports = {
     'env': {
         'browser': true,
-        'es2021': true
+        'es2021': true,
+        'jest': true,
     },
     'extends': [
         'eslint:recommended',
@@ -37,6 +38,7 @@ module.exports = {
             'warn',
             'always'
         ],
+        'max-len': ['error', {'ignoreComments': true}],
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
         '@typescript-eslint/ban-ts-comment': 'warn',

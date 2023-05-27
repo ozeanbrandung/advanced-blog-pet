@@ -4,7 +4,9 @@ import {BuildOptions} from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-export function buildPlugins({paths, isDev}: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins(
+    {paths, isDev}: BuildOptions
+): webpack.WebpackPluginInstance[] {
 
     //просто возвращает массив плагинов
     return [

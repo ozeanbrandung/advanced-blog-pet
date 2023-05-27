@@ -1,8 +1,14 @@
-import webpack from 'webpack';
+import {RuleSetRule} from 'webpack';
 import {BuildOptions} from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-export default function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
+export default function buildLoaders({isDev}: BuildOptions): RuleSetRule[] {
+    const babelLoader = {
+        test: /\.jsx?$/,
+        exclude: ['node_modules'],
+        use: ['babel-loader'],
+    };
+
     const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -40,8 +46,11 @@ export default function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule
                     //modules: true, - но это без настроек
                     modules: {
                         //применяем модули исклюбчительно на файлах со специальным расширением
-                        auto: (resourcePath: string) => resourcePath.includes('.module.'),
-                        localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
+                        auto: (resourcePath: string) =>
+                            resourcePath.includes('.module.'),
+                        localIdentName: isDev ?
+                            '[path][name]__[local]--[hash:base64:5]'
+                            : '[hash:base64:5]',
                     },
                     sourceMap: isDev,
                 },
@@ -55,6 +64,7 @@ export default function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule
     return [
         svgLoader,
         fileLoader,
+        babelLoader,
         typescriptLoader,
         cssLoaders,
     ];
