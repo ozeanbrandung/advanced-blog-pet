@@ -2,5 +2,7 @@
   "Language": "Русский",
   "About": "Über uns",
   "Main": "Haupseite",
-  "pageNotFound": "die Seite ist nicht auffindbar"
+  "pageNotFound": "die Seite ist nicht auffindbar",
+  "errorPage": "der Fehler ist passiert",
+  "reloadPageButton": "aktualisieren"
 }

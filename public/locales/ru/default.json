@@ -2,5 +2,7 @@
   "Language": "Deutsch",
   "About": "О нас",
   "Main": "Главная",
-  "pageNotFound": "Страница не найдена"
+  "pageNotFound": "Страница не найдена",
+  "errorPage": "Произошла ошибка, извините",
+  "reloadPageButton": "Обновить страницу"
 }
