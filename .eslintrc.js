@@ -38,7 +38,7 @@ module.exports = {
             'warn',
             'always'
         ],
-        'max-len': ['error', {'ignoreComments': true}],
+        'max-len': ['error', {'ignoreComments': true, 'code': 100}],
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
         '@typescript-eslint/ban-ts-comment': 'warn',

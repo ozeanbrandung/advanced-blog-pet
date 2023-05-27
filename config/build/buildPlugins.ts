@@ -3,6 +3,7 @@ import webpack, {DefinePlugin} from 'webpack';
 import {BuildOptions} from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 export function buildPlugins(
     {paths, isDev}: BuildOptions
@@ -26,6 +27,7 @@ export function buildPlugins(
             //чтобы в коде приложения эта переменная конфигурации была доступна
             __IS_DEV__: isDev //JSON.stringify?
         }),
-        new ReactRefreshPlugin()
+        new ReactRefreshPlugin(),
+        new BundleAnalyzerPlugin({openAnalyzer: false})
     ];
 }
