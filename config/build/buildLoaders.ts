@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 export default function buildLoaders({isDev}: BuildOptions): RuleSetRule[] {
     const babelLoader = {
         test: /\.jsx?$/,
-        exclude: ['node_modules'],
+        exclude: /node_modules/,
         use: ['babel-loader'],
     };
 
