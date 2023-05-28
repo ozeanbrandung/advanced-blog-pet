@@ -10,6 +10,15 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
     ],
     'overrides': [
+        {
+            files: [
+                // How to target the inline-template of just *.spec.ts files?
+                '**/src/**/*.test.{ts,tsx}'
+            ],
+            rules: {
+                'i18next/no-literal-string': 'off'
+            }
+        },
     ],
     'parser': '@typescript-eslint/parser',
     'parserOptions': {
@@ -42,6 +51,7 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
         '@typescript-eslint/ban-ts-comment': 'warn',
-        'i18next/no-literal-string': ['error', {markupOnly: true}]
-    }
+        'i18next/no-literal-string': ['error', {markupOnly: true, ignoreAttribute: ['data-testid', 'to']}]
+    },
+
 };

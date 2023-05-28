@@ -17,13 +17,13 @@ export const Sidebar:FC<SidebarProps> = (props) => {
     };
 
     return (
-        <div className={classNames(
+        <div data-testid="sidebar" className={classNames(
             styles.Sidebar,
             {[styles.collapsed]: collapsed},
             [className]
         )}>
             {/* eslint-disable-next-line i18next/no-literal-string */}
-            <button onClick={toggleCollapsed}>toggle</button>
+            <button data-testid="sidebar-button" onClick={toggleCollapsed}>toggle</button>
 
             <div className={styles.switchers}>
                 <ThemeSwitcher className={styles.switcher}/>
