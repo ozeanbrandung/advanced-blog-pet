@@ -1,9 +1,12 @@
 name: linting, testing, building
 on:
   push:
-    branches: [master, after-jest]
+    branches:
+      - main
+      - after-jest
   pull_reauest:
-    branches: [master]
+    branches:
+      - main
 jobs:
   pipeline:
     runs-on: ubuntu-latest
