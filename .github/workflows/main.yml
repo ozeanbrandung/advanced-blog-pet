@@ -23,16 +23,16 @@ jobs:
       - name: build production project
         uses: borales/actions-yarn@v4
         with:
-          cmd: build:prod
+          cmd: run build:prod
       - name: linting typescript, jsx, js
         uses: borales/actions-yarn@v4
         with:
-          cmd: eslint
+          cmd: run eslint
       - name: linting scss
         uses: borales/actions-yarn@v4
         with:
-          cmd: stylelint
+          cmd: run stylelint
       - name: unit testing
         uses: borales/actions-yarn@v4
         with:
-          cmd: test:unit
+          cmd: run test:unit
