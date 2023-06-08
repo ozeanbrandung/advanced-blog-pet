@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
       - name: install node modules
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: build broduction project
         run: npm run build:prod
       - name: tinting typescript, jsx, js
