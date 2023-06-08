@@ -12,20 +12,27 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - name: Check out repo's default branch
-        uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
       - name: install node modules
-        run: npm ci --legacy-peer-deps
-      - name: build broduction project
-        run: npm run build:prod
-      - name: tinting typescript, jsx, js
-        run: npm run eslint
-      - name: tinting scss
-        run: npm run stylelint
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: build production project
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build:prod
+      - name: linting typescript, jsx, js
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: eslint
+      - name: linting scss
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: stylelint
       - name: unit testing
-        run: npm run test:unit
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test:unit

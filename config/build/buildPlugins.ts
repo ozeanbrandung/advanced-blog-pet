@@ -9,8 +9,7 @@ export function buildPlugins(
     {paths, isDev}: BuildOptions
 ): webpack.WebpackPluginInstance[] {
 
-    //просто возвращает массив плагинов
-    return [
+    const plugins = [
         new HtmlWebpackPlugin({
             //template: path.resolve(__dirname, 'public', 'index.html')
             template: paths.html,
@@ -28,6 +27,12 @@ export function buildPlugins(
             __IS_DEV__: isDev //JSON.stringify?
         }),
         new ReactRefreshPlugin(),
-        new BundleAnalyzerPlugin({openAnalyzer: false})
     ];
+
+    if (isDev) {
+        plugins.push(new BundleAnalyzerPlugin({openAnalyzer: false}))
+    }
+
+    //просто возвращает массив плагинов
+    return plugins;
 }
