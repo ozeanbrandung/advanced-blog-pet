@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./advancedblogpet
+        working-directory: ./advanced-blog-pet
     strategy:
       matrix:
         node-version: [18.x]
