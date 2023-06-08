@@ -1,13 +1,9 @@
 // Replace your-framework with the name of your framework
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { AboutPage } from '../index';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenceDecorator';
-
-
-
+import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 
 const meta: Meta<typeof AboutPage> = {
     /* 👇 The title prop is optional.
