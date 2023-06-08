@@ -7,14 +7,12 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./advanced-blog-pet
     strategy:
       matrix:
         node-version: [18.x]
 
     steps:
+      - uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
