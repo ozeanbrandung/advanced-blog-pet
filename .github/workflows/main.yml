@@ -37,7 +37,11 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: run test:unit
-     - name: test screenshots
-       uses: borales/actions-yarn@v4
-       with:
-         cmd: run test:screenshots:ci
+      - name: build storybook (for screenshots tests)
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: run storybook:build
+      - name: test screenshots
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: run test:screenshots:ci
