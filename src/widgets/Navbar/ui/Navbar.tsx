@@ -3,7 +3,7 @@ import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Navbar.module.scss';
 import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
 import {AppLink, AppLinkThemes} from 'shared/ui/AppLink/AppLink';
-import {useTranslation} from 'react-i18next';
+import IconHome from 'shared/assets/icons/home.svg';
 
 interface NavbarProps {
     className?: string;
@@ -11,7 +11,6 @@ interface NavbarProps {
 
 export const Navbar:FC<NavbarProps> = (props) => {
     const {className} = props;
-    const {t} = useTranslation('default');
 
     return (
         <div className={classNames(styles.Navbar, {}, [className])}>
@@ -23,13 +22,6 @@ export const Navbar:FC<NavbarProps> = (props) => {
             {/*</Link>*/}
 
             <div className={styles.links}>
-                <AppLink
-                    theme={AppLinkThemes.SECONDARY}
-                    className={styles.link}
-                    to={RoutesPaths.about}
-                >
-                    {t('About')}
-                </AppLink>
                 {/*<Link */}
                 {/*    className={styles.link} */}
                 {/*    to={RoutesPaths.main}*/}
@@ -41,7 +33,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
                     className={styles.link}
                     to={RoutesPaths.main}
                 >
-                    {t('Main')}
+                    <IconHome />
                 </AppLink>
             </div>
         </div>

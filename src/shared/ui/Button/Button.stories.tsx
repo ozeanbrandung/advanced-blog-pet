@@ -1,10 +1,9 @@
 // Replace your-framework with the name of your framework
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button, ButtonThemes } from './Button';
+import { Button, ButtonSize, ButtonThemes } from './Button';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-
 
 
 const meta: Meta<typeof Button> = {
@@ -32,5 +31,23 @@ export const Outlined: Story = {
     args: {
         theme: ButtonThemes.OUTLINE,
         children: 'текст'
+    },
+};
+
+export const RoundedXLOutlined: Story = {
+    args: {
+        theme: ButtonThemes.OUTLINE,
+        isRound: true,
+        children: '>',
+        size: ButtonSize.XL
+    },
+};
+
+export const RoundedMInverted: Story = {
+    args: {
+        theme: ButtonThemes.BACKGROUND_INVERTED,
+        isRound: true,
+        children: '<',
+        size: ButtonSize.M
     },
 };
