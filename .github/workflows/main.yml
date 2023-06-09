@@ -37,3 +37,7 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: run test:unit
+     - name: test screenshots
+       uses: borales/actions-yarn@v4
+       with:
+         cmd: run test:screenshots:ci
