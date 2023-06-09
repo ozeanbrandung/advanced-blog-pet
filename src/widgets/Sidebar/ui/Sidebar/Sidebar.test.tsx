@@ -1,15 +1,15 @@
 import {fireEvent, screen} from '@testing-library/react';
 import {Sidebar} from './Sidebar';
-import {renderWithTranslation} from 'shared/lib/tests/renderWithTranslation';
+import {renderComponent} from 'shared/lib/tests/renderComponent';
 
 describe('sidebar', function () {
     test('', () => {
-        renderWithTranslation(<Sidebar/>);
+        renderComponent(<Sidebar/>);
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     });
 
     test('collapse sidebar', () => {
-        renderWithTranslation(<Sidebar/>);
+        renderComponent(<Sidebar/>);
         fireEvent.click(screen.getByTestId('sidebar-button'));
         expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
     });
