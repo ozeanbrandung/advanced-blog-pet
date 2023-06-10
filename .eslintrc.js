@@ -9,15 +9,17 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:react-hooks/recommended'
     ],
     'overrides': [
         {
             files: [
                 // How to target the inline-template of just *.spec.ts files?
-                '**/src/**/*.test.{ts,tsx}'
+                '**/src/**/*.{test,stories}.{ts,tsx}'
             ],
             rules: {
-                'i18next/no-literal-string': 'off'
+                'i18next/no-literal-string': 'off',
+                'max-len': 'off'
             }
         },
     ],
@@ -29,7 +31,8 @@ module.exports = {
     'plugins': [
         'react',
         '@typescript-eslint',
-        'i18next'
+        'i18next',
+        'react-hooks'
     ],
     'rules': {
         'indent': [
@@ -55,7 +58,9 @@ module.exports = {
         'i18next/no-literal-string': [
             'error',
             {markupOnly: true, ignoreAttribute: ['data-testid', 'to']}
-        ]
+        ],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn'
     },
 
 };

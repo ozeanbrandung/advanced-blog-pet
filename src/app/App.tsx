@@ -1,17 +1,19 @@
-import React, {Suspense} from 'react';
-import {classNames} from 'shared/lib/classNames/classNames';
-import {useTheme} from 'app/providers/ThemeProvider';
-import 'app/styles/index.scss';
-import {AppRouter} from 'app/providers/Router';
-import {Navbar} from 'widgets/Navbar';
-import {Sidebar} from 'widgets/Sidebar';
+import React, { Suspense, useEffect } from 'react';
+import { useTheme } from 'app/providers/ThemeProvider';
+import { AppRouter } from 'app/providers/Router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 
 
 const App = () => {
     const {theme} = useTheme();
 
+    useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+    }, [theme]);
+
     return (
-        <div className={classNames('app', {}, [theme])}>
+        <div className='app'>
             {/* библиотека i18n требует обернуть компоненты в саспенс*/}
             <Suspense fallback=''>
                 <Navbar />

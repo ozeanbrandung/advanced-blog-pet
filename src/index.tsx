@@ -7,6 +7,7 @@ import 'shared/config/i18n/i18n';
 import {ErrorBoundary} from 'app/providers/ErrorBoundary';
 //а компоненты каорые используют эту библиотеку нужно оберуть в suspense
 //это можно сделать глобально в апп
+import 'app/styles/index.scss';
 
 //document.body.style.backgroundColor = 'salmon';
 
