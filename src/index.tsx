@@ -8,15 +8,18 @@ import {ErrorBoundary} from 'app/providers/ErrorBoundary';
 //а компоненты каорые используют эту библиотеку нужно оберуть в suspense
 //это можно сделать глобально в апп
 import 'app/styles/index.scss';
+import { StoreProvider } from 'app/providers/StoreProvider';
 
 //document.body.style.backgroundColor = 'salmon';
 
 render(
-    <BrowserRouter>
-        <ErrorBoundary>
-            <ThemeProvider>
-                <App/>
-            </ThemeProvider>
-        </ErrorBoundary>
-    </BrowserRouter>,
+    <StoreProvider>
+        <BrowserRouter>
+            <ErrorBoundary>
+                <ThemeProvider>
+                    <App/>
+                </ThemeProvider>
+            </ErrorBoundary>
+        </BrowserRouter>
+    </StoreProvider>,
     document.getElementById('root'));
