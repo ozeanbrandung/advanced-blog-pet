@@ -6,11 +6,11 @@ import { Sidebar } from 'widgets/Sidebar';
 
 
 const App = () => {
-    const {theme} = useTheme();
-
-    useEffect(() => {
-        document.documentElement.dataset.theme = theme;
-    }, [theme]);
+    // const {theme} = useTheme();
+    //
+    // useEffect(() => {
+    //     document.documentElement.dataset.theme = theme;
+    // }, [theme]);
 
     return (
         <div className='app'>
