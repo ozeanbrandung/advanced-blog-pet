@@ -6,5 +6,7 @@
   "errorPage": "Произошла ошибка, извините",
   "reloadPageButton": "Обновить страницу",
   "LanguageCut": "De",
-  "LogIn": "Войти"
+  "LogIn": "Войти",
+  "username": "username",
+  "password": "password"
 }

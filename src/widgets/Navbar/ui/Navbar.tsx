@@ -5,8 +5,8 @@ import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
 import {AppLink, AppLinkThemes} from 'shared/ui/AppLink/AppLink';
 import IconHome from 'shared/assets/icons/home.svg';
 import { useTranslation } from 'react-i18next';
-import { Modal } from 'shared/ui/Modal/Modal';
 import { Button, ButtonThemes } from 'shared/ui/Button/Button';
+import { LoginModal } from 'features/AuthByUsername';
 
 interface NavbarProps {
     className?: string;
@@ -17,13 +17,21 @@ export const Navbar:FC<NavbarProps> = (props) => {
     const {t} = useTranslation('default');
     const [isOpened, setIsOpened] = useState(false);
 
+    function handleClose() {
+        setIsOpened(false);
+    }
+
+    function handleOpen() {
+        setIsOpened(true);
+    }
+
     return (
         <>
             <div className={classNames(styles.Navbar, {}, [className])}>
                 <div className={styles.links}>
                     <Button
                         theme={ButtonThemes.INITIAL}
-                        onClick={() => setIsOpened(true)}
+                        onClick={handleOpen}
                         className={styles.link}
                     >
                         {t('LogIn')}
@@ -38,9 +46,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
                 </div>
             </div>
 
-            <Modal isOpened={isOpened} onClose={() => setIsOpened(false)}>
-                <div>:)</div>
-            </Modal>
+            <LoginModal isOpened={isOpened} onClose={handleClose}/>
         </>
     );
 };

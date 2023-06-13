@@ -20,6 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     theme?: ButtonThemes;
     isRound?: boolean;
+    isRounded?: boolean;
     size?: ButtonSize;
 }
 
@@ -29,12 +30,14 @@ export const Button:FC<ButtonProps> = (props) => {
         children,
         theme = ButtonThemes.INITIAL,
         isRound,
+        isRounded,
         size = ButtonSize.AUTO,
         ...otherProps
     } = props;
 
     const mods:Record<string, boolean> = {
         [styles.round]: isRound,
+        [styles.rounded]: isRounded,
         // [styles[ButtonSize.M]]: size === ButtonSize.M,
         // [styles[ButtonSize.L]]: size === ButtonSize.L,
         // [styles[ButtonSize.XL]]: size === ButtonSize.XL,

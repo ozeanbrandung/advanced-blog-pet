@@ -6,5 +6,7 @@
   "errorPage": "der Fehler ist passiert",
   "reloadPageButton": "aktualisieren",
   "LanguageCut": "Ру",
-  "LogIn": "Log In"
+  "LogIn": "Log In",
+  "username": "username",
+  "password": "password"
 }

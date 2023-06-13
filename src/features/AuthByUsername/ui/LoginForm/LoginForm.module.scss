@@ -1,0 +1,23 @@
+.LoginForm {
+    width: 400px;
+}
+
+.input {
+    width: 100%;
+    margin: 0 0 20px;
+}
+
+.input[type="text"]:last-of-type {
+    margin-bottom: 30px;
+}
+
+.input:focus-visible {
+    border: 2px solid var(--inverted-primary-color);
+}
+
+.button {
+    position: relative;
+    left: calc(50% - 150px / 2);
+
+    width: 150px;
+}

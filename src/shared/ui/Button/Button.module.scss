@@ -4,6 +4,12 @@
     color: inherit;
 
     cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.Button:hover {
+    transform: scale(1.05);
 }
 
 .initial {
@@ -69,4 +75,8 @@
 .auto {
     width: max-content;
     height: auto;
+}
+
+.rounded {
+    border-radius: 20px;
 }
