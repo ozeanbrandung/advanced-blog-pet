@@ -15,12 +15,14 @@
     "eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "stylelint": "npx stylelint \"**/*.scss\"",
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
+    "lint": "yarn run eslint && yarn run stylelint",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:screenshots": "npx loki test",
     "test:screenshots:ok": "npx loki approve",
     "test:screenshots:ci": "brew install graphicsmagick && npx loki --requireReference update --reactUri file:./storybook-static",
     "storybook": "storybook dev -c ./config/storybook -p 6006",
-    "storybook:build": "storybook build -c ./config/storybook"
+    "storybook:build": "storybook build -c ./config/storybook",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -83,7 +85,8 @@
     "webpack": "^5.69.1",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.8.0",

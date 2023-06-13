@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import {classNames} from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import styles from './LoginForm.module.scss';
 import { Button, ButtonThemes } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';

@@ -53,7 +53,7 @@
 .placeholderFocused {
     position: absolute;
 
-    animation: moveTop 0.5s ease forwards;
+    animation: move-top 0.5s ease forwards;
 }
 
 @keyframes blink {
@@ -70,7 +70,7 @@
     }
 }
 
-@keyframes moveTop {
+@keyframes move-top {
     0% {
         transform: scale(1) translateY(0) translateX(0);
     }

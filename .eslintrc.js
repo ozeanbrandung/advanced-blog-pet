@@ -53,7 +53,7 @@ module.exports = {
         ],
         'max-len': ['error', {'ignoreComments': true, 'code': 100}],
         'react/react-in-jsx-scope': 'off',
-        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/ban-ts-comment': 'warn',
         'i18next/no-literal-string': [
             'error',

@@ -9,7 +9,7 @@ interface CounterProps {
     className?: string;
 }
 
-export const Counter:FC<CounterProps> = (props) => {
+export const Counter:FC<CounterProps> = () => {
     const dispatch = useDispatch();
     //const counterValue = useSelector((state:StateSchema) => state.counter.value);
     const counterValue = useSelector(getCounterValue);

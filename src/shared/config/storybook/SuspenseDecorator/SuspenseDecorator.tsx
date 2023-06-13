@@ -1,7 +1,6 @@
 import 'app/styles/index.scss';
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import { StoryFn } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
 import { Loader } from 'shared/ui/Loader/Loader';
 
 

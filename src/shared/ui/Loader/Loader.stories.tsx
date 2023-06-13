@@ -4,8 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Loader } from './Loader';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterDecorator';
-
 
 
 const meta: Meta<typeof Loader> = {

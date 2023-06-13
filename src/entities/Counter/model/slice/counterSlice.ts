@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { CounterSchema } from 'entities/Counter/model/types/counterSchema';
 
 // export interface CounterState {
