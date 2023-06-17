@@ -31,6 +31,7 @@ export const Button:FC<ButtonProps> = (props) => {
         theme = ButtonThemes.INITIAL,
         isRound,
         isRounded,
+        disabled,
         size = ButtonSize.AUTO,
         ...otherProps
     } = props;
@@ -38,6 +39,7 @@ export const Button:FC<ButtonProps> = (props) => {
     const mods:Record<string, boolean> = {
         [styles.round]: isRound,
         [styles.rounded]: isRounded,
+        [styles.disabled]: disabled,
         // [styles[ButtonSize.M]]: size === ButtonSize.M,
         // [styles[ButtonSize.L]]: size === ButtonSize.L,
         // [styles[ButtonSize.XL]]: size === ButtonSize.XL,
@@ -45,6 +47,7 @@ export const Button:FC<ButtonProps> = (props) => {
 
     return (
         <button
+            disabled={disabled}
             className={classNames(
                 styles.Button,
                 mods,

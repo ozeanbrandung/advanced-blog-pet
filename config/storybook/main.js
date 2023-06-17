@@ -1,3 +1,4 @@
+import { DefinePlugin } from 'webpack';
 const path = require('path');
 
 const srcUrl =  path.resolve(__dirname, '../../src');
@@ -36,6 +37,12 @@ module.exports = {
             include: [ srcUrl ],
             use: ['@svgr/webpack'],
         });
+
+        config.plugins.push(
+            new DefinePlugin({
+                __IS_DEV__: true
+            })
+        );
 
         return config;
     }

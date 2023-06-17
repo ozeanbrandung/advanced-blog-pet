@@ -5,6 +5,7 @@ import { Navbar } from '../index';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 
 
@@ -15,6 +16,7 @@ const meta: Meta<typeof Navbar> = {
      */
     title: 'widgets/Navbar',
     component: Navbar,
+    decorators: [StoreDecorator({})]
 };
 
 export default meta;
@@ -30,3 +32,9 @@ export const Outlined: Story = {
     args: {},
     decorators: [RouterDecorator, StyleDecorator(Theme.DARK)]
 };
+
+export const AuthNavbar: Story = {
+    args: {},
+    decorators: [RouterDecorator, StoreDecorator({user: {authData: {id: '1', username: 'Natalya'}}})]
+};
+

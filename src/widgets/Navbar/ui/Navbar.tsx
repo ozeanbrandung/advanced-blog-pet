@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Navbar.module.scss';
 import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
@@ -7,6 +7,9 @@ import IconHome from 'shared/assets/icons/home.svg';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonThemes } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthDataSelector } from 'entities/User';
+import { userActions } from 'entities/User';
 
 interface NavbarProps {
     className?: string;
@@ -15,6 +18,8 @@ interface NavbarProps {
 export const Navbar:FC<NavbarProps> = (props) => {
     const {className} = props;
     const {t} = useTranslation('default');
+    const authData = useSelector(getUserAuthDataSelector);
+    const dispatch = useDispatch();
     const [isOpened, setIsOpened] = useState(false);
 
     function handleClose() {
@@ -25,17 +30,44 @@ export const Navbar:FC<NavbarProps> = (props) => {
         setIsOpened(true);
     }
 
+    function handleLogOut() {
+        dispatch(userActions.removeAuthData());
+    }
+
+    useEffect(() => {
+        if (authData) {
+            setIsOpened(false);
+        }
+    }, [authData]);
+
+    //TODO: тут потом сделаем свою разметку для навбара рареганного пользователя
+    // if (authData) {
+    //     <div className={classNames(styles.Navbar, {}, [className])}>
+    //     </div>
+    // }
+
     return (
         <>
             <div className={classNames(styles.Navbar, {}, [className])}>
                 <div className={styles.links}>
-                    <Button
-                        theme={ButtonThemes.INITIAL}
-                        onClick={handleOpen}
-                        className={styles.link}
-                    >
-                        {t('LogIn')}
-                    </Button>
+                    {!authData ? (
+                        <Button
+                            theme={ButtonThemes.INITIAL}
+                            onClick={handleOpen}
+                            className={styles.link}
+                        >
+                            {t('LogIn')}
+                        </Button>
+                    ) : (
+                        <Button
+                            theme={ButtonThemes.INITIAL}
+                            onClick={handleLogOut}
+                            className={styles.link}
+                        >
+                            {t('LogOut')}
+                        </Button>
+                    )}
+
                     <AppLink
                         theme={AppLinkThemes.SECONDARY}
                         className={styles.link}

@@ -1,15 +1,21 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { AppRouter } from 'app/providers/Router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
+import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'entities/User';
 
 
 const App = () => {
-    // const {theme} = useTheme();
-    //
-    // useEffect(() => {
-    //     document.documentElement.dataset.theme = theme;
-    // }, [theme]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = localStorage.getItem(LOCAL_STORAGE_AUTH_KEY);
+        if (token) {
+            dispatch(userActions.setAuthData(JSON.parse(token)));
+        }
+    }, [dispatch]);
 
     return (
         <div className='app'>

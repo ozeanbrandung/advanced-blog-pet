@@ -51,3 +51,11 @@ export const RoundedMInverted: Story = {
         size: ButtonSize.M
     },
 };
+
+export const Disabled: Story = {
+    args: {
+        theme: ButtonThemes.BACKGROUND_INVERTED,
+        children: 'Текст',
+        disabled: true,
+    },
+};

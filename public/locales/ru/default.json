@@ -8,5 +8,8 @@
   "LanguageCut": "De",
   "LogIn": "Войти",
   "username": "username",
-  "password": "password"
+  "password": "password",
+  "LogOut": "Выйти",
+  "authFormTitle": "Форма авторизации",
+  "authError": "Вы ввели неверный логин или пароль"
 }

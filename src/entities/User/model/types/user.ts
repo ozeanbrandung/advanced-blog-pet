@@ -9,5 +9,5 @@ export interface UserSchema {
     authData?: User;
 }
 
-export class userSchema {
-}
+// export class userSchema {
+// }
