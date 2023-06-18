@@ -1,12 +1,12 @@
-import {FC, useEffect, useState} from 'react';
-import {Button} from 'shared/ui/Button/Button';
+import { FC, useEffect, useState } from 'react';
+import { Button } from 'shared/ui/Button/Button';
 
 interface indexProps {
     className?: string;
 }
 
 //компонент для тестирования ErrorBoundary
-export const ErroredButton:FC<indexProps> = (props) => {
+export const ErroredButton:FC<indexProps> = () => {
     const [isError, setIsError] = useState(false);
 
     function throwError () {

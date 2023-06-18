@@ -15,6 +15,8 @@ export interface BuildPaths {
     html: string;
     //путь до корневой папки
     src: string;
+    //
+    config: string;
 }
 
 export interface BuildOptions {

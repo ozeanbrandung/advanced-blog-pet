@@ -3,9 +3,16 @@
  * https://jestjs.io/docs/configuration
  */
 
+//тестовая среда отличается от той что мы настраивали в вебпаке так что глобальные переменные, настройки для scss модулей надо делать и тут
+import path from 'path';
+
 export default {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
+    //'preset': 'ts-jest',
+    // 'transform': {
+    //     '^.+\\.(j|t)(s|sx)$': 'ts-jest'
+    // },
 
     // Stop running tests after `n` failures
     // bail: 0,
@@ -61,13 +68,24 @@ export default {
 
     // A set of global variables that need to be available in all test environments
     // globals: {},
+    // 'globals': {
+    //     'ts-jest': {
+    //         'tsConfig': true,
+    //     }
+    // },
+    'globals': {
+        '__IS_DEV__': true
+    },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
     // maxWorkers: "50%",
 
     // An array of directory names to be searched recursively up from the requiring module's location
     moduleDirectories: [
-        'node_modules'
+        'node_modules',
+        '<rootDir>/src',
+        //'src'
+        '<rootDir>'
     ],
 
     // An array of file extensions your modules use
@@ -114,7 +132,7 @@ export default {
     // restoreMocks: false,
 
     // The root directory that Jest should scan for tests and modules within
-    rootDir: '../../',
+    rootDir: '../../', //TODO: заиспользуй __dirname?
 
     // A list of paths to directories that Jest should use to search for files in
     roots: [
@@ -155,6 +173,8 @@ export default {
         '/node_modules/'
     ],
 
+    setupFilesAfterEnv: ['<rootDir>config/jest/jest.setup.ts'],
+
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],
 
@@ -172,7 +192,17 @@ export default {
 
     // A map from regular expressions to paths to transformers
     // transform: undefined,
+    //'transform': {
+    //jsx / tsx / js / ts transpilation
+    //'\\.[jt]sx?$': 'babel-jest',
+    //},
 
+    //scss modules
+    'moduleNameMapper': {
+        '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
+        //dirname - вот тут это папка jest, это = ./
+        '\\.svg$': path.resolve(__dirname, 'jestSvgMockComponent.tsx')
+    },
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [
     //   "/node_modules/",

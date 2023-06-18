@@ -3,16 +3,17 @@
 @import "themes/light";
 @import "themes/dark";
 
+/* определяем именно тут если хотим чтобы и на модалку распространялось */
+body {
+    color: var(--primary-color);
+    font: var(--font-m);
+}
+
 .app {
     min-height: 100vh;
     min-height: 100dvh;
 
-    color: var(--primary-color);
-    font: var(--font-m);
-
     background: var(--bg-color);
-
-    /* padding: 40px; */
 }
 
 .main {

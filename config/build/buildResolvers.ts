@@ -7,7 +7,7 @@ export default function buildResolvers(options: BuildOptions): ResolveOptions {
         preferAbsolute: true,
         //из каких папок мы импортим абсолютно
         // (node_modules и так был по умолчанию, но все равно надо прописать)
-        modules: [options.paths.src, 'node_modules'],
+        modules: [options.paths.src, 'node_modules', options.paths.config],
         alias: {},
         mainFiles: ['index'],
     };

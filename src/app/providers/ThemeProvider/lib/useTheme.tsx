@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import { useContext, useEffect } from 'react';
 import {LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext} from './ThemeContext';
 
 interface UseThemeResult {
@@ -15,6 +15,10 @@ const useTheme = ():UseThemeResult => {
         setTheme(newTheme);
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     };
+
+    useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+    }, [theme]);
 
     return {theme, toggleTheme};
 };

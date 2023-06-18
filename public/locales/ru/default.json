@@ -4,5 +4,12 @@
   "Main": "Главная",
   "pageNotFound": "Страница не найдена",
   "errorPage": "Произошла ошибка, извините",
-  "reloadPageButton": "Обновить страницу"
+  "reloadPageButton": "Обновить страницу",
+  "LanguageCut": "De",
+  "LogIn": "Войти",
+  "username": "username",
+  "password": "password",
+  "LogOut": "Выйти",
+  "authFormTitle": "Форма авторизации",
+  "authError": "Вы ввели неверный логин или пароль"
 }

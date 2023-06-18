@@ -1,0 +1,52 @@
+name: linting, testing, building
+on:
+  push:
+    branches: [main, after-jest]
+  pull_request:
+    branches: [main]
+jobs:
+  pipeline:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install node modules
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: build production project
+        uses: borales/actions-yarn@v4
+        if: always()
+        with:
+          cmd: run build:prod
+      - name: linting typescript, jsx, js
+        uses: borales/actions-yarn@v4
+        if: always()
+        with:
+          cmd: run eslint
+      - name: linting scss
+        uses: borales/actions-yarn@v4
+        if: always()
+        with:
+          cmd: run stylelint
+      - name: unit testing
+        uses: borales/actions-yarn@v4
+        if: always()
+        with:
+          cmd: run test:unit
+      - name: build storybook (for screenshots tests)
+        uses: borales/actions-yarn@v4
+        if: always()
+        with:
+          cmd: run storybook:build
+      #- name: test screenshots
+      #  uses: borales/actions-yarn@v4
+      #  with:
+      #    cmd: run test:screenshots:ci

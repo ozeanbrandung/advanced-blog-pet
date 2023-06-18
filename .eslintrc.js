@@ -3,13 +3,25 @@ module.exports = {
         'browser': true,
         'es2021': true,
         'jest': true,
+        'node': true,
     },
     'extends': [
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:react-hooks/recommended'
     ],
     'overrides': [
+        {
+            files: [
+                // How to target the inline-template of just *.spec.ts files?
+                '**/src/**/*.{test,stories}.{ts,tsx}'
+            ],
+            rules: {
+                'i18next/no-literal-string': 'off',
+                'max-len': 'off'
+            }
+        },
     ],
     'parser': '@typescript-eslint/parser',
     'parserOptions': {
@@ -19,7 +31,8 @@ module.exports = {
     'plugins': [
         'react',
         '@typescript-eslint',
-        'i18next'
+        'i18next',
+        'react-hooks'
     ],
     'rules': {
         'indent': [
@@ -38,10 +51,18 @@ module.exports = {
             'warn',
             'always'
         ],
-        'max-len': ['error', {'ignoreComments': true, 'code': 100}],
+        'max-len': ['error', {'ignoreComments': true, 'code': 120}],
         'react/react-in-jsx-scope': 'off',
-        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/ban-ts-comment': 'warn',
-        'i18next/no-literal-string': ['error', {markupOnly: true}]
-    }
+        'i18next/no-literal-string': [
+            'error',
+            {markupOnly: true, ignoreAttribute: ['data-testid', 'to']}
+        ],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
+        'react/display-name': 'off',
+        'react/prop-types': 'off',
+    },
+
 };

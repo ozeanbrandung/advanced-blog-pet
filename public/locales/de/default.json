@@ -4,5 +4,12 @@
   "Main": "Haupseite",
   "pageNotFound": "die Seite ist nicht auffindbar",
   "errorPage": "der Fehler ist passiert",
-  "reloadPageButton": "aktualisieren"
+  "reloadPageButton": "aktualisieren",
+  "LanguageCut": "Ру",
+  "LogIn": "Log In",
+  "username": "benutzernamen",
+  "password": "passwort",
+  "LogOut": "Log out",
+  "authFormTitle": "Log out form",
+  "authError": "Sie haben ein falsches Passwort oder einen falschen Benutzernamen eingegeben"
 }
