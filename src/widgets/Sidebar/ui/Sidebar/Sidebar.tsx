@@ -1,23 +1,19 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import styles from './Sidebar.module.scss';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LangSwitcher } from 'features/LangSwitcher/ui/LangSwitcher';
 import { Button, ButtonSize, ButtonThemes } from 'shared/ui/Button/Button';
-import { AppLink, AppLinkThemes } from 'shared/ui/AppLink/AppLink';
-import { RoutesPaths } from 'shared/config/routesConfig/routesConfig';
-import {useTranslation} from 'react-i18next';
-import IconHome from 'shared/assets/icons/home.svg';
-import IconAbout from 'shared/assets/icons/about.svg';
+import { sidebarItemsList } from '../../model/sidebarItemsList';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
     className?: string;
 }
 
-export const Sidebar:FC<SidebarProps> = (props) => {
+export const Sidebar:FC<SidebarProps> = memo((props) => {
     const { className } = props;
     const [collapsed, setCollapsed] = useState(false);
-    const {t} = useTranslation('default');
 
     const toggleCollapsed = () => {
         setCollapsed(prev => !prev);
@@ -30,31 +26,51 @@ export const Sidebar:FC<SidebarProps> = (props) => {
             [className]
         )}>
             <div className={styles.links}>
-                <AppLink
-                    theme={AppLinkThemes.SECONDARY}
-                    className={styles.link}
-                    to={RoutesPaths.main}
-                >
-                    <span className={styles.iconContainer}>
-                        <IconHome/>
-                    </span>
-                    <span className={styles.linkText}>
-                        {t('Main')}
-                    </span>
-                </AppLink>
+                {sidebarItemsList.map(sidebarItem => (
+                    <SidebarItem
+                        key={sidebarItem.textTranslationKey}
+                        item={sidebarItem}
+                        collapsed={collapsed}
+                    />
+                ))}
+                {/*<AppLink*/}
+                {/*    theme={AppLinkThemes.SECONDARY}*/}
+                {/*    className={styles.link}*/}
+                {/*    to={RoutesPaths.main}*/}
+                {/*>*/}
+                {/*    <span className={styles.iconContainer}>*/}
+                {/*        <IconHome/>*/}
+                {/*    </span>*/}
+                {/*    <span className={styles.linkText}>*/}
+                {/*        {t('Main')}*/}
+                {/*    </span>*/}
+                {/*</AppLink>*/}
 
-                <AppLink
-                    theme={AppLinkThemes.SECONDARY}
-                    className={styles.link}
-                    to={RoutesPaths.about}
-                >
-                    <span className={styles.iconContainer}>
-                        <IconAbout/>
-                    </span>
-                    <span className={styles.linkText}>
-                        {t('About')}
-                    </span>
-                </AppLink>
+                {/*<AppLink*/}
+                {/*    theme={AppLinkThemes.SECONDARY}*/}
+                {/*    className={styles.link}*/}
+                {/*    to={RoutesPaths.profile}*/}
+                {/*>*/}
+                {/*    <span className={styles.iconContainer}>*/}
+                {/*        <IconHome/>*/}
+                {/*    </span>*/}
+                {/*    <span className={styles.linkText}>*/}
+                {/*        {t('Profile')}*/}
+                {/*    </span>*/}
+                {/*</AppLink>*/}
+
+                {/*<AppLink*/}
+                {/*    theme={AppLinkThemes.SECONDARY}*/}
+                {/*    className={styles.link}*/}
+                {/*    to={RoutesPaths.about}*/}
+                {/*>*/}
+                {/*    <span className={styles.iconContainer}>*/}
+                {/*        <IconAbout/>*/}
+                {/*    </span>*/}
+                {/*    <span className={styles.linkText}>*/}
+                {/*        {t('About')}*/}
+                {/*    </span>*/}
+                {/*</AppLink>*/}
             </div>
 
             <Button
@@ -77,4 +93,4 @@ export const Sidebar:FC<SidebarProps> = (props) => {
             </div>
         </div>
     );
-};
+});

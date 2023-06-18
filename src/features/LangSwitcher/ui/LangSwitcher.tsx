@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC, memo } from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import {useTranslation} from 'react-i18next';
 import {Button} from 'shared/ui/Button/Button';
@@ -8,7 +8,7 @@ interface LangSwitcherProps {
     isShort?: boolean;
 }
 
-export const LangSwitcher:FC<LangSwitcherProps> = (props) => {
+export const LangSwitcher:FC<LangSwitcherProps> = memo((props) => {
     const { className, isShort } = props;
     //берем переводы из файла default, если ничего не указывать
     //по умолчанию - файл translation
@@ -25,4 +25,4 @@ export const LangSwitcher:FC<LangSwitcherProps> = (props) => {
             {t(!isShort ? 'Language' : 'LanguageCut')}
         </Button>
     );
-};
+});

@@ -33,7 +33,7 @@
     margin-top: 40px;
 }
 
-.link {
+/* .link {
     display: block;
     display: flex;
     align-items: flex-start;
@@ -47,7 +47,7 @@
     margin-left: 10px;
 
     transition: all 0.3s ease;
-}
+} */
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
@@ -62,9 +62,9 @@
         margin: 0 auto;
     }
 
-    .linkText {
+    /* .linkText {
         width: 0;
 
         opacity: 0;
-    }
+    } */
 }

@@ -8,7 +8,7 @@ export type UseAsyncReducerEntry  = {
     reducer: Reducer
 };
 
-interface UseAsyncReducerArgs {
+export interface UseAsyncReducerArgs {
     options: UseAsyncReducerEntry[];
     beforeDestroy?: () => void;
     removeAfterUnmount?: boolean;

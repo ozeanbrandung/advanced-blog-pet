@@ -1,5 +1,5 @@
-import { FC, memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonThemes } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -13,6 +13,7 @@ import { getPasswordInputValue } from '../../model/selectors/getPasswordInputVal
 import { getIsLoading } from '../../model/selectors/getIsLoading/getIsLoading';
 import { getError } from '../../model/selectors/getError/getError';
 import styles from './LoginForm.module.scss';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 
 export interface LoginFormProps {
     className?: string;
@@ -47,15 +48,15 @@ const LoginForm:FC<LoginFormProps> = memo((props) => {
     const isLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    function handleUsernameChange (value: string) {
+    const handleUsernameChange = useCallback((value: string) => {
         dispatch(authFormActions.setUsernameInputValue(value));
-    }
+    }, [dispatch]);
 
-    function handlePasswordChange (value: string) {
+    const handlePasswordChange = useCallback((value: string) => {
         dispatch(authFormActions.setPasswordInputValue(value));
-    }
+    }, [dispatch]);
 
     function handleLoginClick() {
         dispatch(loginThunk({password: passwordInputValue, username: usernameInputValue}));

@@ -3,9 +3,11 @@ import React from 'react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { authFormReducer } from 'features/AuthByUsername/model/slice/authFormSlice';
+import { profileReducer } from 'entities/Profile';
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
     authForm: authFormReducer,
+    profile: profileReducer,
 };
 
 export const StoreDecorator = (

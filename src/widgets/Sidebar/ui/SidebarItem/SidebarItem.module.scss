@@ -1,0 +1,35 @@
+.SidebarItem {
+    display: flex;
+    align-items: flex-start;
+    min-height: 30px;
+
+    transition: filter 0.3s ease;
+}
+
+.SidebarItem:hover,
+.SidebarItem:focus {
+    filter: brightness(1.5);
+}
+
+.iconContainer {
+    display: flex;
+
+    flex: 0 0 25px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 25px;
+}
+
+.linkText {
+    margin-left: 10px;
+
+    transition: all 0.3s ease;
+}
+
+.collapsed {
+    .linkText {
+        width: 0;
+
+        opacity: 0;
+    }
+}

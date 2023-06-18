@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Navbar.module.scss';
 import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
@@ -15,7 +15,7 @@ interface NavbarProps {
     className?: string;
 }
 
-export const Navbar:FC<NavbarProps> = (props) => {
+export const Navbar:FC<NavbarProps> = memo((props) => {
     const {className} = props;
     const {t} = useTranslation('default');
     const authData = useSelector(getUserAuthDataSelector);
@@ -81,4 +81,4 @@ export const Navbar:FC<NavbarProps> = (props) => {
             {isOpened && <LoginModal isOpened={isOpened} onClose={handleClose}/>}
         </>
     );
-};
+});

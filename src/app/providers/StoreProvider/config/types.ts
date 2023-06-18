@@ -2,6 +2,8 @@ import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { AuthFormSchema } from 'features/AuthByUsername';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { createReduxStore } from 'app/providers/StoreProvider';
+import { ProfileStateSchema } from 'entities/Profile';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -9,6 +11,7 @@ export interface StateSchema {
 
     //async reducers
     authForm?: AuthFormSchema;
+    profile?: ProfileStateSchema;
 }
 
 export type AsyncReducersKeysMap = keyof StateSchema;
@@ -23,4 +26,7 @@ export interface ReducerManagerSchema {
 export interface StoreWithReducerManager extends EnhancedStore<StateSchema> {
     reducerManager: ReducerManagerSchema;
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']
+
 
