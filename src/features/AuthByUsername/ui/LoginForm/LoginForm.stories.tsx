@@ -1,11 +1,10 @@
 // Replace your-framework with the name of your framework
 import type { Meta, StoryObj } from '@storybook/react';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
-
 
 const meta: Meta<typeof LoginForm> = {
     /* 👇 The title prop is optional.

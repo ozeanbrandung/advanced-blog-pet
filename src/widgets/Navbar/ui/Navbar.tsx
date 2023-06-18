@@ -78,7 +78,7 @@ export const Navbar:FC<NavbarProps> = (props) => {
                 </div>
             </div>
 
-            <LoginModal isOpened={isOpened} onClose={handleClose}/>
+            {isOpened && <LoginModal isOpened={isOpened} onClose={handleClose}/>}
         </>
     );
 };

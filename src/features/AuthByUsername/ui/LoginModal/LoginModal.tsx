@@ -1,10 +1,9 @@
-import { FC, useEffect } from 'react';
-import {classNames} from 'shared/lib/classNames/classNames';
+import { FC, Suspense } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 //import styles from './LoginModal.module.scss';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { LoginForm } from '../LoginForm/LoginForm';
-import { useDispatch } from 'react-redux';
-import { authFormActions } from '../../model/slice/authFormSlice';
+import { LoginFormAsync as LoginForm } from '../LoginForm/LoginForm.async';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 interface LoginModalProps {
     className?: string;
@@ -15,14 +14,14 @@ interface LoginModalProps {
 export const LoginModal:FC<LoginModalProps> = (props) => {
     const { className, isOpened, onClose } = props;
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    useEffect(() => {
-        //только на закрытие
-        if (!isOpened) {
-            dispatch(authFormActions.clearAuthForm());
-        }
-    }, [isOpened, dispatch]);
+    // useEffect(() => {
+    //     //только на закрытие
+    //     if (!isOpened) {
+    //         dispatch(authFormActions.clearAuthForm());
+    //     }
+    // }, [isOpened, dispatch]);
 
     return (
         <Modal
@@ -31,7 +30,9 @@ export const LoginModal:FC<LoginModalProps> = (props) => {
             onClose={onClose}
             className={classNames('', {}, [className])}
         >
-            <LoginForm isOpened={isOpened} />
+            <Suspense fallback={<Loader />}>
+                <LoginForm isOpened={isOpened} />
+            </Suspense>
         </Modal>
     );
 };

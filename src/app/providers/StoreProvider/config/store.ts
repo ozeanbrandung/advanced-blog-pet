@@ -1,25 +1,40 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
-import { authFormReducer } from 'features/AuthByUsername';
+import { createReducerManager } from './reducerManager';
+import { StateSchema } from './types';
 
 //создание стора засунем в функцию чтобы можно было переиспользоать
 //как минимум для сторибука и джеста
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>
+) {
+    //static reducers
     const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
-        authForm: authFormReducer,
+        //authForm: authFormReducer,
     };
 
-    return configureStore<StateSchema>({
-        reducer: rootReducers,
+    const reducerManager = createReducerManager(rootReducers);
+
+    // Create a store with the root reducer function being the one exposed by the manager.
+    const store = configureStore<StateSchema>({
+        //reducer: rootReducers,
+        reducer: reducerManager.reduce,
         //отключаем девтулзы для продакшна
         devTools: __IS_DEV__,
         //эту штуку тоже для тестов делаем - чтобы можно было передать данные вручную
         preloadedState: initialState
     });
+
+    // Optional: Put the reducer manager on the store so it is easily accessible
+    // @ts-ignore
+    store.reducerManager = reducerManager;
+
+    return store;
 }
 
 // export const store = configureStore({
