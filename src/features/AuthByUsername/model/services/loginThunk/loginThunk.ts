@@ -8,6 +8,7 @@ interface LoginProps {
     username: string;
 }
 
+//User - return, LoginProps - arguments, error returned value
 export const loginThunk = createAsyncThunk<User, LoginProps, {rejectValue: string}>(
     'authForm/login',
     async (authData/* {password, username}*/, thunkAPI) => {
@@ -29,11 +30,15 @@ export const loginThunk = createAsyncThunk<User, LoginProps, {rejectValue: strin
             };
             thunkAPI.dispatch(userActions.setAuthData(userData));
             localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(userData));
-            return userData;
             //по умолчанию тут thunkAPI.fulfillWithValue(response.data)
+            //вообще тут происходит dispatch вот этого fulfilled статуса
+            //(т е dispatch type = fulfilled, payload = userData)
+            return userData;
         } catch (e) {
             //throw new Error('Ошибка при аутентификации');
             //return thunkAPI.rejectWithValue(i18n.t('authError', {ns: 'default'}));
+            //вообще тут происходит dispatch вот этого rejected статуса с payload Error
+            // (т е dispatch type = rejected, payload = 'Error')
             return thunkAPI.rejectWithValue('Error');
         }
     }
