@@ -64,5 +64,8 @@ module.exports = {
         'react/display-name': 'off',
         'react/prop-types': 'off',
     },
-
+    globals: {
+        __API__: true,
+        __IS_DEV__: true,
+    }
 };

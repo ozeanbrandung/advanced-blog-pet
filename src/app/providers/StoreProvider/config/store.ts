@@ -3,12 +3,15 @@ import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { StateSchema } from './types';
+import { $api } from 'shared/api/api';
+import { NavigateFunction } from 'react-router-dom';
 
 //создание стора засунем в функцию чтобы можно было переиспользоать
 //как минимум для сторибука и джеста
 export function createReduxStore(
     initialState?: StateSchema,
-    asyncReducers?: ReducersMapObject<StateSchema>
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: NavigateFunction
 ) {
     //static reducers
     const rootReducers: ReducersMapObject<StateSchema> = {
@@ -21,13 +24,23 @@ export function createReduxStore(
     const reducerManager = createReducerManager(rootReducers);
 
     // Create a store with the root reducer function being the one exposed by the manager.
-    const store = configureStore<StateSchema>({
+    const store = configureStore({
         //reducer: rootReducers,
         reducer: reducerManager.reduce,
         //отключаем девтулзы для продакшна
         devTools: __IS_DEV__,
         //эту штуку тоже для тестов делаем - чтобы можно было передать данные вручную
-        preloadedState: initialState
+        preloadedState: initialState,
+        //настраиваем middleware для thunk
+        middleware: getDefaultMiddleware => getDefaultMiddleware({
+            thunk: {
+                extraArgument: {
+                    api: $api,
+                    navigate,
+                }
+            }
+
+        })
     });
 
     // Optional: Put the reducer manager on the store so it is easily accessible
