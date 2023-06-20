@@ -4,9 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AppLink } from './AppLink';
 import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterDecorator';
 import { AppLinkThemes } from 'shared/ui/AppLink/AppLink';
-
 
 
 const meta: Meta<typeof AppLink> = {
@@ -31,7 +29,7 @@ export const PrimaryLight: Story = {
         theme: AppLinkThemes.PRIMARY,
         children: 'Главная'
     },
-    decorators: [RouterDecorator]
+    decorators: [/*RouterDecorator*/]
 };
 
 export const PrimaryDark: Story = {
@@ -39,7 +37,7 @@ export const PrimaryDark: Story = {
         theme: AppLinkThemes.PRIMARY,
         children: 'Главная'
     },
-    decorators: [RouterDecorator, StyleDecorator(Theme.DARK)]
+    decorators: [/*RouterDecorator, */StyleDecorator(Theme.DARK)]
 };
 
 export const SecondaryLight: Story = {
@@ -47,7 +45,7 @@ export const SecondaryLight: Story = {
         theme: AppLinkThemes.SECONDARY,
         children: 'Главная'
     },
-    decorators: [RouterDecorator]
+    decorators: [/*RouterDecorator*/]
 };
 
 export const SecondaryDark: Story = {
@@ -55,5 +53,5 @@ export const SecondaryDark: Story = {
         theme: AppLinkThemes.SECONDARY,
         children: 'Главная'
     },
-    decorators: [RouterDecorator, StyleDecorator(Theme.DARK)]
+    decorators: [/*RouterDecorator, */StyleDecorator(Theme.DARK)]
 };

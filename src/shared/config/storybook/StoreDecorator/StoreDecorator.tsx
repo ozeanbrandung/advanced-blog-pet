@@ -1,14 +1,12 @@
 import { StoryFn } from '@storybook/react';
 import React from 'react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
-import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 import { authFormReducer } from 'features/AuthByUsername/model/slice/authFormSlice';
 import { profileReducer } from 'entities/Profile';
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
-    // @ts-ignore
     authForm: authFormReducer,
-    // @ts-ignore
     profile: profileReducer,
 };
 
