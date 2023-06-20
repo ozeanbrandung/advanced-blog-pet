@@ -16,7 +16,7 @@ describe('loginThunk with helper tester', () => {
         const thunk = new TestAsyncThunk(loginThunk);
         const result = await thunk.callThunk({ username: '123', password: '123' });
         //запрос на сервер вообще был отправлен
-        expect(mockedAxios.post).toHaveBeenCalled();
+        expect(thunk.api.post).toHaveBeenCalled();
         //проверяем что вызвался диспатч именно с таким экшном
         expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
         expect(thunk.dispatch).toHaveBeenCalledTimes(3);
@@ -32,7 +32,7 @@ describe('loginThunk with helper tester', () => {
         const thunk = new TestAsyncThunk(loginThunk);
         const result = await thunk.callThunk({ username: '123', password: '123' });
         //запрос на сервер вообще был отправлен
-        expect(mockedAxios.post).toHaveBeenCalled();
+        expect(thunk.api.post).toHaveBeenCalled();
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(result.meta.requestStatus).toBe('rejected');
         //проверим что тут payload = 'Error', (т е dispatch type = rejected, payload = 'Error')

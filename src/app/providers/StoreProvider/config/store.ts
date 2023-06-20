@@ -26,7 +26,7 @@ export function createReduxStore(
     // Create a store with the root reducer function being the one exposed by the manager.
     const store = configureStore({
         //reducer: rootReducers,
-        reducer: reducerManager.reduce,
+        reducer: reducerManager.reduce as unknown as ReducersMapObject<StateSchema>,
         //отключаем девтулзы для продакшна
         devTools: __IS_DEV__,
         //эту штуку тоже для тестов делаем - чтобы можно было передать данные вручную

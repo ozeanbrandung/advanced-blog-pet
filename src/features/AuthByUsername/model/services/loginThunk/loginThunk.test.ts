@@ -7,6 +7,7 @@ import { userActions } from 'entities/User';
 jest.mock('axios');
 //глубокий мок - используем эту конструкцию для того чтобы typescript подхватил добавленные замоканному аксиосу методы
 const mockedAxios = jest.mocked(axios, true);
+const navigate = jest.fn();
 
 describe('loginThunk', () => {
     let dispatch: Dispatch;
@@ -24,7 +25,7 @@ describe('loginThunk', () => {
         //thunk - это action creator который возвращает асинхронный action, так что получим его
         const action = loginThunk({username: '123', password: '123'});
         //узнаем из типов что этот action в себя принимает и передаем это
-        const result = await action(dispatch, getState, undefined);
+        const result = await action(dispatch, getState, {api: mockedAxios, navigate});
         console.log(result);
         //запрос на сервер вообще был отправлен
         expect(mockedAxios.post).toHaveBeenCalled();
@@ -41,7 +42,7 @@ describe('loginThunk', () => {
         //запрос выполнился с ошибкой
         mockedAxios.post.mockReturnValue(Promise.resolve({status: 403}));
         const action = loginThunk({username: '123', password: '123'});
-        const result = await action(dispatch, getState, undefined);
+        const result = await action(dispatch, getState, {api: mockedAxios, navigate});
         console.log(result);
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(mockedAxios.post).toHaveBeenCalled();

@@ -6,6 +6,6 @@ export const $api = axios.create({
     headers: {
         //так как в хедере авторизация мы должны передать токен - забираем его из стораджа
         //потом при доступе к закрытым эндпоинтам будет проверяться этот хэдер
-        'Authorization': localStorage.getItem(LOCAL_STORAGE_AUTH_KEY),
+        'Authorization': localStorage.getItem(LOCAL_STORAGE_AUTH_KEY) || '',
     }
 });

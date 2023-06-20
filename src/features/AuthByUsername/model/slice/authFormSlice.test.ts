@@ -1,6 +1,5 @@
 import { authFormActions, authFormReducer } from './authFormSlice';
 import { AuthFormSchema } from 'features/AuthByUsername';
-import { DeepPartial } from '@reduxjs/toolkit';
 
 describe('authFormSlice', () => {
     test('test undefined state, set password input value', () => {

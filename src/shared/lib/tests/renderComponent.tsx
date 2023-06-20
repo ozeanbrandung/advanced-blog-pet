@@ -4,7 +4,6 @@ import {i18nTestConfig} from 'shared/config/i18n/i18nTestConfig';
 import {ReactNode} from 'react';
 import { MemoryRouter} from 'react-router-dom';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
-import { DeepPartial } from '@reduxjs/toolkit';
 
 export interface componentRenderOptions {
     initialRoute?: string;
@@ -18,12 +17,12 @@ export const renderComponent = (component:ReactNode, options: componentRenderOpt
     } = options;
 
     return render(
-        <StoreProvider initialState={initialState}>
-            <MemoryRouter initialEntries={[initialRoute]}>
+        <MemoryRouter initialEntries={[initialRoute]}>
+            <StoreProvider initialState={initialState}>
                 <I18nextProvider i18n={i18nTestConfig}>
                     {component}
                 </I18nextProvider>
-            </MemoryRouter>
-        </StoreProvider>
+            </StoreProvider>
+        </MemoryRouter>
     );
 };

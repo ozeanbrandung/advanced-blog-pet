@@ -1,6 +1,5 @@
 import { getIsLoading } from './getIsLoading';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { DeepPartial } from '@reduxjs/toolkit';
 
 describe('get auth form isLoading selector', () => {
     test('test name', () => {

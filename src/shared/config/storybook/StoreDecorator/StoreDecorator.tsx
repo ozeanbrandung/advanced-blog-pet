@@ -6,7 +6,9 @@ import { authFormReducer } from 'features/AuthByUsername/model/slice/authFormSli
 import { profileReducer } from 'entities/Profile';
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
+    // @ts-ignore
     authForm: authFormReducer,
+    // @ts-ignore
     profile: profileReducer,
 };
 

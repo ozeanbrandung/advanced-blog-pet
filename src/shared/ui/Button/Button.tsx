@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, FC, memo, ReactNode } from 'react';
-import {classNames} from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
 export enum ButtonThemes {
@@ -37,7 +37,7 @@ export const Button:FC<ButtonProps> = memo((props) => {
         ...otherProps
     } = props;
 
-    const mods:Record<string, boolean> = {
+    const mods:Mods = {
         [styles.round]: isRound,
         [styles.rounded]: isRounded,
         [styles.disabled]: disabled,

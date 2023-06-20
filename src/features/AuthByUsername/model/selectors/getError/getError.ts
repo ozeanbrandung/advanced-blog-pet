@@ -1,3 +1,3 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getError = (state: StateSchema) => state?.authForm?.error || null;
+export const getError = (state: StateSchema | undefined) => state?.authForm?.error || null;

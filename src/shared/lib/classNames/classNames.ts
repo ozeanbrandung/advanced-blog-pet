@@ -1,6 +1,6 @@
 //record - как объект только с ограниченным кол-вом значений
 //до запятой - тип ключа, после - тип значения
-type Mods = Record<string, boolean | string>
+export type Mods = Record<string, boolean | string | undefined>
 
 // const obj:Mods = {
 //     'key': true
@@ -9,7 +9,7 @@ type Mods = Record<string, boolean | string>
 export function classNames(
     cls: string,
     mods: Mods = {},
-    additional: string[] = []
+    additional: Array<string | undefined> = []
 ):string {
     return [
         cls,

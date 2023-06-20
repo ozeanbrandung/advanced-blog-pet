@@ -1,6 +1,5 @@
 import { getPasswordInputValue } from './getPasswordInputValue';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { DeepPartial } from '@reduxjs/toolkit';
 
 describe('get auth form passwordInputValue selector', () => {
     test('test name', () => {

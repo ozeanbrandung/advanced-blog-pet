@@ -36,7 +36,7 @@ export const loginThunk =
                 };
                 thunkAPI.dispatch(userActions.setAuthData(userData));
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(userData));
-                thunkAPI.extra.navigate('/profile');
+                thunkAPI.extra.navigate && thunkAPI.extra.navigate('/profile');
                 //по умолчанию тут thunkAPI.fulfillWithValue(response.data)
                 //вообще тут происходит dispatch вот этого fulfilled статуса
                 //(т е dispatch type = fulfilled, payload = userData)

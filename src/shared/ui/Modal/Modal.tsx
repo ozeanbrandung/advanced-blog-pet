@@ -18,7 +18,7 @@ export const Modal:FC<ModalProps> = (props) => {
     const [isMounted, setIsMounted] = useState(false);
 
     const [isClosing, setIsClosing] = useState(false);
-    const timer = useRef<ReturnType<typeof setTimeout>>();
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     //если не передан он колуз вообще то и при нажатии на оверлэй ничего и не закрывается
     function handleClose() {
@@ -48,7 +48,7 @@ export const Modal:FC<ModalProps> = (props) => {
             window.addEventListener('keydown', onKeyDown);
         }
         return () => {
-            clearTimeout(timer.current);
+            timer.current && clearTimeout(timer.current);
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpened]);
