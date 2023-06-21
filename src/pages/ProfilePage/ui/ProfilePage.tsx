@@ -1,8 +1,8 @@
-import { FC, memo } from 'react';
-import { profileReducer } from 'entities/Profile';
+import { FC, memo, useEffect } from 'react';
 import { useAsyncReducer, UseAsyncReducerArgs } from 'shared/hooks/useAsyncReducer/useAsyncReducer';
-
-//import styles from './ProfilePage.module.scss';
+import { EditableProfileCard, profileReducer } from 'features/EditableProfile';
+import { profileThunk } from 'features/EditableProfile/model/services/profileThunk/profileThunk';
+import { useDispatch } from 'react-redux';
 
 interface ProfilePageProps {
     className?: string;
@@ -15,16 +15,17 @@ const asyncReducerArgs:UseAsyncReducerArgs = {
 };
 
 const ProfilePage:FC<ProfilePageProps> = memo(() => {
-    //const { className } = props;
-    //const {t} = useTranslation('default');
+    const dispatch = useDispatch();
 
     useAsyncReducer(asyncReducerArgs);
 
+    useEffect(() => {
+        dispatch(profileThunk());
+    }, [dispatch]);
+
     return (
         <div /* className={classNames(styles.ProfilePage, {}, [className])}*/>
-            {/* eslint-disable-next-line i18next/no-literal-string */}
-            {/* eslint-disable-next-line i18next/no-literal-string */}
-            PROFILE PAGE
+            <EditableProfileCard />
         </div>
     );
 });

@@ -11,13 +11,14 @@ import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Input.module.scss';
 
 //исключим то что хотим переопределить из дефолтного типа
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
 interface InputProps extends HTMLInputProps {
     className?: string;
-    value?: string;
+    value?: string | number;
     onChange?: (value: string) => void;
     autoFocus?: boolean;
+    readOnly?: boolean;
 }
 
 export const Input:FC<InputProps> = memo((props) => {
@@ -28,6 +29,7 @@ export const Input:FC<InputProps> = memo((props) => {
         type = 'text',
         placeholder,
         autoFocus,
+        readOnly,
         ...other
     } = props;
 
@@ -54,9 +56,9 @@ export const Input:FC<InputProps> = memo((props) => {
         setCaretPosition(e?.target?.selectionStart || 0);
     }
 
-    const placeholderContent = placeholder ?
-        `${!isFocused && !inputRef.current?.value.length ? placeholder : ''} >`
-        : '>';
+    // const placeholderContent = placeholder ?
+    //     `${!isFocused && !inputRef.current?.value.length ? placeholder : ''} >`
+    //     : '>';
 
     useEffect(() => {
         if(autoFocus) {
@@ -65,16 +67,27 @@ export const Input:FC<InputProps> = memo((props) => {
         }
     }, [autoFocus]);
 
+    //console.log(readOnly, 'readonly');
+
     return (
-        <div tabIndex={-1} className={classNames(styles.inputWrapper, {}, [className])}>
-            <div className={classNames(styles.placeholder, {[styles.focused]: isFocused})}>
-                {placeholderContent}
-            </div>
-            {placeholder && isFocused && (
-                <div className={styles.placeholderFocused}>
+        <div tabIndex={-1} className={classNames(styles.inputWrapper, {[styles.readonly]: readOnly}, [className])}>
+            {placeholder && (
+                <div className={styles.placeholder}>
                     {placeholder}
                 </div>
             )}
+
+            <div className={styles.arrowBefore}>
+                {'>'}
+            </div>
+            {/*<div className={classNames(styles.placeholder, {[styles.focused]: isFocused})}>*/}
+            {/*    {placeholderContent}*/}
+            {/*</div>*/}
+            {/*{placeholder && isFocused && (*/}
+            {/*    <div className={styles.placeholderFocused}>*/}
+            {/*        {placeholder}*/}
+            {/*    </div>*/}
+            {/*)}*/}
             <input
                 ref={inputRef}
                 autoFocus={autoFocus}
@@ -85,6 +98,7 @@ export const Input:FC<InputProps> = memo((props) => {
                 onBlur={handleBlur}
                 onSelect={handleSelect}
                 type={type}
+                readOnly={readOnly}
                 {...other}
             />
             {isFocused && (

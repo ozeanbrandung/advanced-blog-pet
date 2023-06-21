@@ -7,19 +7,26 @@ import styles from './Text.module.scss';
 //     ERRORED = 'errored'
 // }
 
+export enum TextAlign {
+    CENTER = 'center',
+    RIGHT = 'right',
+    LEFT = 'left'
+}
+
 interface TextProps {
     className?: string;
     title?: string;
     text?: string;
     isError?: boolean;
+    align?: TextAlign;
     //theme?: TextTheme;
 }
 
 export const Text:FC<TextProps> = memo((props) => {
-    const { className, title, text, isError } = props;
+    const { className, title, text, isError, align = TextAlign.LEFT } = props;
 
     return (
-        <div className={classNames(styles.Text, {[styles.errored]: isError}, [className])}>
+        <div className={classNames(styles.Text, {[styles.errored]: isError}, [className, styles[align]])}>
             {title && (
                 <h2 className={styles.title}>
                     {title}

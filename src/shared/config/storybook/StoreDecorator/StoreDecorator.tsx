@@ -3,7 +3,7 @@ import React from 'react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { authFormReducer } from 'features/AuthByUsername/model/slice/authFormSlice';
-import { profileReducer } from 'entities/Profile';
+import { profileReducer } from 'features/EditableProfile';
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
     authForm: authFormReducer,

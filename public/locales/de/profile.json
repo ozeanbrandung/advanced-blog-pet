@@ -2,5 +2,7 @@
   "profile": "Profil",
   "edit": "Bearbeiten",
   "namePlaceholder": "Ihr Benutzername",
-  "lastnamePlaceholder": "Ihr Nachname"
+  "lastnamePlaceholder": "Ihr Nachname",
+  "reset": "Zurücksetzen",
+  "profileFetchError": "Beim Laden der Daten ist ein Fehler aufgetreten"
 }

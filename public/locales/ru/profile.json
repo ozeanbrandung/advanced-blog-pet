@@ -2,5 +2,7 @@
   "profile": "Профиль",
   "edit": "Редактировать",
   "namePlaceholder": "Ваше имя",
-  "lastnamePlaceholder": "Ваша фамилия"
+  "lastnamePlaceholder": "Ваша фамилия",
+  "reset": "Сбросить",
+  "profileFetchError": "Произошла ошибка при загрузке данных"
 }

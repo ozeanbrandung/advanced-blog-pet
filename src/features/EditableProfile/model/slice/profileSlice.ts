@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ProfileStateSchema } from '../types/profile';
-import { profileThunk } from 'entities/Profile/model/services/profileThunk/profileThunk';
+import { profileThunk } from '../services/profileThunk/profileThunk';
 
 
 const initialState: ProfileStateSchema = {
@@ -8,18 +8,33 @@ const initialState: ProfileStateSchema = {
     isLoading: false,
     error: null,
     data: undefined,
+    form: {},
 };
 
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        //  : (state) => {
-        //
-        //  },
-        // : (state) => {
-        //
-        //  },
+        setNameInputValue: (state, action) => {
+            state.form.name = action.payload;
+        },
+        setLastnameInputValue: (state, action) => {
+            state.form.lastname = action.payload;
+        },
+        setAgeInputValue: (state, action) => {
+            state.form.age = action.payload;
+        },
+        //Это решение оптимальнее:
+        // updateProfile: (state, action:PayloadAction<{[K in keyof Profile]: never}>) => {
+        //     state.form = {...state.form, ...action.payload};
+        // },
+        setEditMode: (state) => {
+            state.readonly = false;
+        },
+        resetForm: (state) => {
+            state.form = state.data || {};
+            state.readonly = true;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -30,6 +45,7 @@ export const profileSlice = createSlice({
             .addCase(profileThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
+                state.form = action.payload;
             })
             .addCase(profileThunk.rejected, (state, action) => {
                 state.isLoading = false;

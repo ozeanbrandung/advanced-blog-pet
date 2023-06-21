@@ -3,7 +3,7 @@ import { UserSchema } from 'entities/User';
 import { AuthFormSchema } from 'features/AuthByUsername';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { createReduxStore } from 'app/providers/StoreProvider';
-import { ProfileStateSchema } from 'entities/Profile';
+import { ProfileStateSchema } from 'features/EditableProfile';
 import { AxiosInstance } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 
