@@ -8,16 +8,19 @@ import {
 import { InputsListConfigType } from 'shared/hooks/useInputWithData/useInputWithData';
 
 export const inputsListConfig:InputsListConfigType<Profile> = {
-    username: {
+    name: {
         selector: getProfileNameSelector,
-        action: profileActions.setNameInputValue
+        action: profileActions.updateProfile,
+        payloadCreator: (value) => ({name: value}),
     },
     lastname: {
         selector: getProfileLastnameSelector,
-        action: profileActions.setLastnameInputValue,
+        action: profileActions.updateProfile,
+        payloadCreator: (value) => ({lastname: value}),
     },
     age: {
         selector: getProfileAgeSelector,
-        action: profileActions.setAgeInputValue
+        action: profileActions.updateProfile,
+        payloadCreator: (value) => ({age: Number(value)}),
     }
 };

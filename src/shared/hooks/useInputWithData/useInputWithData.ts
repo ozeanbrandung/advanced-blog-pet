@@ -1,24 +1,26 @@
 import { Selector, useDispatch, useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { ActionCreatorWithOptionalPayload} from '@reduxjs/toolkit';
+import { ActionCreatorWithPayload} from '@reduxjs/toolkit';
 import { useCallback } from 'react';
 
-export interface useInputWithDataProps<Payload> {
+export interface UseInputWithDataProps<Payload> {
     selector: Selector<StateSchema, string | number>,
-    action: ActionCreatorWithOptionalPayload<Payload>;
+    action: ActionCreatorWithPayload<Payload>;
+    payloadCreator(value: string): Payload;
 }
 
 export type InputsListConfigType<Schema> = {
-    [K in keyof Schema]: useInputWithDataProps<string>
+    [K in keyof Schema]: UseInputWithDataProps<DeepPartial<Schema>>
 }
 
-export function useInputWithData<Payload>({selector, action}:useInputWithDataProps<Payload>) {
+export function useInputWithData<Payload>({selector, action, payloadCreator}:UseInputWithDataProps<Payload>) {
     const dispatch = useDispatch();
     const value = useSelector(selector);
 
     const onChange = useCallback((value) => {
-        dispatch(action(value));
-    }, [dispatch, action]);
+        const payload = payloadCreator(value);
+        dispatch(action(payload));
+    }, [dispatch, action, payloadCreator]);
 
     return {
         value,

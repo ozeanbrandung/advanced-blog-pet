@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ProfileStateSchema } from '../types/profile';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Profile, ProfileStateSchema } from '../types/profile';
 import { profileThunk } from '../services/profileThunk/profileThunk';
 
 
@@ -15,19 +15,19 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        setNameInputValue: (state, action) => {
-            state.form.name = action.payload;
-        },
-        setLastnameInputValue: (state, action) => {
-            state.form.lastname = action.payload;
-        },
-        setAgeInputValue: (state, action) => {
-            state.form.age = action.payload;
-        },
-        //Это решение оптимальнее:
-        // updateProfile: (state, action:PayloadAction<{[K in keyof Profile]: never}>) => {
-        //     state.form = {...state.form, ...action.payload};
+        // setNameInputValue: (state, action) => {
+        //     state.form.name = action.payload;
         // },
+        // setLastnameInputValue: (state, action) => {
+        //     state.form.lastname = action.payload;
+        // },
+        // setAgeInputValue: (state, action) => {
+        //     state.form.age = action.payload;
+        // },
+        //Это решение оптимальнее:
+        updateProfile: (state, action:PayloadAction<DeepPartial<Profile>>) => {
+            state.form = {...state.form, ...action.payload};
+        },
         setEditMode: (state) => {
             state.readonly = false;
         },

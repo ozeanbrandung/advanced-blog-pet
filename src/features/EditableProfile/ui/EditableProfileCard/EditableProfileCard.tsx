@@ -15,6 +15,7 @@ import styles from './EditableProfileCard.module.scss';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { EditableInput } from 'entities/EditableInput/EditableInput';
+import { Profile } from 'features/EditableProfile/model/types/profile';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -55,12 +56,13 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
             <Card>
                 {Object.entries(inputsListConfig).map(([key, inputConfig]) => {
                     return (
-                        <EditableInput
+                        <EditableInput<DeepPartial<Profile>>
                             key={key}
                             className={styles.input}
                             placeholder={key}
                             selector={inputConfig.selector}
                             action={inputConfig.action}
+                            payloadCreator={inputConfig.payloadCreator}
                             readonly={readonly}
                         />
                     );
