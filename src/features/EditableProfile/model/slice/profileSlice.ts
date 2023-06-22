@@ -1,14 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Profile, ProfileStateSchema } from '../types/profile';
-import { profileThunk } from '../services/profileThunk/profileThunk';
+import { fetchProfile } from '../services/fetchProfile/fetchProfile';
+import { saveProfileChanges } from '../services/saveProfileChanges/saveProfileChanges';
 
+export const initialForm:Profile = {
+    name: undefined,
+    lastname: undefined,
+    age: undefined,
+    city: undefined,
+    country: undefined,
+    currency: undefined,
+    username: undefined,
+    avatar: undefined,
+};
 
 const initialState: ProfileStateSchema = {
     readonly: true,
     isLoading: false,
     error: null,
     data: undefined,
-    form: {},
+    form: initialForm,
 };
 
 export const profileSlice = createSlice({
@@ -32,22 +43,36 @@ export const profileSlice = createSlice({
             state.readonly = false;
         },
         resetForm: (state) => {
-            state.form = state.data || {};
+            state.form = state.data || initialForm;
             state.readonly = true;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(profileThunk.pending, (state) => {
+            .addCase(fetchProfile.pending, (state) => {
                 state.error = null;
                 state.isLoading = true;
             })
-            .addCase(profileThunk.fulfilled, (state, action) => {
+            .addCase(fetchProfile.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
                 state.form = action.payload;
             })
-            .addCase(profileThunk.rejected, (state, action) => {
+            .addCase(fetchProfile.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(saveProfileChanges.pending, (state) => {
+                state.error = null;
+                state.isLoading = true;
+            })
+            .addCase(saveProfileChanges.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.data = action.payload;
+                state.form = action.payload;
+                state.readonly = true;
+            })
+            .addCase(saveProfileChanges.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

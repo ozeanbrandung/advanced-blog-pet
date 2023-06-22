@@ -4,5 +4,6 @@
   "namePlaceholder": "Ваше имя",
   "lastnamePlaceholder": "Ваша фамилия",
   "reset": "Сбросить",
-  "profileFetchError": "Произошла ошибка при загрузке данных"
+  "profileFetchError": "Произошла ошибка при загрузке данных",
+  "save": "save"
 }

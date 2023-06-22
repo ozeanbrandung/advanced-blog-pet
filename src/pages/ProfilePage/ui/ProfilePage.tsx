@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { useAsyncReducer, UseAsyncReducerArgs } from 'shared/hooks/useAsyncReducer/useAsyncReducer';
 import { EditableProfileCard, profileReducer } from 'features/EditableProfile';
-import { profileThunk } from 'features/EditableProfile/model/services/profileThunk/profileThunk';
+import { fetchProfile } from 'features/EditableProfile/model/services/fetchProfile/fetchProfile';
 import { useDispatch } from 'react-redux';
 
 interface ProfilePageProps {
@@ -20,7 +20,7 @@ const ProfilePage:FC<ProfilePageProps> = memo(() => {
     useAsyncReducer(asyncReducerArgs);
 
     useEffect(() => {
-        dispatch(profileThunk());
+        dispatch(fetchProfile());
     }, [dispatch]);
 
     return (

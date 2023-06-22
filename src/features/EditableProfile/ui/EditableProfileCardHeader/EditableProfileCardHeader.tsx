@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReadonlySelector } from '../../model/selectores/getReadonlySeelctor/getReadonlySelector';
 import { profileActions } from '../../model/slice/profileSlice';
 import styles from './EditableProfileCardHeader.module.scss';
+import { saveProfileChanges } from 'features/EditableProfile/model/services/saveProfileChanges/saveProfileChanges';
+import {
+    getProfileFormSelector
+} from 'features/EditableProfile/model/selectores/getProfileDataSelector/getProfileDataSelector';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -17,6 +21,7 @@ export const EditableProfileCardHeader:FC<EditableProfileCardHeaderProps> = (pro
     const {t} = useTranslation('profile');
     const readonly = useSelector(getReadonlySelector);
     const dispatch = useDispatch();
+    const form = useSelector(getProfileFormSelector);
 
     const handleSetEditMode = useCallback(() => {
         dispatch(profileActions.setEditMode());
@@ -26,6 +31,10 @@ export const EditableProfileCardHeader:FC<EditableProfileCardHeaderProps> = (pro
         dispatch(profileActions.resetForm());
     }, [dispatch]);
 
+    const handleSaveChanges = useCallback(() => {
+        dispatch(saveProfileChanges(form));
+    }, [dispatch, form]);
+
     return (
         <div className={classNames(styles.EditableProfileCardHeader, {}, [className])}>
             <Text title={t('profile')} />
@@ -33,7 +42,23 @@ export const EditableProfileCardHeader:FC<EditableProfileCardHeaderProps> = (pro
             {readonly ? (
                 <Button onClick={handleSetEditMode} theme={ButtonThemes.OUTLINE}>{t('edit')}</Button>
             ) : (
-                <Button onClick={handleResetForm} theme={ButtonThemes.OUTLINE}>{t('reset')}</Button>
+                <div>
+                    <Button
+                        className={styles.button}
+                        onClick={handleSaveChanges}
+                        theme={ButtonThemes.OUTLINE}
+                    >
+                        {t('save')}
+                    </Button>
+
+                    <Button
+                        className={styles.button}
+                        onClick={handleResetForm}
+                        theme={ButtonThemes.BACKGROUND_INVERTED}
+                    >
+                        {t('reset')}
+                    </Button>
+                </div>
             )}
         </div>
     );

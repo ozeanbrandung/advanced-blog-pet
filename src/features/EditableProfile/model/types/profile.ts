@@ -1,14 +1,14 @@
 import { Country, Currency } from 'shared/consts/common';
 
 export interface Profile {
-    name?: string;
-    lastname?: string;
-    age?: number;
-    currency?: Currency;
-    country?: Country;
-    city?: string;
-    username?: string;
-    avatar?: string;
+    name: string | undefined;
+    lastname: string | undefined;
+    age: number | undefined;
+    currency: Currency | undefined;
+    country: Country | undefined;
+    city: string | undefined;
+    username: string | undefined;
+    avatar: string | undefined;
 }
 
 export interface ProfileStateSchema {

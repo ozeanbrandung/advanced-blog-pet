@@ -13,7 +13,8 @@ export const sidebarItemsList:SidebarItemType[] = [
     {
         path: RoutesPaths.profile,
         textTranslationKey: 'Profile',
-        Icon: IconProfile
+        Icon: IconProfile,
+        isAuthOnly: true,
     },
     {
         path: RoutesPaths.about,
