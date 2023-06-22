@@ -15,7 +15,7 @@ import styles from './EditableProfileCard.module.scss';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { EditableInput } from 'entities/EditableInput/EditableInput';
-import { Profile } from '../../model/types/profile';
+import { Profile, ValidateProfileError } from '../../model/types/profile';
 import {
     getProfileAvatarSelector
 } from '../../model/selectores/getProfileDataSelector/getProfileDataSelector';
@@ -32,7 +32,7 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
     const {t} = useTranslation('profile');
     const readonly = useSelector(getReadonlySelector);
     const dispatch = useDispatch();
-    const error = useSelector(getProfileErrorSelector);
+    const validateErrors = useSelector(getProfileErrorSelector);
     const isLoading = useSelector(getProfileIsLoadingSelector);
     const avatar = useSelector(getProfileAvatarSelector);
 
@@ -48,7 +48,7 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
         );
     }
 
-    if (error) {
+    if (validateErrors?.includes(ValidateProfileError.SERVER_ERROR)) {
         return (
             <div className={classNames(styles.EditableProfileCard, {}, [className, styles.error])}>
                 <Text text={t('profileFetchError')} isError align={TextAlign.CENTER} />
@@ -63,6 +63,8 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
             {avatar ? ( //eslint-disable-next-line i18next/no-literal-string
                 <Avatar className={styles.avatar} src={avatar}  alt="user photo" mode={AvatarModes.BIG}/>
             ) : 'фотографии нет'}
+
+            {validateErrors && validateErrors.map(error => <Text key={error} text={error} isError />)}
 
             <Card>
                 {Object.entries(inputsListConfig).map(([key, inputConfig]) => {

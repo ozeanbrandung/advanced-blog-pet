@@ -17,7 +17,7 @@ export const initialForm:Profile = {
 const initialState: ProfileStateSchema = {
     readonly: true,
     isLoading: false,
-    error: null,
+    validateError: [],
     data: undefined,
     form: initialForm,
 };
@@ -45,12 +45,13 @@ export const profileSlice = createSlice({
         resetForm: (state) => {
             state.form = state.data || initialForm;
             state.readonly = true;
+            state.validateError = [];
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchProfile.pending, (state) => {
-                state.error = null;
+                state.validateError = [];
                 state.isLoading = true;
             })
             .addCase(fetchProfile.fulfilled, (state, action) => {
@@ -60,10 +61,10 @@ export const profileSlice = createSlice({
             })
             .addCase(fetchProfile.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.validateError = action.payload;
             })
             .addCase(saveProfileChanges.pending, (state) => {
-                state.error = null;
+                state.validateError = [];
                 state.isLoading = true;
             })
             .addCase(saveProfileChanges.fulfilled, (state, action) => {
@@ -71,10 +72,11 @@ export const profileSlice = createSlice({
                 state.data = action.payload;
                 state.form = action.payload;
                 state.readonly = true;
+                state.validateError = [];
             })
             .addCase(saveProfileChanges.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.validateError = action.payload;
             });
     }
 });
