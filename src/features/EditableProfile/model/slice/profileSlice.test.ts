@@ -1,5 +1,6 @@
 import { profileActions, profileReducer } from './profileSlice';
-import { ProfileStateSchema } from 'features/EditableProfile/model/types/profile';
+import { ProfileStateSchema, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
+import { fetchProfile } from 'features/EditableProfile/model/services/fetchProfile/fetchProfile';
 
 const mockState = {
     form: {
@@ -33,9 +34,10 @@ describe('profileSlice', () => {
         }));
     });
 
-    // test('async action', () => {
-    //     expect(profileReducer())).toEqual(expect.objectContaining({
-    //         readonly: false
-    //     }));
-    // });
+    test('test async action', () => {
+        expect(profileReducer(
+            {isLoading: false, validateError: [ValidateProfileError.INCORRECT_AGE]} as ProfileStateSchema,
+            fetchProfile.pending
+        )).toEqual(expect.objectContaining({validateError: [], isLoading: true}));
+    });
 });
