@@ -3,6 +3,7 @@ import { useAsyncReducer, UseAsyncReducerArgs } from 'shared/hooks/useAsyncReduc
 import { EditableProfileCard, profileReducer } from 'features/EditableProfile';
 import { fetchProfile } from 'features/EditableProfile/model/services/fetchProfile/fetchProfile';
 import { useDispatch } from 'react-redux';
+import { Environment } from '../../../../config/build/types/config';
 
 interface ProfilePageProps {
     className?: string;
@@ -20,7 +21,9 @@ const ProfilePage:FC<ProfilePageProps> = memo(() => {
     useAsyncReducer(asyncReducerArgs);
 
     useEffect(() => {
-        dispatch(fetchProfile());
+        if (__PROJECT__ !== Environment.STORYBOOK) {
+            dispatch(fetchProfile());
+        }
     }, [dispatch]);
 
     return (

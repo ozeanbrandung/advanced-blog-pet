@@ -6,7 +6,7 @@ import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 export function buildPlugins(
-    {paths, isDev, apiUrl}: BuildOptions
+    {paths, isDev, apiUrl, project}: BuildOptions
 ): webpack.WebpackPluginInstance[] {
 
     const plugins = [
@@ -26,7 +26,8 @@ export function buildPlugins(
             //чтобы в коде приложения эта переменная конфигурации была доступна
             __IS_DEV__: isDev, //JSON.stringify?
             //вот тут без json stringify добавление переменной происходит так: baseURL: http://localhost:8000, типа не строкой а просто
-            __API__: JSON.stringify(apiUrl)
+            __API__: JSON.stringify(apiUrl),
+            __PROJECT__: JSON.stringify(project),
         }),
         new ReactRefreshPlugin(),
     ];

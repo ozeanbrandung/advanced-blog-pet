@@ -5,6 +5,7 @@
 
 //тестовая среда отличается от той что мы настраивали в вебпаке так что глобальные переменные, настройки для scss модулей надо делать и тут
 import path from 'path';
+import { Environment } from '../build/types/config';
 
 export default {
     // All imported modules in your tests should be mocked automatically
@@ -76,6 +77,7 @@ export default {
     'globals': {
         '__IS_DEV__': true,
         '__API__': '',
+        '__PROJECT__': Environment.JEST
     },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.

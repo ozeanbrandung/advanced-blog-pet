@@ -5,7 +5,7 @@ import path from 'path';
 import webpack from 'webpack';
 //const HtmlWebpackPlugin = require('html-webpack-plugin');
 import buildWebpackConfig from './config/build/buildWebpackConfig';
-import {BuildEnv, BuildPaths} from './config/build/types/config';
+import { BuildEnv, BuildPaths, Environment } from './config/build/types/config';
 
 //module.exports = {
 /* const config: webpack.Configuration = {
@@ -44,6 +44,7 @@ export default (env: BuildEnv) => {
     const isDev = mode === 'development';
     const PORT = env.port || 3000;
     const apiUrl = env.apiUrl || 'http://localhost:8000';
+    const project = Environment.FRONTEND;
 
     const config: webpack.Configuration = buildWebpackConfig({
         mode,
@@ -51,6 +52,7 @@ export default (env: BuildEnv) => {
         isDev,
         port: PORT,
         apiUrl,
+        project,
     });
 
     return config;

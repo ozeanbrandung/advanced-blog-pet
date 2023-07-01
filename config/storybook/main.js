@@ -1,4 +1,5 @@
 import { DefinePlugin } from 'webpack';
+import {Environment} from '../build/types/config';
 const path = require('path');
 
 const srcUrl =  path.resolve(__dirname, '../../src');
@@ -42,6 +43,7 @@ module.exports = {
             new DefinePlugin({
                 __IS_DEV__: true,
                 __API__: JSON.stringify(''),
+                __PROJECT__: JSON.stringify(Environment.STORYBOOK),
             })
         );
 

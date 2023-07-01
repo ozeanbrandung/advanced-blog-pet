@@ -2,12 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Profile, ValidateProfileError } from '../../types/profile';
 import { validateProfileData } from '../../services/validateProfileData/validateProfileData';
+import {
+    getProfileFormSelector
+} from 'features/EditableProfile/model/selectores/getProfileDataSelector/getProfileDataSelector';
 
 export const saveProfileChanges =
     createAsyncThunk<Profile, Profile, ThunkConfig<ValidateProfileError[]>>(
         'profile/saveProfileChanges',
-        async (data, thunkAPI) => {
+        async (/* data, */_, thunkAPI) => {
             try {
+                const data = getProfileFormSelector(thunkAPI.getState());
+
                 const errors = validateProfileData(data);
 
                 if (errors.length) {
@@ -17,9 +22,9 @@ export const saveProfileChanges =
                 const response = await thunkAPI.extra.api.put<Profile>(
                     '/profile', data);
 
-                // if (!response.data) {
-                //     throw new Error();
-                // }
+                if (!response.data) {
+                    throw new Error();
+                }
 
                 return response.data;
             } catch (e) {

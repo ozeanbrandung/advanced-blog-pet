@@ -2,12 +2,12 @@ import { FC, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import styles from './Card.module.scss';
 
-interface ProfileProps {
+interface CardProps {
     className?: string;
     children: ReactNode;
 }
 
-export const Card:FC<ProfileProps> = (props) => {
+export const Card:FC<CardProps> = (props) => {
     const { className, children } = props;
     //const {t} = useTranslation('profile');
     // const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ export const Card:FC<ProfileProps> = (props) => {
     // }
 
     return (
-        <div className={classNames(styles.Profile, {}, [className])}>
+        <div className={classNames(styles.Card, {}, [className])}>
             {children}
             {/*<Input*/}
             {/*    className={styles.input}*/}

@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react';
+//import { env } from 'process';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile } from '../../model/services/fetchProfile/fetchProfile';
@@ -22,6 +23,7 @@ import {
 import { Avatar, AvatarModes } from 'shared/ui/Avatar/Avatar';
 import { InputTypes } from 'shared/hooks/useInputWithData/useInputWithData';
 import { EditableSelector } from 'entities/EditableSelector/EditableSelector';
+import { Environment } from '../../../../../config/build/types/config';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -37,7 +39,9 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
     const avatar = useSelector(getProfileAvatarSelector);
 
     useEffect(() => {
-        dispatch(fetchProfile());
+        if (__PROJECT__ !== Environment.STORYBOOK) {
+            dispatch(fetchProfile());
+        }
     }, [dispatch]);
 
     if (isLoading) {
