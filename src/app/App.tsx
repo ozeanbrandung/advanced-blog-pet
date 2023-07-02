@@ -3,18 +3,20 @@ import { AppRouter } from 'app/providers/Router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInitialized, userActions } from 'entities/User';
 
 
 const App = () => {
     const dispatch = useDispatch();
 
+    const initialized = useSelector(getUserInitialized);
+
     useEffect(() => {
         const token = localStorage.getItem(LOCAL_STORAGE_AUTH_KEY);
-        if (token) {
-            dispatch(userActions.setAuthData(JSON.parse(token)));
-        }
+        //if (token) {
+        dispatch(userActions.initAuthData(token ? JSON.parse(token) : undefined));
+        //}
     }, [dispatch]);
 
     return (
@@ -27,7 +29,7 @@ const App = () => {
                     <Sidebar/>
 
                     <div className="page-wrapper">
-                        <AppRouter />
+                        {initialized && <AppRouter />}
                     </div>
                 </main>
                 {/*<button onClick={toggleTheme}>toggle</button>*/}

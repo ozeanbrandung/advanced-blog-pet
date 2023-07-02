@@ -3,7 +3,8 @@ import { User, UserSchema } from '../types/user';
 import { LOCAL_STORAGE_AUTH_KEY } from 'shared/consts/localStorage';
 
 const initialState: UserSchema = {
-    authData: undefined
+    authData: undefined,
+    _initilized: false,
 };
 
 export const userSlice = createSlice({
@@ -19,6 +20,11 @@ export const userSlice = createSlice({
 
         setAuthData: (state, action:PayloadAction<User>) => {
             state.authData = action.payload;
+        },
+
+        initAuthData: (state, action:PayloadAction<User>) => {
+            state.authData = action.payload;
+            state._initilized = true;
         }
     },
 });

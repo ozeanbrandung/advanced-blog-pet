@@ -1,28 +1,34 @@
-import { memo, Suspense, useMemo } from 'react';
-import {Route, Routes} from 'react-router-dom';
-import {routesConfig} from 'shared/config/routesConfig/routesConfig';
-import {PageLoader} from 'widgets/PageLoader';
-import { getUserAuthDataSelector } from 'entities/User';
-import { useSelector } from 'react-redux';
+import { memo, Suspense, useCallback } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { CustomRouteProps, routesConfig } from 'shared/config/routesConfig/routesConfig';
+import { PageLoader } from 'widgets/PageLoader';
+import { ProtectedRoute } from 'app/providers/Router/ui/ProtectedRoute';
 
 export const AppRouter = memo(() => {
-    const isAuth = useSelector(getUserAuthDataSelector);
+    // const isAuth = useSelector(getUserAuthDataSelector);
+    //
+    // const availableRoutes = useMemo(() => (
+    //     Object.values(routesConfig)
+    //         .filter(({authOnly = false}) => !authOnly || authOnly && isAuth)
+    // ), [isAuth]);
+    const getAvailableRoutes = useCallback(({path, element, authOnly}: CustomRouteProps) => {
+        const elem = authOnly ?
+            <ProtectedRoute>
+                {element}
+            </ProtectedRoute>
+            : element;
 
-    const availableRoutes = useMemo(() => (
-        Object.values(routesConfig)
-            .filter(({authOnly = false}) => !authOnly || authOnly && isAuth)
-    ), [isAuth]);
+        return (
+            <Route key={path} path={path} element={elem} />
+        );
+    }, []);
 
     return (
         <Suspense fallback={<PageLoader />}>
             <Routes>
                 {/*<Route path='/about' element={<AboutPage/>} />*/}
                 {/*<Route path='/' element={<MainPage/>} />*/}
-                {availableRoutes.map(({path, element}) => {
-                    return (
-                        <Route key={path} path={path} element={element} />
-                    );
-                })}
+                {Object.values(routesConfig).map(getAvailableRoutes)}
             </Routes>
         </Suspense>
     );

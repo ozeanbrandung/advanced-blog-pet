@@ -3,7 +3,7 @@ import { UserSchema } from 'entities/User';
 
 describe('userSlice', () => {
     test('test removeAuthData', () => {
-        const mockState:UserSchema = {
+        const mockState:DeepPartial<UserSchema> = {
             authData: {
                 id: '123',
                 username: 'Natalya'
@@ -14,7 +14,7 @@ describe('userSlice', () => {
     });
 
     test('test setAuthData', () => {
-        const mockState:UserSchema = {
+        const mockState:DeepPartial<UserSchema> = {
             authData: undefined
         };
         expect(userReducer(mockState as UserSchema, userActions.setAuthData({ id: '123', username: 'Natalya' })))
