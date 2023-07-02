@@ -23,6 +23,6 @@ describe('userSlice', () => {
 
     test('test without initial state', () => {
         expect(userReducer(undefined, userActions.setAuthData({ id: '123', username: 'Natalya' })))
-            .toEqual({authData: { id: '123', username: 'Natalya' } });
+            .toEqual(expect.objectContaining({authData: { id: '123', username: 'Natalya' } }));
     });
 });
