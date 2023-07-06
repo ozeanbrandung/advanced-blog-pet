@@ -3,16 +3,13 @@
 
     color: var(--primary-color);
 
-    font: var(--font-l);
     font-weight: 600;
 }
 
 .text {
-    margin-bottom: 0.5em;
+    /* margin-bottom: 0.5em; */
 
     color: var(--secondary-color);
-
-    font: var(--font-m);
 }
 
 .errored {
@@ -35,4 +32,28 @@
 
 .left {
     text-align: left;
+}
+
+.infoText {
+    margin-bottom: 0;
+}
+
+.M {
+    .title {
+        font-size: var(--font-size-l);
+    }
+
+    .text {
+        font-size: var(--font-size-m);
+    }
+}
+
+.L {
+    .title {
+        font-size: var(--font-size-xl);
+    }
+
+    .text {
+        font-size: var(--font-size-l);
+    }
 }
