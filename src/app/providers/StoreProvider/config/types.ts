@@ -7,6 +7,7 @@ import { ProfileStateSchema } from 'features/EditableProfile';
 import { AxiosInstance } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { ArticleStateSchema } from 'entities/Article';
+import {ArticleDetailsCommentsSchema} from 'pages/ArticleDetailsPage';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -15,7 +16,8 @@ export interface StateSchema {
     //async reducers
     authForm?: AuthFormSchema;
     profile?: ProfileStateSchema;
-    article?: ArticleStateSchema
+    article?: ArticleStateSchema;
+    articleDetailsComments?: ArticleDetailsCommentsSchema;
 }
 
 export type AsyncReducersKeysMap = keyof StateSchema;

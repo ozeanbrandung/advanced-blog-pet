@@ -39,10 +39,10 @@ module.exports = {
             'error',
             4
         ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
+        // 'linebreak-style': [
+        //     'error',
+        //     'unix'
+        // ],
         'quotes': [
             'error',
             'single'
@@ -63,10 +63,12 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'warn',
         'react/display-name': 'off',
         'react/prop-types': 'off',
+        'linebreak-style': ['error', 'unix']
     },
     globals: {
         __API__: true,
         __IS_DEV__: true,
         __PROJECT__: true,
+        __PUBLIC_URL__: true,
     }
 };

@@ -12,5 +12,6 @@
   "LogOut": "Log out",
   "authFormTitle": "Log out form",
   "authError": "Sie haben ein falsches Passwort oder einen falschen Benutzernamen eingegeben",
-  "Profile": "Profil"
+  "Profile": "Profil",
+  "noImage": "kein Bild"
 }

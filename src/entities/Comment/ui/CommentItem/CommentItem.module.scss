@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.avatar {
+    margin-right: 25px;
+}
+
+.CommentItem {
+    padding: 16px;
+    border: 1px solid var(--primary-color);
+}
