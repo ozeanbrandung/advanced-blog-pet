@@ -22,6 +22,7 @@ export default meta;
 type Story = StoryObj<typeof EditableProfileCard>;
 
 const mockData:Profile = {
+    id: '0',
     name: 'Someone',
     lastname: 'Some name',
     age: 20,

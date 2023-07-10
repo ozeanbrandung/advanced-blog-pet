@@ -5,6 +5,8 @@ import styles from './CommentItem.module.scss';
 import {Avatar, AvatarModes} from 'shared/ui/Avatar/Avatar';
 import {IComment} from '../../model/types/comments';
 import {Text} from 'shared/ui/Text/Text';
+import {AppLink} from 'shared/ui/AppLink/AppLink';
+import {AppRoutes} from 'shared/config/routesConfig/routesConfig';
 
 interface CommentItemProps {
     className?: string;
@@ -18,10 +20,10 @@ export const CommentItem:FC<CommentItemProps> = memo((props) => {
 
     return (
         <div className={classNames(styles.CommentItem, {}, [className])}>
-            <div className={styles.header}>
+            <AppLink to={'/' + AppRoutes.PROFILE + '/' + comment.user.id} className={styles.header}>
                 <Avatar className={styles.avatar} mode={AvatarModes.SMALL} src={comment.user.avatar}/>
                 <Text className={styles.username} text={comment.user.username} />
-            </div>
+            </AppLink>
             <Text className={styles.text} text={comment.text} />
         </div>
     );

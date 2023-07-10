@@ -4,6 +4,7 @@ import { fetchProfile } from '../services/fetchProfile/fetchProfile';
 import { saveProfileChanges } from '../services/saveProfileChanges/saveProfileChanges';
 
 export const initialForm:Profile = {
+    id: undefined,
     name: undefined,
     lastname: undefined,
     age: undefined,

@@ -17,6 +17,7 @@ export enum AppRoutes {
     PROFILE = 'profile',
     ARTICLES = 'articles',
     ARTICLE_DETAILS = 'article-details',
+    PROFILE_DETAILS = 'profile-details',
     //last
     NOT_FOUND = 'not_found',
 }
@@ -25,6 +26,7 @@ export const RoutesPaths:Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
     [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE_DETAILS]: '/profile/:id',
     [AppRoutes.ARTICLES]: '/articles',
     [AppRoutes.ARTICLE_DETAILS]: '/articles/:id', //:id
     //любой другой роут если не было введено предыдущих
@@ -43,6 +45,11 @@ export const routesConfig:Record<AppRoutes, CustomRouteProps> = {
     },
     [AppRoutes.PROFILE]: {
         path: RoutesPaths.profile,
+        element: <ProfilePage />,
+        authOnly: true,
+    },
+    [AppRoutes.PROFILE_DETAILS]: {
+        path: RoutesPaths['profile-details'],
         element: <ProfilePage />,
         authOnly: true,
     },

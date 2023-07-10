@@ -1,0 +1,11 @@
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid var(--primary-color);
+}
+
+.title {
+    margin-bottom: 16px;
+}

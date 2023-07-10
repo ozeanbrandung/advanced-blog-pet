@@ -2,6 +2,7 @@ import { validateProfileData } from './validateProfileData';
 import { Profile, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
 
 const mockData = {
+    id: '3',
     name: 'John',
     lastname: 'Doe',
     age: 12,

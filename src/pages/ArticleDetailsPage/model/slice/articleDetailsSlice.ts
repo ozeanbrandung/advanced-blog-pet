@@ -2,6 +2,7 @@ import {createEntityAdapter, createSlice} from '@reduxjs/toolkit';
 import {ArticleDetailsCommentsSchema} from '../../model/types/articleDetails';
 import {IComment} from 'entities/Comment';
 import {fetchComments} from '../services/fetchComments';
+import {postNewArticleComment} from '../../model/services/postNewArticleComment/postNewArticleComment';
 
 export const commentsAdapter = createEntityAdapter<IComment>({
     // Assume IDs are stored in a field other than `book.id`
@@ -43,6 +44,19 @@ export const articleDetailsSlice = createSlice({
                 commentsAdapter.setAll(state, action.payload);
             })
             .addCase(fetchComments.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(postNewArticleComment.pending, (state) => {
+                state.error = '';
+                state.isLoading = true;
+            })
+            .addCase(postNewArticleComment.fulfilled, (state) => {
+                state.isLoading = false;
+                //state.data = action.payload;
+                //commentsAdapter.setAll(state, action.payload);
+            })
+            .addCase(postNewArticleComment.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

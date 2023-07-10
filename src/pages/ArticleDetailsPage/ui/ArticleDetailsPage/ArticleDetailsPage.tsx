@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC, useCallback} from 'react';
 //import { useTranslation } from 'react-i18next';
 import {classNames} from 'shared/lib/classNames/classNames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,9 @@ import {articleDetailsCommentsReducer} from '../../model/slice/articleDetailsSli
 import {
     articleDetailsSelector, getArticleDetailsError, getArticleDetailsLoading
 } from '../../model/selectors/articleDetailsSelectors';
-//import styles from './ArticleDetailsPage.module.scss';
+import {AddCommentForm} from 'features/AddCommentForm';
+import styles from './ArticleDetailsPage.module.scss';
+import {postNewArticleComment} from '../../model/services/postNewArticleComment/postNewArticleComment';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -66,6 +68,10 @@ const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (props) => {
         //}
     });
 
+    const handleAddNewComment = useCallback((value: string) => {
+        dispatch(postNewArticleComment({textValue: value}));
+    }, [dispatch]);
+
     return (
         <div className={classNames('', {}, [className])}>
             <div>
@@ -75,6 +81,10 @@ const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (props) => {
             </div>
 
             <div>
+                <AddCommentForm
+                    className={styles.addCommentForm}
+                    handleAddNewComment={handleAddNewComment}
+                />
                 <CommentsList
                     comments={commentsData}
                     isLoading={commentsIsLoading}

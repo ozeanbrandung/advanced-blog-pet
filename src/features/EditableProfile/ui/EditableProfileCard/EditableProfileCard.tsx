@@ -1,29 +1,27 @@
-import { FC, useEffect } from 'react';
-//import { env } from 'process';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProfile } from '../../model/services/fetchProfile/fetchProfile';
-import { getReadonlySelector } from '../../model/selectores/getReadonlySeelctor/getReadonlySelector';
-import { getProfileErrorSelector } from '../../model/selectores/getProfileErrorSelector/getProfileErrorSelector';
+import {FC} from 'react';
+import {classNames} from 'shared/lib/classNames/classNames';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchProfile} from '../../model/services/fetchProfile/fetchProfile';
+import {getReadonlySelector} from '../../model/selectores/getReadonlySeelctor/getReadonlySelector';
+import {getProfileErrorSelector} from '../../model/selectores/getProfileErrorSelector/getProfileErrorSelector';
 import {
     getProfileIsLoadingSelector
 } from '../../model/selectores/getProfileIsLoadingSelector/getProfileIsLoadingSelector';
-import { inputsListConfig } from '../../model/inputsListConfig';
-import { Card } from 'shared/ui/Card/Card';
-import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
-import { Loader } from 'shared/ui/Loader/Loader';
+import {inputsListConfig} from '../../model/inputsListConfig';
+import {Card} from 'shared/ui/Card/Card';
+import {EditableProfileCardHeader} from '../EditableProfileCardHeader/EditableProfileCardHeader';
+import {Loader} from 'shared/ui/Loader/Loader';
 import styles from './EditableProfileCard.module.scss';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
-import { useTranslation } from 'react-i18next';
-import { EditableInput } from 'entities/EditableInput/EditableInput';
-import { Profile, ValidateProfileError } from '../../model/types/profile';
-import {
-    getProfileAvatarSelector
-} from '../../model/selectores/getProfileDataSelector/getProfileDataSelector';
-import { Avatar, AvatarModes } from 'shared/ui/Avatar/Avatar';
-import { InputTypes } from 'shared/hooks/useInputWithData/useInputWithData';
-import { EditableSelector } from 'entities/EditableSelector/EditableSelector';
-import { Environment } from '../../../../../config/build/types/config';
+import {Text, TextAlign} from 'shared/ui/Text/Text';
+import {useTranslation} from 'react-i18next';
+import {EditableInput} from 'entities/EditableInput/EditableInput';
+import {Profile, ValidateProfileError} from '../../model/types/profile';
+import {getProfileAvatarSelector} from '../../model/selectores/getProfileDataSelector/getProfileDataSelector';
+import {Avatar, AvatarModes} from 'shared/ui/Avatar/Avatar';
+import {InputTypes} from 'shared/hooks/useInputWithData/useInputWithData';
+import {EditableSelector} from 'entities/EditableSelector/EditableSelector';
+import {useParams} from 'react-router-dom';
+import {useInitialEffect} from 'shared/hooks/useInitialEffect/useInitialEffect';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -37,12 +35,18 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
     const validateErrors = useSelector(getProfileErrorSelector);
     const isLoading = useSelector(getProfileIsLoadingSelector);
     const avatar = useSelector(getProfileAvatarSelector);
+    const {id} = useParams<{id: string}>();
 
-    useEffect(() => {
-        if (__PROJECT__ !== Environment.STORYBOOK) {
-            dispatch(fetchProfile());
+    // useEffect(() => {
+    //     if (__PROJECT__ !== Environment.STORYBOOK) {
+    //         dispatch(fetchProfile({id: id}));
+    //     }
+    // }, [dispatch]);
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfile({id: id}));
         }
-    }, [dispatch]);
+    });
 
     if (isLoading) {
         return (

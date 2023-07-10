@@ -23,7 +23,7 @@ describe('fetchProfile with helper tester', () => {
         mockedAxios.get.mockReturnValue(Promise.resolve({ data: mockData }));
 
         const thunk = new TestAsyncThunk(fetchProfile);
-        const result = await thunk.callThunk(undefined);
+        const result = await thunk.callThunk({id: '1'});
         //запрос на сервер вообще был отправлен
         expect(thunk.api.get).toHaveBeenCalled();
         //success
@@ -36,7 +36,7 @@ describe('fetchProfile with helper tester', () => {
         mockedAxios.get.mockReturnValue(Promise.resolve({status: 403}));
 
         const thunk = new TestAsyncThunk(fetchProfile);
-        const result = await thunk.callThunk(undefined);
+        const result = await thunk.callThunk({id: '1'});
         expect(result.meta.requestStatus).toBe('rejected');
     });
 
