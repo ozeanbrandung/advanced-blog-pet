@@ -217,6 +217,12 @@
       "id": "2023-07-11T11:21:07.246Z",
       "articleId": "3",
       "text": "прикольно"
+    },
+    {
+      "userId": "3",
+      "id": "2023-07-11T14:19:53.001Z",
+      "articleId": "3",
+      "text": "я тоже хочу тут отметиться"
     }
   ],
   "users": [
@@ -233,6 +239,13 @@
       "password": "123",
       "role": "USER",
       "avatar": "https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+    },
+    {
+      "id": "3",
+      "username": "user3",
+      "password": "123",
+      "role": "USER",
+      "avatar": ""
     }
   ],
   "profile": [
@@ -257,6 +270,17 @@
       "city": "Moscow",
       "username": "user",
       "avatar": "https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+    },
+    {
+      "id": "3",
+      "name": "Some",
+      "lastname": "One",
+      "age": 11,
+      "currency": "EUR",
+      "country": "Germany",
+      "city": "Berlin",
+      "username": "user3",
+      "avatar": ""
     }
   ]
 }

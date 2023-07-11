@@ -5,13 +5,36 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import path from "path";
-const dotenv = require('dotenv').config({ path: path.resolve(__dirname, '../../', '.env')})
+
 
 export function buildPlugins(
     {paths, isDev, apiUrl, project}: BuildOptions
 ): webpack.WebpackPluginInstance[] {
+    let dotenv;
+
+    if (isDev) {
+        dotenv = require('dotenv').config({ path: path.resolve(__dirname, '../../', '.env')})
+    }
 
     console.log(dotenv);
+
+    const definePluginConfig = {
+        //'process.env': JSON.stringify(dotenv.parsed),
+        //чтобы в коде приложения эта переменная конфигурации была доступна
+        __IS_DEV__: isDev, //JSON.stringify?
+        //вот тут без json stringify добавление переменной происходит так: baseURL: http://localhost:8000, типа не строкой а просто
+        __API__: JSON.stringify(apiUrl),
+        __PROJECT__: JSON.stringify(project),
+        //__PUBLIC_URL__: JSON.stringify(dotenv.parsed.PUBLIC_URL),
+        //...dotenv.parsed,
+    }
+
+    if (isDev) {
+        // @ts-ignore
+        definePluginConfig['process.env'] = JSON.stringify(dotenv.parsed);
+        // @ts-ignore
+        definePluginConfig.__PUBLIC_URL__ = JSON.stringify(dotenv.parsed.PUBLIC_URL);
+    }
 
     const plugins = [
         new HtmlWebpackPlugin({
@@ -26,16 +49,7 @@ export function buildPlugins(
             //когда разобьем файлы на чанки которые асинхронно будут подгружаться
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
-        new DefinePlugin({
-            'process.env': JSON.stringify(dotenv.parsed),
-            //чтобы в коде приложения эта переменная конфигурации была доступна
-            __IS_DEV__: isDev, //JSON.stringify?
-            //вот тут без json stringify добавление переменной происходит так: baseURL: http://localhost:8000, типа не строкой а просто
-            __API__: JSON.stringify(apiUrl),
-            __PROJECT__: JSON.stringify(project),
-            __PUBLIC_URL__: JSON.stringify(dotenv.parsed.PUBLIC_URL),
-            //...dotenv.parsed,
-        }),
+        new DefinePlugin(definePluginConfig),
         new ReactRefreshPlugin(),
     ];
 

@@ -68,9 +68,8 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
         <div className={classNames(styles.EditableProfileCard, {}, [className])}>
             <EditableProfileCardHeader />
 
-            {avatar ? ( //eslint-disable-next-line i18next/no-literal-string
-                <Avatar className={styles.avatar} src={avatar}  alt="user photo" mode={AvatarModes.BIG}/>
-            ) : 'фотографии нет'}
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            <Avatar className={styles.avatar} src={avatar}  alt="user photo" mode={AvatarModes.BIG}/>
 
             {validateErrors && validateErrors.map(error => <Text key={error} text={error} isError />)}
 
