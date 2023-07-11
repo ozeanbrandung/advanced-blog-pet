@@ -3,9 +3,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LangSwitcher } from 'features/LangSwitcher/ui/LangSwitcher';
 import { Button, ButtonSize, ButtonThemes } from 'shared/ui/Button/Button';
-import { sidebarItemsList } from '../../model/sidebarItemsList';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import styles from './Sidebar.module.scss';
+import {useSelector} from 'react-redux';
+import {getSidebarItems} from '../../model/selectors/getSidebarItems';
 
 interface SidebarProps {
     className?: string;
@@ -14,6 +15,7 @@ interface SidebarProps {
 export const Sidebar:FC<SidebarProps> = memo((props) => {
     const { className } = props;
     const [collapsed, setCollapsed] = useState(false);
+    const sidebarItemsList = useSelector(getSidebarItems);
 
     const toggleCollapsed = () => {
         setCollapsed(prev => !prev);
