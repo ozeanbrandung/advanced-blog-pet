@@ -1,3 +1,4 @@
+import {User} from 'entities/User';
 
 export enum BlockTypes {
     TEXT = 'TEXT',
@@ -42,6 +43,7 @@ export interface IArticle {
     img: string;
     views: number;
     createdAt: string;
+    user : User;
     type: ArticleTypes[],
     blocks: ArticleBlocks[];
 }
@@ -50,4 +52,9 @@ export interface ArticleStateSchema {
     isLoading: boolean;
     error?: string;
     data: IArticle | undefined;
+}
+
+export enum ArticlesViewMode {
+    GRID = 'GRID',
+    LIST = 'LIST'
 }

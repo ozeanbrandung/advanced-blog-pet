@@ -1,0 +1,138 @@
+.ArticlesListItem {
+    .types {
+        overflow: hidden;
+
+        color: var(--secondary-color);
+
+        /* Both of the following are required for text-overflow */
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .views {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .icon {
+        margin-left: 8px;
+
+        color: var(--secondary-color);
+    }
+
+    .title {
+        overflow: hidden;
+
+        /* Both of the following are required for text-overflow */
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.skeleton {
+    margin-bottom: 16px;
+
+    .title {
+        margin-bottom: 16px;
+    }
+}
+
+.ArticlesListItem.GRID {
+    padding: 0;
+}
+
+.GRID {
+    min-height: 250px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease transform, 0.3s ease opacity;
+
+    &:hover {
+        transform: scale(1.01);
+        opacity: 0.856;
+    }
+
+    .cardContent {
+        padding: 16px;
+    }
+
+    .types {
+        max-width: 60%;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .imageWrapper {
+        position: relative;
+    }
+
+    .date {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+
+        padding: 6px;
+
+        background-color: var(--card-color);
+    }
+
+    .cardBottom {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .title {
+        margin-bottom: 0;
+    }
+}
+
+.LIST {
+    min-height: 300px;
+
+    .headerTop {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .avatar {
+        margin-right: 16px;
+    }
+
+    .date {
+        margin-left: auto;
+    }
+
+    .imageWrapper {
+        width: 100%;
+        height: 200px;
+        margin: 16px 0;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+    }
+
+    .contentPreview {
+        display: box;
+        max-width: 100%;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

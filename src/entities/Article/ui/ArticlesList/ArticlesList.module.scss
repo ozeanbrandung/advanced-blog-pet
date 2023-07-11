@@ -1,0 +1,13 @@
+.GRID {
+    display: grid;
+    grid-gap: 16px;
+
+    /* с fr плохо работает */
+    grid-template-columns: repeat(3, calc(33.33% - 16px * 2 / 3));
+}
+
+.LIST {
+    .article:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}

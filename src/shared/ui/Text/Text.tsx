@@ -25,6 +25,8 @@ interface TextProps {
     isError?: boolean;
     align?: TextAlign;
     size?: TextSize;
+    titleClassName?: string;
+    textClassName?: string;
     //theme?: TextTheme;
 }
 
@@ -38,13 +40,13 @@ export const Text:FC<TextProps> = memo((props) => {
             [className, styles[align], styles[size]]
         )}>
             {title && (
-                <h2 className={styles.title}>
+                <h2 className={classNames(styles.title, {}, [props.titleClassName])}>
                     {title}
                 </h2>
             )}
 
             {text && (
-                <div className={styles.text}>
+                <div className={classNames(styles.text, {}, [props.textClassName])}>
                     {text}
                 </div>
             )}
