@@ -1,0 +1,1 @@
+export {SwitchArticlesViewMode} from './ui/SwitchArticlesViewMode/SwitchArticlesViewMode';

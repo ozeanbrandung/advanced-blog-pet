@@ -42,7 +42,7 @@ export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
         return articles.map(article => (
             <ArticlesListItem className={styles.article} key={article.id} article={article} viewMode={viewMode} />
         ));
-    }, [articles]);
+    }, [articles, viewMode]);
 
     return (
         <div className={classNames(styles.ArticlesList, {}, [className, styles[viewMode]])}>

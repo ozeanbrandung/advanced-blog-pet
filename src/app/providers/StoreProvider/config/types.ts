@@ -9,6 +9,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { ArticleStateSchema } from 'entities/Article';
 import {ArticleDetailsCommentsSchema} from 'pages/ArticleDetailsPage';
 import {AddCommentFormSchema} from 'features/AddCommentForm';
+import {ArticlesPageSchema} from 'pages/ArticlesPage';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -20,6 +21,7 @@ export interface StateSchema {
     article?: ArticleStateSchema;
     articleDetailsComments?: ArticleDetailsCommentsSchema;
     addComment?: AddCommentFormSchema;
+    articles?: ArticlesPageSchema;
 }
 
 export type AsyncReducersKeysMap = keyof StateSchema;
