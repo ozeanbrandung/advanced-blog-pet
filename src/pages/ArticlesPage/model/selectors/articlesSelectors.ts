@@ -18,3 +18,5 @@ export const getArticlesCurrentPage = (state:StateSchema) => state.articles?.cur
 
 export const getArticlesHasArticlesToLoad = (state:StateSchema) => state.articles?.hasArticlesToLoad;
 
+export const getArticlesInited = (state:StateSchema) => state.articles?._inited;
+

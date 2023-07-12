@@ -12,4 +12,6 @@ export interface ArticlesPageSchema extends EntityState<IArticle> {
     //how many will be downloaded
     limit?: number;
     hasArticlesToLoad: boolean;
+
+    _inited?: boolean;
 }

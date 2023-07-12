@@ -22,6 +22,7 @@ export const articlesSlice = createSlice({
         viewMode: ArticlesViewMode.GRID,
         currentPage: 1,
         hasArticlesToLoad: true,
+        _inited: false,
     }),
     reducers: {
         setViewMode: (state, action:PayloadAction<ArticlesViewMode>) => {
@@ -32,6 +33,7 @@ export const articlesSlice = createSlice({
             ++state.currentPage;
         },
         initializeArticles: (state) => {
+            state._inited = true;
             const view = localStorage.getItem(LOCAL_STORAGE_VIEW_MODE_KEY) as ArticlesViewMode
                 || ArticlesViewMode.GRID;
             state.viewMode = view;

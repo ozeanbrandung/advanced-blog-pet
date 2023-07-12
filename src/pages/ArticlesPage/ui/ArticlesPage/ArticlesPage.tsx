@@ -3,7 +3,6 @@ import {FC, useCallback} from 'react';
 import {ArticlesList, ArticlesViewMode} from 'entities/Article';
 import {useInitialEffect} from 'shared/hooks/useInitialEffect/useInitialEffect';
 import {useAppDispatch} from 'shared/hooks/useAppDispatch/useAppDispatch';
-import {fetchArticles} from '../../model/services/fetchArticles/fetchArticles';
 import {useSelector} from 'react-redux';
 import {
     articlesSelector,
@@ -17,6 +16,7 @@ import {articlesActions, articlesReducer} from '../../model/slice/articlesSlice'
 import {SwitchArticlesViewMode} from 'features/SwitchArticlesViewMode';
 import {Page} from 'shared/ui/Page/Page';
 import {fetchNextArticlesPage} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import {initArticlesPage} from '../../model/services/initArticlesPage/initArticlesPage';
 
 //import styles from './ArticlesPage.module.scss';
 
@@ -37,13 +37,10 @@ const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
     const isError = useSelector(getArticlesPageError);
     const currentViewMode = useSelector(getArticlesViewMode);
 
-    useAsyncReducer({options});
+    useAsyncReducer({options, removeAfterUnmount: false /*, wasInited: articlesStoreInited */});
 
     useInitialEffect(() => {
-        //принципиально чтобы сначала шла инициализация - установка лимита там происходит
-        dispatch(articlesActions.initializeArticles());
-        //а уж потом первый запрос на сервер, поскольку там этот лимит используется (берется из стейта)
-        dispatch(fetchArticles({pageToLoad: 1}));
+        dispatch(initArticlesPage());
     });
 
     const handleLoadNextPage = useCallback(() => {

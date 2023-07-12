@@ -25,12 +25,15 @@ export interface StateSchema {
 }
 
 export type AsyncReducersKeysMap = keyof StateSchema;
+//export type MountedReducers = OptionalRecord<AsyncReducersKeysMap, boolean>;
 
 export interface ReducerManagerSchema {
     getReducerMap: () => ReducersMapObject<StateSchema>;
     reduce: (state:StateSchema, action:AnyAction) => CombinedState<StateSchema>;
     add: (key:AsyncReducersKeysMap, reducer:Reducer) => void;
     remove: (key:AsyncReducersKeysMap) => void;
+    //true - вмонтирован, false - демонтирован
+    //getMountedReducers: () => MountedReducers;
 }
 
 export interface StoreWithReducerManager extends EnhancedStore<StateSchema> {
