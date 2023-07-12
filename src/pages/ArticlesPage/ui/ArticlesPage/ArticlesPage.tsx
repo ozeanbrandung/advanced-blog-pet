@@ -1,6 +1,5 @@
 import {FC, useCallback} from 'react';
 //import { useTranslation } from 'react-i18next';
-import {classNames} from 'shared/lib/classNames/classNames';
 import {ArticlesList, ArticlesViewMode} from 'entities/Article';
 import {useInitialEffect} from 'shared/hooks/useInitialEffect/useInitialEffect';
 import {useAppDispatch} from 'shared/hooks/useAppDispatch/useAppDispatch';
@@ -16,6 +15,8 @@ import {ErroredButton} from 'shared/ui/ErroredButton/ErroredButton';
 import {useAsyncReducer, UseAsyncReducerEntry} from 'shared/hooks/useAsyncReducer/useAsyncReducer';
 import {articlesActions, articlesReducer} from '../../model/slice/articlesSlice';
 import {SwitchArticlesViewMode} from 'features/SwitchArticlesViewMode';
+import {Page} from 'shared/ui/Page/Page';
+import {fetchNextArticlesPage} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 //import styles from './ArticlesPage.module.scss';
 
@@ -28,8 +29,8 @@ const options:UseAsyncReducerEntry[] = [{
     reducerKey: 'articles',
 }];
 
-const ArticlesPage:FC<ArticlesPageProps> = (props) => {
-    const { className } = props;
+const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
+    //const { className } = props;
     const dispatch = useAppDispatch();
     const articles = useSelector(articlesSelector.selectAll);
     const isLoading = useSelector(getArticlesPageLoading);
@@ -39,9 +40,15 @@ const ArticlesPage:FC<ArticlesPageProps> = (props) => {
     useAsyncReducer({options});
 
     useInitialEffect(() => {
-        dispatch(fetchArticles());
-        dispatch(articlesActions.initializeViewMode());
+        //принципиально чтобы сначала шла инициализация - установка лимита там происходит
+        dispatch(articlesActions.initializeArticles());
+        //а уж потом первый запрос на сервер, поскольку там этот лимит используется (берется из стейта)
+        dispatch(fetchArticles({pageToLoad: 1}));
     });
+
+    const handleLoadNextPage = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
 
     const handleViewModeChange = useCallback((viewMode: ArticlesViewMode) => {
         dispatch(articlesActions.setViewMode(viewMode));
@@ -52,10 +59,10 @@ const ArticlesPage:FC<ArticlesPageProps> = (props) => {
     }
 
     return (
-        <div className={classNames('', {}, [className])}>
+        <Page key="articles" onScrollEnd={handleLoadNextPage}>
             <SwitchArticlesViewMode onChangeMode={handleViewModeChange} currentViewMode={currentViewMode} />
             <ArticlesList articles={articles} viewMode={currentViewMode} isLoading={isLoading} />
-        </div>
+        </Page>
     );
 };
 

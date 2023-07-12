@@ -1,7 +1,7 @@
 import { memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { CustomRouteProps, routesConfig } from 'shared/config/routesConfig/routesConfig';
-import { PageLoader } from 'widgets/PageLoader';
+import { PageLoader } from 'pages/PageLoader';
 import { ProtectedRoute } from 'app/providers/Router/ui/ProtectedRoute';
 
 export const AppRouter = memo(() => {

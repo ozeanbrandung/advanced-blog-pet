@@ -46,7 +46,8 @@ export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
 
     return (
         <div className={classNames(styles.ArticlesList, {}, [className, styles[viewMode]])}>
-            {!isLoading ? memoedArticles : getArticleSkeletons(viewMode)}
+            {memoedArticles}
+            {isLoading && getArticleSkeletons(viewMode)}
         </div>
     );
 

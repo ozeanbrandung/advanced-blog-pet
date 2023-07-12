@@ -24,6 +24,8 @@ i18n
         fallbackLng: 'ru',
         //вот эту переменную мы с помощью webpack.DefinePlugin в конфиге вебпака определили
         debug: __IS_DEV__,
+        defaultNS: 'default',
+        ns: 'default',
 
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default

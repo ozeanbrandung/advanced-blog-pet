@@ -4,14 +4,13 @@ import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { StateSchema } from './types';
 import { $api } from 'shared/api/api';
-import { NavigateFunction } from 'react-router-dom';
 
 //создание стора засунем в функцию чтобы можно было переиспользоать
 //как минимум для сторибука и джеста
 export function createReduxStore(
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
-    navigate?: NavigateFunction
+    //navigate?: NavigateFunction
 ) {
     //static reducers
     const rootReducers: ReducersMapObject<StateSchema> = {
@@ -36,7 +35,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: {
                     api: $api,
-                    navigate,
+                    //navigate,
                 }
             }
 

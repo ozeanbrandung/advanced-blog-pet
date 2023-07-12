@@ -9,24 +9,36 @@ export const articlesAdapter = createEntityAdapter<IArticle>({
     selectId: (article) => article.id,
 });
 
+const GRID_LIMIT = 9;
+const LIST_LIMIT = 4;
+
 export const articlesSlice = createSlice({
     name: 'articlesSlice',
     initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
         ids: [],
         error: '',
-        isLoading: false,
+        isLoading: true,
         entities: {},
-        viewMode: ArticlesViewMode.GRID
+        viewMode: ArticlesViewMode.GRID,
+        currentPage: 1,
+        hasArticlesToLoad: true,
     }),
     reducers: {
         setViewMode: (state, action:PayloadAction<ArticlesViewMode>) => {
             state.viewMode = action.payload;
             localStorage.setItem(LOCAL_STORAGE_VIEW_MODE_KEY, action.payload);
         },
-        initializeViewMode: (state) => {
-            state.viewMode = 
-                localStorage.getItem(LOCAL_STORAGE_VIEW_MODE_KEY) as ArticlesViewMode
+        setCurrentPage: (state) => {
+            ++state.currentPage;
+        },
+        initializeArticles: (state) => {
+            const view = localStorage.getItem(LOCAL_STORAGE_VIEW_MODE_KEY) as ArticlesViewMode
                 || ArticlesViewMode.GRID;
+            state.viewMode = view;
+
+
+            //pagination
+            state.limit = view === ArticlesViewMode.GRID ? GRID_LIMIT : LIST_LIMIT;
         },
     },
     extraReducers: (builder) => {
@@ -36,9 +48,12 @@ export const articlesSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
-                state.isLoading = false;
                 //state.data = action.payload;
-                articlesAdapter.setAll(state, action.payload);
+                //TODO: ТУТ НЕЛЬЗЯ ИСПОЛЬЗОВАТЬ setAll иначе будет бесконечная загрузка
+                //articlesAdapter.setAll(state, action.payload);
+                articlesAdapter.addMany(state, action.payload);
+                state.hasArticlesToLoad = action.payload.length === state.limit;
+                state.isLoading = false;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.isLoading = false;

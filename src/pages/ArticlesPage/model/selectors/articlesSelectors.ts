@@ -11,3 +11,10 @@ export const getArticlesPageLoading = (state:StateSchema) => state.articles?.isL
 export const getArticlesPageError = (state:StateSchema) => state.articles?.error || '';
 
 export const getArticlesViewMode = (state:StateSchema) => state.articles?.viewMode || ArticlesViewMode.GRID;
+
+export const getArticlesLimit = (state:StateSchema) => state.articles?.limit || 9;
+
+export const getArticlesCurrentPage = (state:StateSchema) => state.articles?.currentPage || 1;
+
+export const getArticlesHasArticlesToLoad = (state:StateSchema) => state.articles?.hasArticlesToLoad;
+

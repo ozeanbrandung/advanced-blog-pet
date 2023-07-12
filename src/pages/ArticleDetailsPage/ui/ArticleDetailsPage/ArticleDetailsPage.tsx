@@ -1,6 +1,5 @@
 import {FC, useCallback} from 'react';
 //import { useTranslation } from 'react-i18next';
-import {classNames} from 'shared/lib/classNames/classNames';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     getArticleData,
@@ -21,6 +20,7 @@ import {
 import {AddCommentForm} from 'features/AddCommentForm';
 import styles from './ArticleDetailsPage.module.scss';
 import {postNewArticleComment} from '../../model/services/postNewArticleComment/postNewArticleComment';
+import {Page} from 'shared/ui/Page/Page';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -34,8 +34,8 @@ const asyncReducersOptions:UseAsyncReducerEntry[] = [{
     reducer: articleDetailsCommentsReducer,
 }];
 
-const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (props) => {
-    const { className } = props;
+const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (/*props*/) => {
+    //const { className } = props;
     //const {t} = useTranslation('article');
     const dispatch = useDispatch();
     const articleData = useSelector(getArticleData);
@@ -73,7 +73,7 @@ const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (props) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames('', {}, [className])}>
+        <Page>
             <div>
                 {articleData && <Article data={articleData} /> }
                 {isLoading && <ArticleSkeleton />}
@@ -91,7 +91,7 @@ const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (props) => {
                     error={commentsError}
                 />
             </div>
-        </div>
+        </Page>
     );
 };
 

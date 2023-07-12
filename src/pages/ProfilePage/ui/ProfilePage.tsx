@@ -5,6 +5,7 @@ import {fetchProfile} from 'features/EditableProfile/model/services/fetchProfile
 import {useDispatch} from 'react-redux';
 import {useInitialEffect} from 'shared/hooks/useInitialEffect/useInitialEffect';
 import {useParams} from 'react-router-dom';
+import {Page} from 'shared/ui/Page/Page';
 
 interface ProfilePageProps {
     className?: string;
@@ -39,9 +40,9 @@ const ProfilePage:FC<ProfilePageProps> = memo(() => {
     });
 
     return (
-        <div /* className={classNames(styles.ProfilePage, {}, [className])}*/>
+        <Page>
             <EditableProfileCard />
-        </div>
+        </Page>
     );
 });
 

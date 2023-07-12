@@ -6,4 +6,10 @@ export interface ArticlesPageSchema extends EntityState<IArticle> {
     error?: string;
     
     viewMode: ArticlesViewMode;
+
+    //pagination
+    currentPage: number;
+    //how many will be downloaded
+    limit?: number;
+    hasArticlesToLoad: boolean;
 }

@@ -1,5 +1,5 @@
 import React, {ErrorInfo, ReactNode, Suspense} from 'react';
-import {PageError} from 'widgets/PageError';
+import {PageError} from 'pages/PageError';
 //import {withTranslation} from "react-i18next";
 
 interface ErrorBoundaryProps {

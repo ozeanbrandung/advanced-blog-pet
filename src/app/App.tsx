@@ -28,9 +28,8 @@ const App = () => {
                 <main className='main'>
                     <Sidebar/>
 
-                    <div className="page-wrapper">
-                        {initialized && <AppRouter />}
-                    </div>
+                    {initialized && <AppRouter />}
+                    
                 </main>
                 {/*<button onClick={toggleTheme}>toggle</button>*/}
             </Suspense>

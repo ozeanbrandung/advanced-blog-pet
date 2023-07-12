@@ -22,13 +22,3 @@ body {
 .main {
     display: flex;
 }
-
-.page-wrapper {
-    flex-grow: 1;
-    max-width: calc(100vw - var(--sidebar-width));
-
-    /* overflow-y: auto; */
-    margin-top: var(--navbar-height);
-    margin-left: var(--sidebar-width);
-    padding: 40px;
-}

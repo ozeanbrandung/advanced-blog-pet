@@ -22,7 +22,7 @@ export const Sidebar:FC<SidebarProps> = memo((props) => {
     };
 
     return (
-        <div data-testid="sidebar" className={classNames(
+        <menu data-testid="sidebar" className={classNames(
             styles.Sidebar,
             {[styles.collapsed]: collapsed},
             [className]
@@ -93,6 +93,6 @@ export const Sidebar:FC<SidebarProps> = memo((props) => {
                     className={classNames(styles.switcher, {}, [styles.langSwitcher])}
                 />
             </div>
-        </div>
+        </menu>
     );
 });

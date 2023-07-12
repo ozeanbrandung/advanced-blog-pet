@@ -48,7 +48,7 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
 
     return (
         <>
-            <div className={classNames(styles.Navbar, {}, [className])}>
+            <header className={classNames(styles.Navbar, {}, [className])}>
                 <div className={styles.links}>
                     {!authData ? (
                         <Button
@@ -76,7 +76,7 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
                         <IconHome />
                     </AppLink>
                 </div>
-            </div>
+            </header>
 
             {isOpened && <LoginModal isOpened={isOpened} onClose={handleClose}/>}
         </>

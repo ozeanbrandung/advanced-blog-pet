@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
-import { Reducer } from '@reduxjs/toolkit';
-import { AsyncReducersKeysMap, StoreWithReducerManager } from 'app/providers/StoreProvider/config/types';
-import { useDispatch, useStore } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import {useEffect} from 'react';
+import {Reducer} from '@reduxjs/toolkit';
+import {AsyncReducersKeysMap, StoreWithReducerManager} from 'app/providers/StoreProvider/config/types';
+import {useDispatch, useStore} from 'react-redux';
 
 export type UseAsyncReducerEntry  = {
     reducerKey:AsyncReducersKeysMap;
@@ -18,9 +17,9 @@ export interface UseAsyncReducerArgs {
 export const useAsyncReducer = ({options, removeAfterUnmount = true, beforeDestroy}: UseAsyncReducerArgs) => {
     const store = useStore() as StoreWithReducerManager;
     const dispatch = useDispatch();
-    const location = useLocation();
+    //const location = useLocation();
 
-    console.log(location);
+    //console.log(location);
 
     useEffect(() => {
         // To start listening for location changes...
@@ -49,5 +48,5 @@ export const useAsyncReducer = ({options, removeAfterUnmount = true, beforeDestr
             //unlisten();
         };
     //TODO: Тут вылетала проблема - без диспатча кароч если нажать тот же самый роут то исчезал примаученная часть стора 
-    }, [dispatch]);
+    }, []);
 };
