@@ -20,7 +20,7 @@ import {
 import {AddCommentForm} from 'features/AddCommentForm';
 import styles from './ArticleDetailsPage.module.scss';
 import {postNewArticleComment} from '../../model/services/postNewArticleComment/postNewArticleComment';
-import {Page} from 'shared/ui/Page/Page';
+import {Page} from 'widgets/Page';
 
 interface ArticleDetailsPageProps {
     className?: string;

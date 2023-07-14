@@ -10,10 +10,12 @@ import { ArticleStateSchema } from 'entities/Article';
 import {ArticleDetailsCommentsSchema} from 'pages/ArticleDetailsPage';
 import {AddCommentFormSchema} from 'features/AddCommentForm';
 import {ArticlesPageSchema} from 'pages/ArticlesPage';
+import {PreservedScrollPositionSchema} from 'widgets/Page';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
+    preservedScrollPosition: PreservedScrollPositionSchema;
 
     //async reducers
     authForm?: AuthFormSchema;

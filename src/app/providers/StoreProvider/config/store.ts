@@ -4,6 +4,7 @@ import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { StateSchema } from './types';
 import { $api } from 'shared/api/api';
+import {preservedScrollPositionReducer} from 'widgets/Page';
 
 //создание стора засунем в функцию чтобы можно было переиспользоать
 //как минимум для сторибука и джеста
@@ -17,6 +18,7 @@ export function createReduxStore(
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        preservedScrollPosition: preservedScrollPositionReducer,
         //authForm: authFormReducer,
     };
 

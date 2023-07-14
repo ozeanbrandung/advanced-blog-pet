@@ -14,7 +14,7 @@ import {ErroredButton} from 'shared/ui/ErroredButton/ErroredButton';
 import {useAsyncReducer, UseAsyncReducerEntry} from 'shared/hooks/useAsyncReducer/useAsyncReducer';
 import {articlesActions, articlesReducer} from '../../model/slice/articlesSlice';
 import {SwitchArticlesViewMode} from 'features/SwitchArticlesViewMode';
-import {Page} from 'shared/ui/Page/Page';
+import {Page} from 'widgets/Page';
 import {fetchNextArticlesPage} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import {initArticlesPage} from '../../model/services/initArticlesPage/initArticlesPage';
 
@@ -56,7 +56,7 @@ const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
     }
 
     return (
-        <Page key="articles" onScrollEnd={handleLoadNextPage}>
+        <Page key="articles" onScrollEnd={handleLoadNextPage} isScrollPositionSaved>
             <SwitchArticlesViewMode onChangeMode={handleViewModeChange} currentViewMode={currentViewMode} />
             <ArticlesList articles={articles} viewMode={currentViewMode} isLoading={isLoading} />
         </Page>
