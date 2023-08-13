@@ -7,6 +7,7 @@ import {articlesActions} from '../../slice/articlesSlice';
 import {fetchArticles} from '../fetchArticles/fetchArticles';
 import {articleFiltersActions} from 'features/ArticleFilters/model/slice/articleFiltersSlice';
 import {Order, Sort} from 'features/ArticleFilters/model/types/articleFiltersTypes';
+import {ArticleTypes} from 'entities/Article';
 
 export const initArticlesPage =
     createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
@@ -21,6 +22,7 @@ export const initArticlesPage =
                 const orderFromUrl = searchParams.get('order') as Order;
                 const searchFromUrl = searchParams.get('search');
                 const sortFromUrl = searchParams.get('sort') as Sort;
+                const typeFromUrl = searchParams.get('type') as ArticleTypes;
 
                 if (orderFromUrl) {
                     dispatch(articleFiltersActions.setOrder(orderFromUrl));
@@ -30,6 +32,9 @@ export const initArticlesPage =
                 }
                 if (sortFromUrl) {
                     dispatch(articleFiltersActions.setSort(sortFromUrl));
+                }
+                if (typeFromUrl) {
+                    dispatch(articleFiltersActions.setType(typeFromUrl));
                 }
                 //принципиально чтобы сначала шла инициализация - установка лимита там происходит
                 dispatch(articlesActions.initializeArticles());

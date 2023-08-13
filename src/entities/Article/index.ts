@@ -1,4 +1,4 @@
-export {ArticleStateSchema, ArticlesViewMode, IArticle} from './model/types/article';
+export {ArticleStateSchema, ArticlesViewMode, IArticle, ArticleTypes} from './model/types/article';
 export {Article} from './ui/Article/Article';
 export {ArticleSkeleton} from './ui/ArticleSkeleton/ArticleSkeleton';
 //TODO: убрать это из api

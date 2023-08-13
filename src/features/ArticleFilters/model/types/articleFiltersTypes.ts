@@ -1,3 +1,5 @@
+import {ArticleTypes} from 'entities/Article';
+
 export enum Sort {
     DATE = 'date',
     TITLE = 'title',
@@ -10,7 +12,8 @@ export enum Order {
 }
 
 export interface IArticleFiltersSchema {
-    order?: Order;
-    sort?: Sort;
-    search?: string;
+    order: Order;
+    sort: Sort;
+    search: string;
+    type: ArticleTypes;
 }

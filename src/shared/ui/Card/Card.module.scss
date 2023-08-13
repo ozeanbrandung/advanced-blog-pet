@@ -1,6 +1,18 @@
 .Card {
     padding: 28px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid;
 
     background-color: var(--card-color);
+}
+
+.normal {
+    border-color: var(--primary-color);
+}
+
+.outlined {
+    border-color: var(--secondary-color);
+
+    color: var(--secondary-color);
+
+    box-shadow: 4px 4px 1px var(--primary-color);
 }

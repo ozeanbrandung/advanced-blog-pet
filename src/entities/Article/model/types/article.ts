@@ -30,10 +30,11 @@ export interface CodeArticleBlock extends BlockBaseFields {
 
 export type ArticleBlocks = TextArticleBlock | ImageArticleBlock | CodeArticleBlock;
 
-enum ArticleTypes {
+export enum ArticleTypes {
     IT = 'IT',
     MANAGEMENT = 'MANAGEMENT',
-    MARKETING = 'MARKETING'
+    MARKETING = 'MARKETING',
+    ALL = 'ALL'
 }
 
 export interface IArticle {

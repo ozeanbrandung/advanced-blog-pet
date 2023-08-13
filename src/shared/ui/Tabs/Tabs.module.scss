@@ -1,0 +1,13 @@
+.Tabs {
+    display: flex;
+
+    .tab {
+        padding: 12px 22px;
+
+        cursor: pointer;
+    }
+
+    .tab:not(:last-child) {
+        margin-right: 16px;
+    }
+}

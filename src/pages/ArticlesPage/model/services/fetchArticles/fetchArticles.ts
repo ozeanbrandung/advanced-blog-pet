@@ -1,8 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {ThunkConfig} from 'app/providers/StoreProvider';
-import {IArticle} from 'entities/Article';
+import {ArticleTypes, IArticle} from 'entities/Article';
 import {getArticlesCurrentPage, getArticlesLimit} from '../../selectors/articlesSelectors';
+//TODO: тоже нарушение архитектуры?
 import {
+    getArticleType,
     getOrderValue,
     getSearchValue,
     getSortValue
@@ -26,12 +28,13 @@ export const fetchArticles =
             const search = getSearchValue(getState());
             const sort = getSortValue(getState());
             const order = getOrderValue(getState());
+            const type = getArticleType(getState());
 
             try {
                 //window.history.pushState(null, '', `?search=${search}`)
                 //еще можно то же самое сделать средствами react-router-dom
                 addQueryParams({
-                    sort, order, search
+                    sort, order, search, type
                 });
                 const response = await extra.api.get<IArticle[]>(
                     '/articles', {
@@ -44,6 +47,7 @@ export const fetchArticles =
                             _sort: sort,
                             _order: order,
                             q: search,
+                            type: type === ArticleTypes.ALL ? undefined : type,
                         }
                     });
 

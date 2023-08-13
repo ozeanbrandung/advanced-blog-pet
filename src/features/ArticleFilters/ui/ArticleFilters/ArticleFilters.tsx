@@ -1,12 +1,13 @@
 import React, {FC, memo, useCallback} from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './ArticleFilters.module.scss';
-import {ArticleSelectors} from 'features/ArticleFilters/ui/ArticleSelectors/ArticleSelectors';
+import {ArticleSelectors} from '../ArticleSelectors/ArticleSelectors';
 import {Input} from 'shared/ui/Input/Input';
 import {useAsyncReducer} from 'shared/hooks/useAsyncReducer/useAsyncReducer';
 import {articleFiltersActions, articleFiltersReducer} from '../../model/slice/articleFiltersSlice';
 import {useSelector} from 'react-redux';
 import {
+    getArticleType,
     getOrderValue,
     getSearchValue,
     getSortValue
@@ -17,10 +18,31 @@ import {Order, Sort} from '../../model/types/articleFiltersTypes';
 import {articlesActions} from 'pages/ArticlesPage/model/slice/articlesSlice';
 import {fetchArticles} from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
 import {useDebounce} from 'shared/hooks/useDebounce/useDebounce';
+import {ITab, Tabs} from 'shared/ui/Tabs/Tabs';
+import {ArticleTypes} from 'entities/Article';
 
 interface ArticleFiltersProps {
     className?: string;
 }
+
+const tabs:ITab[] = [
+    {
+        value: ArticleTypes.ALL,
+        label: ArticleTypes.ALL
+    },
+    {
+        value: ArticleTypes.IT,
+        label: ArticleTypes.IT
+    },
+    {
+        value: ArticleTypes.MANAGEMENT,
+        label: ArticleTypes.MANAGEMENT
+    },
+    {
+        value: ArticleTypes.MARKETING,
+        label: ArticleTypes.MARKETING
+    },
+];
 
 export const ArticleFilters:FC<ArticleFiltersProps> = memo((props) => {
     const { className } = props;
@@ -28,6 +50,7 @@ export const ArticleFilters:FC<ArticleFiltersProps> = memo((props) => {
     const sort = useSelector(getSortValue);
     const order = useSelector(getOrderValue);
     const search = useSelector(getSearchValue);
+    const type = useSelector(getArticleType);
     
     const dispatch = useAppDispatch();
     
@@ -59,6 +82,12 @@ export const ArticleFilters:FC<ArticleFiltersProps> = memo((props) => {
         fetchData();
     }, [dispatch, fetchData]);
 
+    const handleChangeType = useCallback((value: ArticleTypes) => {
+        dispatch(articleFiltersActions.setType(value));
+        dispatch(articlesActions.setCurrentPage(1));
+        fetchData();
+    }, [dispatch, fetchData]);
+
     return (
         <div className={classNames(styles.articleFilters, {}, [className])}>
             <ArticleSelectors
@@ -68,10 +97,10 @@ export const ArticleFilters:FC<ArticleFiltersProps> = memo((props) => {
                 onOrderChange={handleOrderChange} 
                 onSortChange={handleSortChange} 
             />
-            
-            <div>
-                <Input value={search} onChange={handleSearch}/>
-            </div>
+
+            <Input className={styles.search} value={search} onChange={handleSearch}/>
+
+            <Tabs tabs={tabs} selectedTabValue={type} onTabClick={handleChangeType} />
         </div>
     );
 });
