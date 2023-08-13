@@ -10,7 +10,7 @@ export interface ArticlesPageSchema extends EntityState<IArticle> {
     //pagination
     currentPage: number;
     //how many will be downloaded
-    limit?: number;
+    limit: number;
     hasArticlesToLoad: boolean;
 
     _inited?: boolean;

@@ -13,6 +13,10 @@ import {
 } from '../../model/selectors/articleFiltersSelectors';
 import {useAppDispatch} from 'shared/hooks/useAppDispatch/useAppDispatch';
 import {Order, Sort} from '../../model/types/articleFiltersTypes';
+//TODO: мне чот не нравится что тут нарушается методология
+import {articlesActions} from 'pages/ArticlesPage/model/slice/articlesSlice';
+import {fetchArticles} from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
+import {useDebounce} from 'shared/hooks/useDebounce/useDebounce';
 
 interface ArticleFiltersProps {
     className?: string;
@@ -29,21 +33,31 @@ export const ArticleFilters:FC<ArticleFiltersProps> = memo((props) => {
     
     useAsyncReducer({options: [{reducer: articleFiltersReducer, reducerKey: 'articleFilters'}]});
 
+    const fetchData = useCallback(() => {
+        dispatch(fetchArticles({replace: true}));
+    }, [dispatch]);
+
+    const debouncedFetch = useDebounce(fetchData, 500);
+
     const handleSearch = useCallback((value: string) => {
         dispatch(articleFiltersActions.setSearch(value));
-    }, [dispatch]);
+        //сбрасываем страницу чтобы поиск по всем страницам был
+        dispatch(articlesActions.setCurrentPage(1));
+        //не забываем что дебаунсим только для серча
+        debouncedFetch();
+    }, [dispatch, debouncedFetch]);
     
     const handleOrderChange = useCallback((value: Order) => {
         dispatch(articleFiltersActions.setOrder(value));
-    }, [dispatch]);
+        dispatch(articlesActions.setCurrentPage(1));
+        fetchData();
+    }, [dispatch, fetchData]);
 
     const handleSortChange = useCallback((value: Sort) => {
         dispatch(articleFiltersActions.setSort(value));
-    }, [dispatch]);
-
-    console.log(sort);
-    console.log(search);
-    console.log(order);
+        dispatch(articlesActions.setCurrentPage(1));
+        fetchData();
+    }, [dispatch, fetchData]);
 
     return (
         <div className={classNames(styles.articleFilters, {}, [className])}>

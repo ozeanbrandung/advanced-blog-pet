@@ -21,6 +21,7 @@ export const articlesSlice = createSlice({
         entities: {},
         viewMode: ArticlesViewMode.GRID,
         currentPage: 1,
+        limit: GRID_LIMIT,
         hasArticlesToLoad: true,
         _inited: false,
     }),
@@ -29,8 +30,9 @@ export const articlesSlice = createSlice({
             state.viewMode = action.payload;
             localStorage.setItem(LOCAL_STORAGE_VIEW_MODE_KEY, action.payload);
         },
-        setCurrentPage: (state) => {
-            ++state.currentPage;
+        setCurrentPage: (state, action: PayloadAction<number>) => {
+            //++state.currentPage - не можем мы это тут оставыить - иногда нужно сбрасываться на 1 страницу
+            state.currentPage = action.payload;
         },
         initializeArticles: (state) => {
             state._inited = true;
@@ -45,17 +47,32 @@ export const articlesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchArticles.pending, (state) => {
+            .addCase(fetchArticles.pending, (state, action) => {
                 state.error = '';
                 state.isLoading = true;
+
+                //TODO: без этого у нас не будет появляться скелетон при установке фильтров
+                if (action.meta.arg.replace) {
+                    //либо так
+                    //articlesAdapter.setAll(state, []);
+                    //либо вообще так
+                    articlesAdapter.removeAll(state);
+                }
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 //state.data = action.payload;
-                //TODO: ТУТ НЕЛЬЗЯ ИСПОЛЬЗОВАТЬ setAll иначе будет бесконечная загрузка
-                //articlesAdapter.setAll(state, action.payload);
-                articlesAdapter.addMany(state, action.payload);
                 state.hasArticlesToLoad = action.payload.length === state.limit;
                 state.isLoading = false;
+
+                if (!action.meta.arg.replace) {
+                    //TODO: ТУТ НЕЛЬЗЯ ИСПОЛЬЗОВАТЬ setAll иначе будет бесконечная загрузка - каждый раз при попытке подгрузить
+                    // доп порцию данных - данные будут перезатираться
+                    //articlesAdapter.setAll(state, action.payload);
+                    articlesAdapter.addMany(state, action.payload);
+                } else {
+                    //TODO: а вот тут наоборот нам нужно при поиске и сортировке перезатирать данные и запрашивать все заново
+                    articlesAdapter.setAll(state, action.payload);
+                }
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.isLoading = false;

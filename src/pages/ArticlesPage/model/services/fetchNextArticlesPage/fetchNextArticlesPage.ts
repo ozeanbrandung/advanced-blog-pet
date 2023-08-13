@@ -20,8 +20,8 @@ export const fetchNextArticlesPage =
 
 
             if (hasArticlesToLoad && !isLoading) {
-                dispatch(articlesActions.setCurrentPage());
-                dispatch(fetchArticles({pageToLoad: currentPage + 1}));
+                dispatch(articlesActions.setCurrentPage(currentPage + 1));
+                dispatch(fetchArticles(/*{pageToLoad: currentPage + 1}*/{}));
             }
         }
     );

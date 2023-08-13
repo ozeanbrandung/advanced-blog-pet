@@ -18,6 +18,7 @@ import {Page} from 'widgets/Page';
 import {fetchNextArticlesPage} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import {initArticlesPage} from '../../model/services/initArticlesPage/initArticlesPage';
 import {ArticleFilters} from 'features/ArticleFilters';
+import {useSearchParams} from 'react-router-dom';
 
 //import styles from './ArticlesPage.module.scss';
 
@@ -38,10 +39,12 @@ const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
     const isError = useSelector(getArticlesPageError);
     const currentViewMode = useSelector(getArticlesViewMode);
 
+    const [searchParams] = useSearchParams();
+
     useAsyncReducer({options, removeAfterUnmount: false /*, wasInited: articlesStoreInited */});
 
     useInitialEffect(() => {
-        dispatch(initArticlesPage());
+        dispatch(initArticlesPage(searchParams));
     });
 
     const handleLoadNextPage = useCallback(() => {
