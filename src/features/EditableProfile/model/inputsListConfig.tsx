@@ -12,7 +12,7 @@ import {
 import { InputsListConfigType, InputTypes } from 'shared/hooks/useInputWithData/useInputWithData';
 import { Country, Currency } from 'shared/consts/common';
 
-export const inputsListConfig:InputsListConfigType<DeepPartial<Profile>> = {
+export const inputsListConfig:InputsListConfigType<DeepPartial<Profile>, string | number> = {
     name: {
         selector: getProfileNameSelector,
         action: profileActions.updateProfile,

@@ -11,6 +11,7 @@ import {ArticleDetailsCommentsSchema} from 'pages/ArticleDetailsPage';
 import {AddCommentFormSchema} from 'features/AddCommentForm';
 import {ArticlesPageSchema} from 'pages/ArticlesPage';
 import {PreservedScrollPositionSchema} from 'widgets/Page';
+import {IArticleFiltersSchema} from 'features/ArticleFilters';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -24,6 +25,7 @@ export interface StateSchema {
     articleDetailsComments?: ArticleDetailsCommentsSchema;
     addComment?: AddCommentFormSchema;
     articles?: ArticlesPageSchema;
+    articleFilters?: IArticleFiltersSchema;
 }
 
 export type AsyncReducersKeysMap = keyof StateSchema;

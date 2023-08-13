@@ -17,6 +17,7 @@ import {SwitchArticlesViewMode} from 'features/SwitchArticlesViewMode';
 import {Page} from 'widgets/Page';
 import {fetchNextArticlesPage} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import {initArticlesPage} from '../../model/services/initArticlesPage/initArticlesPage';
+import {ArticleFilters} from 'features/ArticleFilters';
 
 //import styles from './ArticlesPage.module.scss';
 
@@ -57,6 +58,7 @@ const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
 
     return (
         <Page key="articles" onScrollEnd={handleLoadNextPage} isScrollPositionSaved>
+            <ArticleFilters />
             <SwitchArticlesViewMode onChangeMode={handleViewModeChange} currentViewMode={currentViewMode} />
             <ArticlesList articles={articles} viewMode={currentViewMode} isLoading={isLoading} />
         </Page>

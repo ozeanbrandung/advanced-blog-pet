@@ -13,7 +13,7 @@ export const fetchArticles =
         async (args, thunkAPI) => {
             const {extra, rejectWithValue, getState} = thunkAPI;
             const {pageToLoad = 1} = args;
-            const limit = getArticlesLimit(getState())
+            const limit = getArticlesLimit(getState());
 
             try {
                 const response = await extra.api.get<IArticle[]>(

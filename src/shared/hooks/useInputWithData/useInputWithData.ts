@@ -15,9 +15,9 @@ export enum InputTypes {
     INPUT = 'input'
 }
 
-export type InputsListConfigType<Schema> = {
+export type InputsListConfigType<Schema, T> = {
     [K in keyof Schema]: UseInputWithDataProps<DeepPartial<Schema>>
-    & {type: InputTypes; config?: {options: SelectOption[]}}
+    & {type: InputTypes; config?: {options: SelectOption<T>[]}}
 }
 
 export function useInputWithData<Payload>({selector, action, payloadCreator}:UseInputWithDataProps<Payload>) {
