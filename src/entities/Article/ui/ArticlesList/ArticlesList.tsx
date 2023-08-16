@@ -1,4 +1,4 @@
-import {FC, memo, useMemo} from 'react';
+import {FC, HTMLAttributeAnchorTarget, memo, useMemo} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import styles from './ArticlesList.module.scss';
 import {ArticlesViewMode, IArticle} from '../../model/types/article';
@@ -12,6 +12,7 @@ interface ArticlesListProps {
     articles: IArticle[];
     viewMode: ArticlesViewMode;
     isLoading: boolean;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 const getArticleSkeletons = (viewMode:ArticlesViewMode) => {
@@ -37,12 +38,18 @@ const getArticleSkeletons = (viewMode:ArticlesViewMode) => {
 };
 
 export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
-    const { className, isLoading, articles, viewMode } = props;
+    const { className, isLoading, articles, target, viewMode } = props;
     const {t} = useTranslation('article');
 
     const memoedArticles = useMemo(() => {
         return articles.map(article => (
-            <ArticlesListItem className={styles.article} key={article.id} article={article} viewMode={viewMode} />
+            <ArticlesListItem
+                target={target}
+                className={styles.article}
+                key={article.id}
+                article={article}
+                viewMode={viewMode}
+            />
         ));
     }, [articles, viewMode]);
 

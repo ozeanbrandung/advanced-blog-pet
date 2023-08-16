@@ -1,5 +1,7 @@
 {
   "commentsListTitle": "Комментарии",
   "noComments": "Нет комментариев",
-  "noArticles": "Статей не найдено"
+  "noArticles": "Статей не найдено",
+  "recommendationsTitle": "Рекоммендации",
+  "navigateBackButton": "Назад"
 }

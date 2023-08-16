@@ -23,7 +23,7 @@ const options:UseAsyncReducerEntry[] = [{
 
 const AddCommentForm:FC<AddCommentFormProps> = memo((props) => {
     const { className, handleAddNewComment } = props;
-    const {t} = useTranslation('article');
+    const {t} = useTranslation('comments');
     useAsyncReducer({options});
     const textValue = useSelector(getTextValue);
     const error = useSelector(getAddCommentError);

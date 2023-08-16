@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import {IComment} from 'entities/Comment';
-import {fetchComments} from '../fetchComments';
+import {fetchComments} from '../fetchComments/fetchComments';
 //вынести в публичное api?
 //нет - это плохая идея - экшены ни селекторы по хорошему входиьть не должены
 //import {addCommentActions} from 'features/AddCommentForm/model/slice/addCommentSlice';

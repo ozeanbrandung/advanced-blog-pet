@@ -57,7 +57,7 @@ module.exports = {
         '@typescript-eslint/ban-ts-comment': 'warn',
         'i18next/no-literal-string': [
             'error',
-            {markupOnly: true, ignoreAttribute: ['data-testid', 'to']}
+            {markupOnly: true, ignoreAttribute: ['data-testid', 'to', 'target']}
         ],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',

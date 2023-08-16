@@ -1,4 +1,4 @@
-import {FC, memo, useCallback} from 'react';
+import {FC, HTMLAttributeAnchorTarget, memo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './ArticlesListItem.module.scss';
@@ -9,16 +9,18 @@ import {Button, ButtonThemes} from 'shared/ui/Button/Button';
 import ViewsIcon from 'shared/assets/icons/views.svg';
 import {Text} from 'shared/ui/Text/Text';
 import {ArticleTextBlock} from '../ArticleTextBlock/ArticleTextBlock';
-import {useNavigate} from 'react-router-dom';
+import {AppRoutes} from 'shared/config/routesConfig/routesConfig';
+import {AppLink} from 'shared/ui/AppLink/AppLink';
 
 interface ArticlesListItemProps {
     className?: string;
     article: IArticle;
     viewMode: ArticlesViewMode;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
-    const { className, article, viewMode } = props;
+    const { className, article, target, viewMode } = props;
     const {t} = useTranslation('article');
 
     const paragraph = article.blocks.find(item => item.type === BlockTypes.TEXT) as TextArticleBlock;
@@ -36,11 +38,12 @@ export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
         </div>
     );
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
-    const handleNavigateToArticle = useCallback(() => {
-        navigate(`${article.id}`);
-    }, [article.id, navigate]);
+    // const handleNavigateToArticle = useCallback(() => {
+    //     //TODO: тут вообще ничего не происходит - на странице рекомендаций
+    //     navigate(`/${AppRoutes.ARTICLES}/${article.id}`, {});
+    // }, [article.id, navigate]);
     
     if (viewMode === ArticlesViewMode.LIST) {
         return (
@@ -64,9 +67,11 @@ export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
                 )}
                 
                 <div className={styles.bottom}>
-                    <Button theme={ButtonThemes.OUTLINE} onClick={handleNavigateToArticle}>
-                        {t('readMore')}
-                    </Button>
+                    <AppLink target={target} to={'/' + AppRoutes.ARTICLES + '/' + article.id}>
+                        <Button theme={ButtonThemes.OUTLINE} /*onClick={handleNavigateToArticle}*/>
+                            {t('readMore')}
+                        </Button>
+                    </AppLink>
 
                     {views}
                 </div>
@@ -76,22 +81,24 @@ export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
 
     if (viewMode === ArticlesViewMode.GRID) {
         return (
-            <Card
-                onClick={handleNavigateToArticle}
-                className={classNames(styles.ArticlesListItem, {}, [className, styles[viewMode]])}
-            >
-                <div className={styles.imageWrapper}>
-                    <img className={styles.image} src={article.img} alt={article.title} />
-                    <Text text={article.createdAt} className={styles.date} />
-                </div>
-                <div className={styles.cardContent}>
-                    <div className={styles.cardBottom}>
-                        {types}
-                        {views}
+            <AppLink to={'/' + AppRoutes.ARTICLES + '/' + article.id} target={target}>
+                <Card
+                    //onClick={handleNavigateToArticle}
+                    className={classNames(styles.ArticlesListItem, {}, [className, styles[viewMode]])}
+                >
+                    <div className={styles.imageWrapper}>
+                        <img className={styles.image} src={article.img} alt={article.title} />
+                        <Text text={article.createdAt} className={styles.date} />
                     </div>
-                    <Text title={article.title} titleClassName={styles.title} />
-                </div>
-            </Card>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardBottom}>
+                            {types}
+                            {views}
+                        </div>
+                        <Text title={article.title} titleClassName={styles.title} />
+                    </div>
+                </Card>
+            </AppLink>
         );
     }
 
