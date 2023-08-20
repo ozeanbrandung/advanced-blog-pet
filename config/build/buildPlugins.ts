@@ -5,6 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import path from "path";
+import CopyPlugin from "copy-webpack-plugin";
 
 
 export function buildPlugins(
@@ -40,6 +41,13 @@ export function buildPlugins(
         new HtmlWebpackPlugin({
             //template: path.resolve(__dirname, 'public', 'index.html')
             template: paths.html,
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: paths.locales, to: paths.buildLocales },
+                { from: paths.images, to: paths.buildImages },
+                // { from: paths.public, to: paths.buildPublic },
+            ],
         }),
         //The ProgressPlugin provides a way to customize how progress is reported during a compilation.
         //нафиг мы его добавили вообще?

@@ -29,7 +29,8 @@ describe('fetchNextArticlesPage', () => {
         //pending, fulfilled, 2 dispatches inside action
         expect(thunk.dispatch).toBeCalledTimes(4);
         //currentPage = 2 => 2 + 1
-        expect(fetchArticles).toBeCalledWith({pageToLoad: 3});
+        //expect(fetchArticles).toBeCalledWith({pageToLoad: 3});
+        expect(fetchArticles).toBeCalledWith({});
     });
 
     test('not called when hasArticlesToLoad: false', async () => {

@@ -24,6 +24,10 @@ export interface BuildPaths {
     src: string;
     //
     config: string;
+    locales: string;
+    buildLocales: string;
+    images: string;
+    buildImages: string;
 }
 
 export interface BuildOptions {

@@ -37,7 +37,11 @@ export default (env: BuildEnv) => {
         build: path.resolve(__dirname, 'build'),
         html: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src'),
-        config: path.resolve(__dirname, 'config')
+        config: path.resolve(__dirname, 'config'),
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        buildLocales: path.resolve(__dirname, 'build', 'locales'),
+        images: path.resolve(__dirname, 'public', 'imgs'),
+        buildImages: path.resolve(__dirname, 'build', 'imgs'),
     };
 
     const mode = env.mode || 'development';
