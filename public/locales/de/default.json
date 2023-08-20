@@ -13,5 +13,6 @@
   "authFormTitle": "Log out form",
   "authError": "Sie haben ein falsches Passwort oder einen falschen Benutzernamen eingegeben",
   "Profile": "Profil",
-  "noImage": "kein Bild"
+  "noImage": "kein Bild",
+  "createNewArticle": "Artikel erstellen"
 }

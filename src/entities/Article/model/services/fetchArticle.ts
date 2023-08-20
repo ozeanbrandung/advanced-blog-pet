@@ -11,7 +11,11 @@ export const fetchArticle =
             }
             try {
                 const response = await thunkAPI.extra.api.get<IArticle>(
-                    `/articles/${options.id}`);
+                    `/articles/${options.id}`,
+                    {params: {
+                        _expand: 'user'
+                    }}
+                );
 
                 if (!response.data) {
                     throw new Error();

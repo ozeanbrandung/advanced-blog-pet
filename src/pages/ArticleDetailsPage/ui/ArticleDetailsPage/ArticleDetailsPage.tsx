@@ -25,6 +25,7 @@ import {
     getRecommendationsLoading
 } from '../../model/selectors/articleDetailsRecomendationsSelectors';
 import {articleDetailsReducer} from '../../model/slice';
+import {ArticleDetailsPageHeader} from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -94,6 +95,8 @@ const ArticleDetailsPage:FC<ArticleDetailsPageProps> = (/*props*/) => {
 
     return (
         <Page>
+            <ArticleDetailsPageHeader />
+
             <div>
                 {articleData && <Article data={articleData} /> }
                 {isLoading && <ArticleSkeleton />}

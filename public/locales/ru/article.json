@@ -3,5 +3,6 @@
   "noComments": "Нет комментариев",
   "noArticles": "Статей не найдено",
   "recommendationsTitle": "Рекоммендации",
-  "navigateBackButton": "Назад"
+  "navigateBackButton": "Назад",
+  "navigateEditButton": "Редактировать"
 }

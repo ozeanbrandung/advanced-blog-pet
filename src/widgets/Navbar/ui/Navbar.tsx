@@ -10,6 +10,7 @@ import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthDataSelector } from 'entities/User';
 import { userActions } from 'entities/User';
+import {useNavigate} from 'react-router-dom';
 
 interface NavbarProps {
     className?: string;
@@ -22,6 +23,7 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
     const dispatch = useDispatch();
     const [isOpened, setIsOpened] = useState(false);
 
+    const navigate = useNavigate();
     function handleClose() {
         setIsOpened(false);
     }
@@ -32,6 +34,10 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
 
     function handleLogOut() {
         dispatch(userActions.removeAuthData());
+    }
+
+    function handleNavigateCreateArticle() {
+        navigate(RoutesPaths['article-create']);
     }
 
     useEffect(() => {
@@ -49,6 +55,17 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
     return (
         <>
             <header className={classNames(styles.Navbar, {}, [className])}>
+                {authData && (
+                    <Button
+                        theme={ButtonThemes.INITIAL}
+                        onClick={handleNavigateCreateArticle}
+                        className={classNames(styles.link, {}, [styles.linkCreate])}
+                    >
+                        {t('createNewArticle')}
+                    </Button>
+                )}
+                
+
                 <div className={styles.links}>
                     {!authData ? (
                         <Button
@@ -59,6 +76,7 @@ export const Navbar:FC<NavbarProps> = memo((props) => {
                             {t('LogIn')}
                         </Button>
                     ) : (
+
                         <Button
                             theme={ButtonThemes.INITIAL}
                             onClick={handleLogOut}

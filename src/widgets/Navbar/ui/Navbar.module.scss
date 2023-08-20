@@ -15,6 +15,10 @@
     background: var(--inverted-bg-color);
 }
 
-.link:first-child {
+.links .link:first-child {
     margin-right: 40px;
+}
+
+.linkCreate {
+    margin-right: auto;
 }
