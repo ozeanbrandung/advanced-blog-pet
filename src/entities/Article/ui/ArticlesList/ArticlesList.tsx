@@ -6,6 +6,8 @@ import {ArticlesListItem} from '../ArticlesListItem/ArticlesListItem';
 import {ArticlesListItemSkeleton} from '../ArticlesListItem/ArticlesListItemSkeleton';
 import {Text} from 'shared/ui/Text/Text';
 import {useTranslation} from 'react-i18next';
+import {ArticlesVirtualizedList} from 'entities/Article/ui/ArticlesVirtualizedList/ArticlesVirtualizedList';
+import {ArticlesVirtualizedGrid} from 'entities/Article/ui/ArticlesVirtualizedGrid/ArticlesVirtualizedGrid';
 
 interface ArticlesListProps {
     className?: string;
@@ -13,6 +15,8 @@ interface ArticlesListProps {
     viewMode: ArticlesViewMode;
     isLoading: boolean;
     target?: HTMLAttributeAnchorTarget;
+    loadMore?: () => void;
+    isVirtual?: boolean;
 }
 
 const getArticleSkeletons = (viewMode:ArticlesViewMode) => {
@@ -38,11 +42,11 @@ const getArticleSkeletons = (viewMode:ArticlesViewMode) => {
 };
 
 export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
-    const { className, isLoading, articles, target, viewMode } = props;
+    const { className, loadMore, isVirtual = false, isLoading, articles, target, viewMode } = props;
     const {t} = useTranslation('article');
 
     const memoedArticles = useMemo(() => {
-        return articles.map(article => (
+        return isVirtual ? [] : articles.map(article => (
             <ArticlesListItem
                 target={target}
                 className={styles.article}
@@ -51,7 +55,7 @@ export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
                 viewMode={viewMode}
             />
         ));
-    }, [articles, viewMode]);
+    }, [articles, viewMode, isVirtual]);
 
     if (!isLoading && !articles.length) {
         return (
@@ -64,8 +68,34 @@ export const ArticlesList:FC<ArticlesListProps> = memo((props) => {
 
     return (
         <div className={classNames(styles.ArticlesList, {}, [className, styles[viewMode]])}>
-            {memoedArticles}
-            {isLoading && getArticleSkeletons(viewMode)}
+            {viewMode === ArticlesViewMode.LIST && isVirtual && (
+                <ArticlesVirtualizedList
+                    articles={articles}
+                    viewMode={viewMode}
+                    isLoading={isLoading}
+                    target={'_blank'}
+                    loadMore={loadMore}
+                />
+            )}
+
+            {viewMode === ArticlesViewMode.GRID && isVirtual && (
+                <ArticlesVirtualizedGrid
+                    articles={articles}
+                    viewMode={viewMode}
+                    isLoading={isLoading}
+                    target={'_blank'}
+                    loadMore={loadMore}
+                />
+            )}
+
+            {!isVirtual && (
+                <>
+                    {memoedArticles}
+                    {isLoading && getArticleSkeletons(viewMode)}
+                </>
+            )}
+
+
         </div>
     );
 

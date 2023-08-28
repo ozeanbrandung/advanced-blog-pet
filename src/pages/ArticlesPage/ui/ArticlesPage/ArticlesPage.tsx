@@ -60,10 +60,16 @@ const ArticlesPage:FC<ArticlesPageProps> = (/*props*/) => {
     }
 
     return (
-        <Page key="articles" onScrollEnd={handleLoadNextPage} isScrollPositionSaved>
+        <Page key="articles" /* onScrollEnd={handleLoadNextPage} */ /*isScrollPositionSaved */>
             <ArticleFilters />
             <SwitchArticlesViewMode onChangeMode={handleViewModeChange} currentViewMode={currentViewMode} />
-            <ArticlesList articles={articles} viewMode={currentViewMode} isLoading={isLoading} />
+            <ArticlesList
+                isVirtual
+                articles={articles}
+                viewMode={currentViewMode}
+                isLoading={isLoading}
+                loadMore={handleLoadNextPage}
+            />
         </Page>
     );
 };

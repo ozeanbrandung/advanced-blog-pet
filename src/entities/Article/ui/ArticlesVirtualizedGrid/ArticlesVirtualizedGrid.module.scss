@@ -1,0 +1,8 @@
+.ArticlesVirtualizedGrid {
+    display: grid;
+    grid-gap: 16px;
+
+    /* с fr плохо работает */
+    grid-template-columns: repeat(3, calc(33.33% - 16px * 2 / 3));
+    width: 100%;
+}

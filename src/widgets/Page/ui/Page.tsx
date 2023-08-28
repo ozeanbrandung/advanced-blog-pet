@@ -51,6 +51,7 @@ export const Page:FC<PageProps> = (props) => {
 
     return (
         <section
+            id='page'
             onScroll={isScrollPositionSaved ? handlePreserveScrollPosition : undefined}
             ref={rootRef}
             className={classNames(styles.Page, {}, [className])}
