@@ -15,11 +15,11 @@ export const ArticleImageBlock:FC<ArticleImageBlockProps> = (props) => {
     //const {t} = useTranslation('default');
 
     return (
-        <div className={classNames(styles.ArticleImageBlock, {}, [className])}>
+        <figure className={classNames(styles.ArticleImageBlock, {}, [className])}>
             <img className={styles.img} src={block.src} alt={block.title} />
             {block.title && (
-                <Text text={block.title} align={TextAlign.CENTER}/>
+                <Text isCaption text={block.title} align={TextAlign.CENTER}/>
             )}
-        </div>
+        </figure>
     );
 };

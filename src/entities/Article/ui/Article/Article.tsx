@@ -33,7 +33,7 @@ export const Article:FC<ArticleProps> = memo((props) => {
     }, []);
 
     return (
-        <div className={classNames(styles.Article, {}, [className])}>
+        <article className={classNames(styles.Article, {}, [className])}>
             <Avatar className={styles.avatar} src={data.img} mode={AvatarModes.BIG} />
 
             <Text className={styles.titles} title={data.title} text={data.subtitle} size={TextSize.L} />
@@ -51,6 +51,6 @@ export const Article:FC<ArticleProps> = memo((props) => {
             <div className={styles.blocksContainer}>
                 {data.blocks.map(getContentBlocks)}
             </div>
-        </div>
+        </article>
     );
 });

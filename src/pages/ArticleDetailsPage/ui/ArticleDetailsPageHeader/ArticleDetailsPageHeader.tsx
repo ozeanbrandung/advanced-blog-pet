@@ -35,7 +35,7 @@ export const ArticleDetailsPageHeader:FC<ArticleDetailsPageHeaderProps> = memo((
     const isEditable = useSelector(getArticleEditSelector);
 
     return (
-        <div className={classNames(styles.ArticleDetailsPageHeader, {}, [className])}>
+        <header className={classNames(styles.ArticleDetailsPageHeader, {}, [className])}>
             <Button
                 onClick={handleNavigateToList}
                 theme={ButtonThemes.OUTLINE}
@@ -51,6 +51,6 @@ export const ArticleDetailsPageHeader:FC<ArticleDetailsPageHeaderProps> = memo((
                     {t('navigateEditButton')}
                 </Button>
             )}
-        </div>
+        </header>
     );
 });

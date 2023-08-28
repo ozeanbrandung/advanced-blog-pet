@@ -50,7 +50,7 @@ export const Page:FC<PageProps> = (props) => {
     });
 
     return (
-        <section
+        <main
             id='page'
             onScroll={isScrollPositionSaved ? handlePreserveScrollPosition : undefined}
             ref={rootRef}
@@ -60,6 +60,6 @@ export const Page:FC<PageProps> = (props) => {
             {onScrollEnd && (
                 <div className={styles.trigger} ref={triggerRef}/>
             )}
-        </section>
+        </main>
     );
 };

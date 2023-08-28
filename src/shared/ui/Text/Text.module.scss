@@ -38,6 +38,16 @@
     margin-bottom: 0;
 }
 
+.S {
+    .title {
+        font-size: var(--font-size-m);
+    }
+
+    .text {
+        font-size: var(--font-size-s);
+    }
+}
+
 .M {
     .title {
         font-size: var(--font-size-l);

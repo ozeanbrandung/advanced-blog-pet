@@ -45,7 +45,7 @@ export const EditableProfileCardHeader:FC<EditableProfileCardHeaderProps> = (pro
     }, [dispatch, form]);
 
     return (
-        <div className={classNames(styles.EditableProfileCardHeader, {}, [className])}>
+        <header className={classNames(styles.EditableProfileCardHeader, {}, [className])}>
             <Text title={t('profile')} />
             {isEditable && (
                 <>
@@ -72,6 +72,6 @@ export const EditableProfileCardHeader:FC<EditableProfileCardHeaderProps> = (pro
                     )}
                 </>
             )}
-        </div>
+        </header>
     );
 };

@@ -58,9 +58,9 @@ export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
                     {types}
                 </div>
 
-                <div className={styles.imageWrapper}>
+                <figure className={styles.imageWrapper}>
                     <img className={styles.image} src={article.img} alt={article.title} />
-                </div>
+                </figure>
 
                 {paragraph && (
                     <ArticleTextBlock block={paragraph} className={styles.contentPreview} />
@@ -86,10 +86,10 @@ export const ArticlesListItem:FC<ArticlesListItemProps> = memo((props) => {
                     //onClick={handleNavigateToArticle}
                     className={classNames(styles.ArticlesListItem, {}, [className, styles[viewMode]])}
                 >
-                    <div className={styles.imageWrapper}>
+                    <figure className={styles.imageWrapper}>
                         <img className={styles.image} src={article.img} alt={article.title} />
-                        <Text text={article.createdAt} className={styles.date} />
-                    </div>
+                        <Text isCaption text={article.createdAt} className={styles.date} />
+                    </figure>
                     <div className={styles.cardContent}>
                         <div className={styles.cardBottom}>
                             {types}
