@@ -25,7 +25,7 @@ import {
     getRecommendationsLoading
 } from '../../model/selectors/articleDetailsRecomendationsSelectors';
 import {articleDetailsReducer} from '../../model/slice';
-import {ArticleDetailsPageHeader} from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import {ArticleDetailsPageHeader} from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
     className?: string;

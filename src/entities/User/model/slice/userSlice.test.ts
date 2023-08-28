@@ -1,5 +1,5 @@
 import { userActions, userReducer } from './userSlice';
-import { UserSchema } from 'entities/User';
+import { UserSchema } from '../types/user';
 
 describe('userSlice', () => {
     test('test removeAuthData', () => {

@@ -1,5 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
-import { initialForm } from 'features/EditableProfile/model/slice/profileSlice';
+import { initialForm } from '../../slice/profileSlice';
 import { Country, Currency } from 'shared/consts/common';
 
 //import { createSelector } from '@reduxjs/toolkit';

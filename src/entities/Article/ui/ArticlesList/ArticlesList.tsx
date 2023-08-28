@@ -6,8 +6,8 @@ import {ArticlesListItem} from '../ArticlesListItem/ArticlesListItem';
 import {ArticlesListItemSkeleton} from '../ArticlesListItem/ArticlesListItemSkeleton';
 import {Text} from 'shared/ui/Text/Text';
 import {useTranslation} from 'react-i18next';
-import {ArticlesVirtualizedList} from 'entities/Article/ui/ArticlesVirtualizedList/ArticlesVirtualizedList';
-import {ArticlesVirtualizedGrid} from 'entities/Article/ui/ArticlesVirtualizedGrid/ArticlesVirtualizedGrid';
+import {ArticlesVirtualizedList} from '../ArticlesVirtualizedList/ArticlesVirtualizedList';
+import {ArticlesVirtualizedGrid} from '../ArticlesVirtualizedGrid/ArticlesVirtualizedGrid';
 
 interface ArticlesListProps {
     className?: string;

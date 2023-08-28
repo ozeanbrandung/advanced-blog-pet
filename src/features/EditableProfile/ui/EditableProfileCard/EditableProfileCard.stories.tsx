@@ -3,9 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EditableProfileCard } from './EditableProfileCard';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ProfileStateSchema } from 'features/EditableProfile';
+import { ProfileStateSchema, Profile, ValidateProfileError } from '../../model/types/profile';
 import { Country, Currency } from 'shared/consts/common';
-import { Profile, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
 import { StateSchema } from 'app/providers/StoreProvider';
 
 

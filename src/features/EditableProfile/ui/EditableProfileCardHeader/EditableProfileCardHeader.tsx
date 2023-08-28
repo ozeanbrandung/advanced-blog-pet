@@ -7,11 +7,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getReadonlySelector} from '../../model/selectores/getReadonlySeelctor/getReadonlySelector';
 import {profileActions} from '../../model/slice/profileSlice';
 import styles from './EditableProfileCardHeader.module.scss';
-import {saveProfileChanges} from 'features/EditableProfile/model/services/saveProfileChanges/saveProfileChanges';
+import {saveProfileChanges} from '../../model/services/saveProfileChanges/saveProfileChanges';
 import {
     getProfileDataSelector,
     getProfileFormSelector
-} from 'features/EditableProfile/model/selectores/getProfileDataSelector/getProfileDataSelector';
+} from '../../model/selectores/getProfileDataSelector/getProfileDataSelector';
 import {getUserAuthDataSelector} from 'entities/User';
 
 interface EditableProfileCardHeaderProps {

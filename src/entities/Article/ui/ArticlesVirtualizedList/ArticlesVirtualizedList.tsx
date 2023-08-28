@@ -1,9 +1,9 @@
 import {FC, HTMLAttributeAnchorTarget, memo} from 'react';
 import styles from './ArticlesVirtualizedList.module.scss';
 import {Virtuoso} from 'react-virtuoso';
-import {ArticlesViewMode, IArticle} from 'entities/Article';
-import {ArticlesListItem} from 'entities/Article/ui/ArticlesListItem/ArticlesListItem';
-import {ArticlesListItemSkeleton} from 'entities/Article/ui/ArticlesListItem/ArticlesListItemSkeleton';
+import {ArticlesViewMode, IArticle} from '../../model/types/article';
+import {ArticlesListItem} from '../ArticlesListItem/ArticlesListItem';
+import {ArticlesListItemSkeleton} from '../ArticlesListItem/ArticlesListItemSkeleton';
 
 interface ArticlesVirtualizedListProps {
     className?: string;

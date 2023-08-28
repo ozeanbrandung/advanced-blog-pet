@@ -1,5 +1,5 @@
 import { validateProfileData } from './validateProfileData';
-import { Profile, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
+import { Profile, ValidateProfileError } from '../../types/profile';
 
 const mockData = {
     id: '3',

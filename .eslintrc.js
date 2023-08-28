@@ -9,7 +9,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:react-hooks/recommended'
+        'plugin:react-hooks/recommended',
     ],
     'overrides': [
         {
@@ -32,7 +32,8 @@ module.exports = {
         'react',
         '@typescript-eslint',
         'i18next',
-        'react-hooks'
+        'react-hooks',
+        'fsd-path-checker'
     ],
     'rules': {
         'indent': [
@@ -63,7 +64,8 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'warn',
         'react/display-name': 'off',
         'react/prop-types': 'off',
-        'linebreak-style': ['error', 'unix']
+        'linebreak-style': ['error', 'unix'],
+        'fsd-path-checker/fsd-path-checker': 'error'
     },
     globals: {
         __API__: true,

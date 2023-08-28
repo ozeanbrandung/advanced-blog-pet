@@ -1,7 +1,7 @@
 import {FC, memo, useCallback} from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './Tabs.module.scss';
-import {Card, CardTheme} from 'shared/ui/Card/Card';
+import {Card, CardTheme} from '../../ui/Card/Card';
 
 export interface ITab {
     value: string;

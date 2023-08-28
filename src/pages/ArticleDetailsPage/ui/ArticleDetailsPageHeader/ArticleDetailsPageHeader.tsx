@@ -6,7 +6,7 @@ import {Button, ButtonThemes} from 'shared/ui/Button/Button';
 import {useNavigate} from 'react-router-dom';
 import {RoutesPaths} from 'shared/config/routesConfig/routesConfig';
 import {useSelector} from 'react-redux';
-import {getArticleEditSelector} from 'pages/ArticleDetailsPage/model/selectors/articleEditSelector';
+import {getArticleEditSelector} from '../../model/selectors/articleEditSelector';
 import {getArticleData} from 'entities/Article';
 
 interface ArticleDetailsPageHeaderProps {

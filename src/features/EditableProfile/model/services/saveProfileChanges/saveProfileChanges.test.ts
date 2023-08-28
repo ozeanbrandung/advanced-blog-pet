@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { saveProfileChanges } from './saveProfileChanges';
 import { TestAsyncThunk } from 'shared/lib/tests/testAsyncThunk';
-import { Profile, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
+import { Profile, ValidateProfileError } from '../../types/profile';
 import { Country, Currency } from 'shared/consts/common';
 
 jest.mock('axios');

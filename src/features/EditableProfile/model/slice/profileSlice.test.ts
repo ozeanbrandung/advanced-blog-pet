@@ -1,6 +1,6 @@
 import { profileActions, profileReducer } from './profileSlice';
-import { ProfileStateSchema, ValidateProfileError } from 'features/EditableProfile/model/types/profile';
-import { fetchProfile } from 'features/EditableProfile/model/services/fetchProfile/fetchProfile';
+import { ProfileStateSchema, ValidateProfileError } from '../types/profile';
+import { fetchProfile } from '../services/fetchProfile/fetchProfile';
 
 const mockState = {
     form: {

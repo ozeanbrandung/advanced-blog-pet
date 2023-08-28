@@ -4,7 +4,7 @@ import {Profile, ValidateProfileError} from '../../types/profile';
 import {validateProfileData} from '../../services/validateProfileData/validateProfileData';
 import {
     getProfileFormSelector
-} from 'features/EditableProfile/model/selectores/getProfileDataSelector/getProfileDataSelector';
+} from '../../selectores/getProfileDataSelector/getProfileDataSelector';
 
 export const saveProfileChanges =
     createAsyncThunk<Profile, Profile, ThunkConfig<ValidateProfileError[]>>(
