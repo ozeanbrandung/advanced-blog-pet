@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import styles from './ArticleSelectors.module.scss';
-import {Select, SelectOption} from 'shared/ui/Select/Select';
+import {SelectOption} from 'shared/ui/Select/Select';
 import {Order, Sort} from '../../model/types/articleFiltersTypes';
+import {Listbox} from 'shared/ui/Listbox/Listbox';
 
 interface ArticleSelectorsProps {
     className?: string;
@@ -38,14 +39,14 @@ export const ArticleSelectors:FC<ArticleSelectorsProps> = (props) => {
 
     return (
         <div className={classNames(styles.articleSelectors, {}, [className])}>
-            <Select
+            <Listbox
                 options={sortOptions}
                 className={styles.sort}
                 selectedValue={sort}
                 onChange={onSortChange}
             />
 
-            <Select
+            <Listbox
                 options={orderOptions}
                 className={styles.order}
                 selectedValue={order}

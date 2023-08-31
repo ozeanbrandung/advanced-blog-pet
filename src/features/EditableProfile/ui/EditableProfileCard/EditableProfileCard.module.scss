@@ -4,6 +4,11 @@
     margin: 0 auto;
 }
 
+/* TODO: убрать button! */
+.input button {
+    border-radius: 20px;
+}
+
 .input:not(:last-child) {
     margin-bottom: 25px;
 }

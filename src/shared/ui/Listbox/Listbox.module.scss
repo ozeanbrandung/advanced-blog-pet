@@ -1,0 +1,55 @@
+.listBox {
+    position: relative;
+}
+
+.listBox .button {
+    /* min-width: 100px;
+  min-height: 24px; */
+    margin: 0;
+}
+
+.options {
+    position: absolute;
+    z-index: 10000;
+
+    border-radius: 12px;
+
+    background: var(--code-bg);
+    box-shadow: 4px 4px 8px var(--card-color);
+}
+
+.option {
+    min-width: max-content;
+    padding: 8px 20px;
+
+    cursor: pointer;
+}
+
+.active {
+    border-radius: 12px;
+
+    color: var(--card-color);
+
+    background-color: var(--secondary-color);
+}
+
+.disabled {
+    opacity: 0.4;
+}
+
+.top {
+    bottom: 100%;
+}
+
+.button:first-child {
+    margin-right: 5px;
+}
+
+.buttonWrapper {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    background: none;
+    outline: none;
+}

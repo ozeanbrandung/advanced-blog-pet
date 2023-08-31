@@ -99,7 +99,7 @@ export const EditableProfileCard:FC<EditableProfileCardProps> = (props) => {
                                 action={inputConfig.action}
                                 payloadCreator={inputConfig.payloadCreator}
                                 readonly={readonly}
-                                placeholder={key}
+                                //placeholder={key}
                             />
                         );
                     }

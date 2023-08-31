@@ -1,25 +1,31 @@
 //import styles from './EditableSelector.module.scss';
-import { Select, SelectOption } from 'shared/ui/Select/Select';
-import { useInputWithData, UseInputWithDataProps } from 'shared/hooks/useInputWithData/useInputWithData';
+import {SelectOption} from 'shared/ui/Select/Select';
+import {useInputWithData, UseInputWithDataProps} from 'shared/hooks/useInputWithData/useInputWithData';
+import {Listbox} from 'shared/ui/Listbox/Listbox';
+import {useMemo} from 'react';
 
 interface EditableSelectorProps<Schema, T> extends UseInputWithDataProps<Schema> {
     className?: string;
     readonly?: boolean;
-    placeholder?: string;
+    //placeholder?: string;
     options: SelectOption<T>[];
 }
 
 export function EditableSelector<Schema, T extends string | number>(props: EditableSelectorProps<Schema, T>) {
-    const { className, selector, action, readonly, placeholder, payloadCreator, options } = props;
+    const { className, selector, action, readonly, payloadCreator, options } = props;
     const {value, onChange} = useInputWithData<Schema>({selector, action, payloadCreator});
 
+    const selectedLabel = useMemo(() => {
+        return options.find(opt => opt.value === value)?.label;
+    }, [options, value]);
+
     return (
-        <Select<T>
+        <Listbox<T>
             className={className}
             selectedValue={value}
             onChange={onChange}
             options={options}
-            placeholder={placeholder}
+            placeholder={selectedLabel}
             readonly={readonly}
         />
     );
