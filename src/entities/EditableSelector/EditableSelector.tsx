@@ -1,7 +1,7 @@
 //import styles from './EditableSelector.module.scss';
 import {SelectOption} from 'shared/ui/Select/Select';
 import {useInputWithData, UseInputWithDataProps} from 'shared/hooks/useInputWithData/useInputWithData';
-import {Listbox} from 'shared/ui/Listbox/Listbox';
+import {DropdownDirection, Listbox} from 'shared/ui/Listbox/Listbox';
 import {useMemo} from 'react';
 
 interface EditableSelectorProps<Schema, T> extends UseInputWithDataProps<Schema> {
@@ -9,10 +9,11 @@ interface EditableSelectorProps<Schema, T> extends UseInputWithDataProps<Schema>
     readonly?: boolean;
     //placeholder?: string;
     options: SelectOption<T>[];
+    direction: DropdownDirection;
 }
 
 export function EditableSelector<Schema, T extends string | number>(props: EditableSelectorProps<Schema, T>) {
-    const { className, selector, action, readonly, payloadCreator, options } = props;
+    const { className, selector, direction, action, readonly, payloadCreator, options } = props;
     const {value, onChange} = useInputWithData<Schema>({selector, action, payloadCreator});
 
     const selectedLabel = useMemo(() => {
@@ -27,6 +28,7 @@ export function EditableSelector<Schema, T extends string | number>(props: Edita
             options={options}
             placeholder={selectedLabel}
             readonly={readonly}
+            direction={direction}
         />
     );
 }

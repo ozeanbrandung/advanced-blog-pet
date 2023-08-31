@@ -4,7 +4,7 @@ import {Fragment, ReactNode} from 'react';
 import {classNames} from 'shared/lib/classNames/classNames';
 import {Button, ButtonThemes} from '../Button/Button';
 
-type DropdownDirection = 'bottom' | 'top';
+export type DropdownDirection = 'bottom' | 'top';
 export interface ListboxOption<T> {
     value: T;
     label: ReactNode;
